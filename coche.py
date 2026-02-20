@@ -8,4 +8,11 @@ class Coche:
         self.gasolina = 0
         type(self).kilom_recorridos+= kilometros
 
+    def __str__(self):
+        return(
+            f'Matricula: {self.matricula}\n'
+            f'Marca: {self.marca}\n'
+            f'kilometros: {self.kilometros}\n'
+            f'gasolina: {self.gasolina}\n'
+        )
 
