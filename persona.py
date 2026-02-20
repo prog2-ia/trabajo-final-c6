@@ -9,8 +9,8 @@ class Persona:
 
     def __str__(self):
         return(
-        f'dni: {self.dni} \n'
-        f'nombre: {self.nombre} \n'
-        f'apellido: {self.apellido} \n'
-        f'coche: {self.coche} \n'
+            f'dni: {self.dni} \n'
+            f'nombre: {self.nombre} \n'
+            f'apellido: {self.apellido} \n'
+            f'coche: {self.coche} \n'
         )
