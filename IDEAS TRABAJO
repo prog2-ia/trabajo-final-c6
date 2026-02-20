@@ -10,7 +10,8 @@ ATRIBUTOS
 -Género
 -Fecha_Lanzamiento
 -Discográfica
-
+-Num de escuchas
+-Duración
 ---------------------------------------
              -Álbum
 ATRIBUTOS
@@ -20,7 +21,19 @@ ATRIBUTOS
 -Fecha_Lanzamiento
 -Discográfica
 -Copyright
+-Num de escuchas
+-Duración
+             -Artista/Grupo
+
+ATRIBUTOS
+-Nombre/Grupo
+-Nombre_real/componentes
+-Fecha de nacimiento (grupo)
+-Nacionalidad
+-Género musical (pop, rock, reggaetón, etc.)
+-Años activo
+-Canciones más populares
+
+
 MÉTODOS
 ---------------------------
-             -Artista
-
