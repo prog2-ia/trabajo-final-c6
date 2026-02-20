@@ -2,10 +2,25 @@ IDEAS TRABAJO
 
 CLASES
 ----------------------------
+               -Canción
+ATRIBUTOS
+-Titulo
+-Artista(s)
+-Álbum
+-Género
+-Fecha_Lanzamiento
+-Discográfica
 
-
-
-
-
+---------------------------------------
+             -Álbum
+ATRIBUTOS
+-Nombre
+-Artista(s)
+-Tipo (album, single, compilation, EP.)
+-Fecha_Lanzamiento
+-Discográfica
+-Copyright
 MÉTODOS
 ---------------------------
+             -Artista
+
