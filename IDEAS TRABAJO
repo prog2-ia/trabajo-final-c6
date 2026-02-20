@@ -7,35 +7,33 @@ Fecha: [Fecha]
 
 Clases principales y sus descripciones:
 
-1. Cancion
+1. Cancion HECHO
    - Atributos: título, artista, duración, género, estado de ánimo, archivo de audio.
    - Métodos: reproducir(), validar_archivo(), mostrar_info().
    - Función: Encapsula cada pista individual y valida metadatos y archivos corruptos.
 
-2. Album
+2. Album KACPER
    - Atributos: nombre, artista, lista de canciones, año de lanzamiento.
    - Métodos: agregar_cancion(), eliminar_cancion(), obtener_duracion_total().
    - Función: Hereda de Contenido si se decide una clase base para todos los contenidos multimedia.
 
-3. ListaReproduccion
+3. ListaReproduccion KACPER
    - Atributos: nombre, lista de canciones, duración máxima, género predominante.
    - Métodos: mezclar(), eliminar_duplicados(), comparar_con(otra_lista).
    - Función: Soporta sobrecarga de operadores para comparación y combinación de listas.
 
-4. Genero
+4. Genero TEGRA
    - Atributos: nombre, descripción.
    - Métodos: asociar_cancion(), listar_canciones().
    - Función: Permite categorizar canciones y listas según el género musical.
 
-5. EstadoAnimo
+5. EstadoAnimo TEGRA
    - Atributos: nombre, descripción.
    - Métodos: asociar_cancion(), listar_canciones().
    - Función: Relaciona pistas o listas con estados de ánimo (feliz, triste, energético).
 
-6. BibliotecaMusical
-   - Atributos: listas de álbumes, canciones y listas de reproducción.
-   - Métodos: agregar_album(), agregar_lista(), exportar_texto(), exportar_pickle().
-   - Función: Clase central para manejar toda la colección musical.
+6. Artista HECHO
+
 
 Notas adicionales:
 - La herencia perfila contenidos y la sobrecarga de operadores facilita mezclar listas, eliminar duplicados o comparar colecciones.
