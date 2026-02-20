@@ -36,4 +36,17 @@ ATRIBUTOS
 
 
 MÉTODOS
+
+---------------------------------------
+             -Playlist
+ATRIBUTOS
+-Nombre
+-Descripcion (opcional)
+-Autor(es)
+-Artista(s)
+-Numero_canciones
+-Tiempo_total
+-Fecha_creacion
+
+MÉTODOS
 ---------------------------
