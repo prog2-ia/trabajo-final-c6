@@ -1,12 +1,12 @@
 class Coche:
     kilom_recorridos=0
 
-    def __init__(self, matricula, marca, kilometros, gasolina):
-        self.matricula = int(input('Matricula: '))
-        self.marca = input('Marca: ')
-        self.kilometros = 0
-        self.gasolina = 0
-        type(self).kilom_recorridos+= kilometros
+    def __init__(self, matricula, marca, kilometros=0, gasolina=0):
+        self.matricula = matricula
+        self.marca = marca
+        self.kilometros = kilometros
+        self.gasolina = gasolina
+        type(self).kilom_recorridos+= self.kilometros
 
     def __str__(self):
         return(
