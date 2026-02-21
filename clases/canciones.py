@@ -16,8 +16,10 @@ class Cancion:
         # Lista de géneros en caso de que pertenezca a más de uno
         if genero is None:
             self.genero = []
-        else:
+        elif isinstance(genero, list):
             self.genero = genero
+        else:
+            self.genero = [genero]
 
         # Comprueba si es un string y cambia el formato
         if isinstance(fecha_lanzamiento, str):
@@ -26,15 +28,21 @@ class Cancion:
             self.fecha_lanzamiento = fecha_lanzamiento
 
     def __str__(self):
-        return f'{self.titulo} - {self.artista} - {self.album} - {self.genero} - {self.duracion} - {self.num_escuchas} - {self.discografica}'
+        return (f"{self.titulo} - {self.artista}\n"
+                f"Álbum: {self.album}\n"
+                f"Género(s): {', '.join(self.genero)}\n"
+                f"Duración: {self.duracion} seg\n"
+                f"Escuchas: {self.num_escuchas}\n"
+                f"Discográfica: {self.discografica}\n"
+                f"Fecha lanzamiento: {self.fecha_lanzamiento.strftime('%Y-%m-%d')}")
 
     def __repr__(self):
-        return (f'{type(self).__name__}'
-                f'titulo: {self.titulo}'
-                f'artista: {self.artista}'
-                f'album: {self.album}'
-                f'duracion: {self.duracion}'
-                f'fecha_lanzamiento: {self.fecha_lanzamiento}'
-                f'num_escuchas: {self.num_escuchas}'
-                f'discografica: {self.discografica}'
-                )
+        return (f"{type(self).__name__}("
+                f"titulo='{self.titulo}', "
+                f"artista='{self.artista}', "
+                f"album='{self.album}', "
+                f"genero={self.genero}, "
+                f"duracion={self.duracion}, "
+                f"fecha_lanzamiento='{self.fecha_lanzamiento.strftime('%Y-%m-%d')}', "
+                f"num_escuchas={self.num_escuchas}, "
+                f"discografica='{self.discografica}')")
