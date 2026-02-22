@@ -12,12 +12,12 @@ Clases principales y sus descripciones:
    - Métodos: reproducir(), validar_archivo(), mostrar_info().
    - Función: Encapsula cada pista individual y valida metadatos y archivos corruptos.
 
-2. Album KACPER
+2. Album HECHO
    - Atributos: nombre, artista, lista de canciones, año de lanzamiento.
    - Métodos: agregar_cancion(), eliminar_cancion(), obtener_duracion_total().
    - Función: Hereda de Contenido si se decide una clase base para todos los contenidos multimedia.
 
-3. ListaReproduccion KACPER
+3. ListaReproduccion HECHO
    - Atributos: nombre, lista de canciones, duración máxima, género predominante.
    - Métodos: mezclar(), eliminar_duplicados(), comparar_con(otra_lista).
    - Función: Soporta sobrecarga de operadores para comparación y combinación de listas.
