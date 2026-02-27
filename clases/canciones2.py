@@ -14,11 +14,6 @@ class Cancion(Contenido):
 
 #-----------------------------------------
 if __name__ == '__main__':
-    cancion1 = Cancion("Livin' on a Prayer",1986,4,['Glam metal','Hard rock'],'Bon Jovi', 'Slippery When Wet')
+    cancion1 = Cancion("Livin' on a Prayer",1986,'04:11',['Glam metal','Hard rock'],'Bon Jovi', 'Slippery When Wet')
     cancion1.mostrar_info()
 
-    #intentamos reproducir la cancion
-    cancion1.reproducir()
-    print()
-    #volvemos a ver si se esta reproduciendo
-    cancion1.mostrar_info()
