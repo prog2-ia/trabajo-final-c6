@@ -1,0 +1,10 @@
+Clases:
+
+Contenido: (clase padre para todas las clases que contengan algun contenido musical)
+    * reproducir() -> incrementar reproducciones
+    * pausa() -> cambia de estado ('reproduciendo')
+        - Album(Contenido)
+        - ListaReproduccion(Contenido)
+        - Cancion(Contendido)
+
+Artista/ Grupo:

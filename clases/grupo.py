@@ -10,20 +10,19 @@ class Grupo:
         self.activo = activo #Numero de anyos activo
         self.canciones_populares = canciones_populares #lista de canciones populares del grupo/artista
 
-    def __str__(self):
-        return(
-            f'Nombre del grupo/artista: {self.nombre}\n'
-            f'Componente(s): {self.componentes}\n'
-            f'Genero(s): {self.genero}\n'
-            f'Fecha de creacion: {self.fecha_nacimiento}\n'
-            f'Pais origen: {self.pais_origen}\n'
-            f'Activo: {self.activo}\n'
-            f'Canciones populares: {self.canciones_populares}\n'
-        )
+    # la funcion que nos sirve para mostrar la inforamacion almacenada de los artistas.
+    def mostrar_info(self):
+        print(f'Nombre del grupo/artista: {self.nombre}')
+        print(f'Componentes: {self.componentes}')
+        print(f'Genero: {self.genero}')
+        print(f'Fecha de formacion: {self.fecha_nacimiento}')
+        print(f'Pais de origen: {self.pais_origen}')
+        print(f'Canciones Populares: {self.canciones_populares}')
+        print(f'Activo: {"Si" if self.activo == True else "No"}')
 
-#Ejemplo de ejecucion.
-'''
+
+
+#-------------------------------------------
 if __name__ == "__main__":
     grupo1 = Grupo('Bon Jovi',['Jon','David','Tico','Richie'],['Rock','Glam metal'],1983,'Estados Unidos',['Livin on a Prayer','Its My Life'],True)
-    print(grupo1)
-'''
+    grupo1.mostrar_info()

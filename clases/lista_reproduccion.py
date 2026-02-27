@@ -1,22 +1,20 @@
 #clase de lista de reproduccion.
+from contenido import Contenido
 
-class ListaReproduccion:
-    def __init__(self,nombre, lista_canciones,duracion, genero_predominante):
-        self.nombre = nombre
+class ListaReproduccion(Contenido):
+    def __init__(self,titulo, fecha_lanzamiento, duracion, genero, lista_canciones,estado_reproduccion=False):
+        super().__init__(titulo,fecha_lanzamiento,duracion,genero, artista='varios')
         self.lista_canciones = lista_canciones
-        self.duracion = duracion
-        self.genero_predominante = genero_predominante
 
-    def __repr__(self):
-        return(
-            f'Nombre: {self.nombre}\n'
-            f'Canciones: {self.lista_canciones}\n'
-            f'Duracion: {self.duracion}\n'
-            f'Genero predominante: {self.genero_predominante}\n'
-        )
-'''
-#Ejemplo de ejecucion
+    def mostrar_info(self):
+        print(f'==== LISTA DE REPRODUCCION ====')
+        super().mostrar_info()
+        print(f'Lista de canciones:')
+        for cancion in self.lista_canciones:
+            print(f'-  {cancion}')
+
+
+#-------------------------------------------
 if __name__ == '__main__':
-    lista1 = ListaReproduccion('Lista1', ["Livin' on a Prayer", "It's My Life", "You Give Love a Bad Name", "Dream On", "Walk This Way", "Crazy", "Sweet Child O' Mine", "Welcome to the Jungle", "November Rain", "Paradise City"],52,'rock' )
-    print(lista1)
-'''
+    lista1 = ListaReproduccion('Mi lista',2025,47,['Rock','Glam rock'],["Livin' on a Prayer","Back in Black","Sweet Child O' Mine","Smells Like Teen Spirit","Highway to Hell","Enter Sandman","Don't Stop Believin'","Bohemian Rhapsody","Paranoid","Whole Lotta Love"])
+    lista1.mostrar_info()

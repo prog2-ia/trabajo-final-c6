@@ -1,0 +1,6 @@
+27 febrero (14:40)
+- he modificado las clases que hemos creado previamente para aplicar la herencia
+- he creado una clase general de la que salen varias clases (contenido.py)
+- usando la herencia he creado clases como (canciones2.py, lista_reproduccion.py, album.py)
+- he implementado unas funciones de reproduir, pausar el contenido
+- he puesto ejemplo de ejecucion para cada clase
