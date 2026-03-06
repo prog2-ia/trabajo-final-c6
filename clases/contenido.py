@@ -118,3 +118,6 @@ class Contenido:
                 seg = str(s)
             resultado = hor + ':' + minu + ':' + seg
         return resultado
+
+    def validar_titulo(self):
+        if self.titulo
