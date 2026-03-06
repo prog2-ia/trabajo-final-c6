@@ -13,7 +13,4 @@ class Cancion(Contenido):
         print(f'Discografia: {self.discografia}')
 
 #-----------------------------------------
-if __name__ == '__main__':
-    cancion1 = Cancion("Livin' on a Prayer",1986,'04:11',['Glam metal','Hard rock'],'Bon Jovi', 'Slippery When Wet')
-    cancion1.mostrar_info()
 

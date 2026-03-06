@@ -1,5 +1,4 @@
-from artistas import Artista
-
+from clases.Artistas.artistas import Artista
 
 class Orquestas(Artista):
     def __init__(self, nombre, fecha_formacion, pais_origen, director, activo:bool, instrumentos=None, genero=None, canciones_populares=None, componentes=None):

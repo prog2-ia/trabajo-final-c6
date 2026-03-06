@@ -15,6 +15,3 @@ class ListaReproduccion(Contenido):
 
 
 #-------------------------------------------
-if __name__ == '__main__':
-    lista1 = ListaReproduccion('Mi lista',2025,'47:0',['Rock','Glam rock'],["Livin' on a Prayer","Back in Black","Sweet Child O' Mine","Smells Like Teen Spirit","Highway to Hell","Enter Sandman","Don't Stop Believin'","Bohemian Rhapsody","Paranoid","Whole Lotta Love"])
-    lista1.mostrar_info()

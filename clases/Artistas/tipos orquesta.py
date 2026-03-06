@@ -1,7 +1,6 @@
 # Subclases específicas con métodos propios
 from orquesta import Orquestas
 
-
 class Duo(Orquestas):
     def es_duo(self):
         if len(self.componentes) == 2:

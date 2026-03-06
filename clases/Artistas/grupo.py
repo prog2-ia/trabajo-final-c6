@@ -1,5 +1,4 @@
-from artistas import Artista
-
+from clases.Artistas.artistas import Artista
 
 class Grupos(Artista):
     def __init__(self, nombre, fecha_formacion, pais_origen, lider, activo:bool, genero=None, canciones_populares=None, componentes=None):

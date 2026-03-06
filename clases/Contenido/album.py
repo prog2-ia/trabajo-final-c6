@@ -1,6 +1,6 @@
 #clase de album
-from contenido import Contenido
-from grupo import Grupo
+from clases.Contenido.contenido import Contenido
+
 
 class Album(Contenido):
     def __init__(self,titulo,artista,anyo_lanzamiento,duracion,genero, numero_canciones, tipo, estado_reproduccion=False):
@@ -16,13 +16,3 @@ class Album(Contenido):
         print(f'Tipo de album: {self.tipo}')
 
 #----------------------------------------
-
-if __name__ == '__main__':
-    album1 = Album('Slippery When Wet','Bon Jovi',1986, 44, ['Glam metal','Hard Rock'], 10, 'Estudio')
-    album1.mostrar_info()
-
-    #reproducimos el album
-    album1.reproducir()
-    print()
-    #comprobamos que se esta reproduciendo
-    album1.mostrar_info()
