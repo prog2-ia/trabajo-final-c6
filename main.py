@@ -10,17 +10,19 @@ from clases.Artistas.orquesta import Orquestas
 
 
 if __name__ == '__main__':
-    cancion1 = Cancion("Livin' on a Prayer",1986,'4:11',['Glam metal','Hard rock'],'Bon Jovi', 'Slippery When Wet')
-    cancion1.mostrar_info()
+  cancion1 = Cancion("Livin' on a Prayer",1986,'4:11',['Glam Metal','Hard Rock'],'Bon Jovi', 'Slippery When Wet')
+  cancion1.mostrar_info()
 
-    print()
-    print()
+'''  
+  print()
+  print()
 
-    lista1 = ListaReproduccion('Mi lista',2025,'47:0',['Rock','Glam rock'],["Livin' on a Prayer","Back in Black","Sweet Child O' Mine","Smells Like Teen Spirit","Highway to Hell","Enter Sandman","Don't Stop Believin'","Bohemian Rhapsody","Paranoid","Whole Lotta Love"])
-    lista1.mostrar_info()
+  lista1 = ListaReproduccion('Mi lista',2025,'47:0',['Rock','Glam rock'],["Livin' on a Prayer","Back in Black","Sweet Child O' Mine","Smells Like Teen Spirit","Highway to Hell","Enter Sandman","Don't Stop Believin'","Bohemian Rhapsody","Paranoid","Whole Lotta Love"])
+  lista1.mostrar_info()
 
-    print()
-    print()
+  print()
+  print()
 
-    album1 = Album('Slippery When Wet','Bon Jovi',1986, 44, ['Glam metal','Hard Rock'], 10, 'Estudio')
-    album1.mostrar_info()
+  album1 = Album('Slippery When Wet','Bon Jovi',1986, 44, ['Glam metal','Hard Rock'], 10, 'Estudio')
+  album1.mostrar_info()
+'''

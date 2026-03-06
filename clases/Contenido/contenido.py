@@ -1,9 +1,11 @@
+import json
 from clases.Otros.generos import Genero
 
-class Contenido:
-    #Atributo de clase
-    generos_validos=[]
+with open("archivos/generos_disponibles.json", "r", encoding="utf-8") as f:
+    generos_validos = json.load(f)["generos"]
 
+
+class Contenido:
     def __init__(self,titulo, fecha_lanzamiento, duracion,genero,artista, estado_reproduccion=False):
         self.titulo = titulo
         self.artista = artista
@@ -11,26 +13,37 @@ class Contenido:
         self.duracion = duracion
         #validamos el formato y convertimos la duraciona a segundos
         self.validar_duracion()
-        self.genero = genero or []
+        self._genero = None
+        self.genero = genero
         self.estado_reproduccion = estado_reproduccion
 
-    # Metodo de clase para agregar géneros
-    @classmethod
-    def añadir_metodo(cls, genero: Genero):
-        if genero not in cls.generos_validos:
-            cls.generos_validos.append(genero)
+#------------------------------------------------------------
 
-    # Propiedad para el género
+    # Propiedad para el género.
     @property
     def genero(self):
         return self._genero
 
     @genero.setter
-    def genero(self, valor: Genero):
-        if valor in Contenido.generos_validos:
-            self._genero= valor
-        else:
-            print(f"Género {valor.nombre} no válido")
+    def genero(self, valor):
+        # normalizamos cada genero del json.
+        generos_normalizados = [g.lower() for g in generos_validos]
+        #comprobamos que es un string, y lo convertimos a lista (porque una cancion puede tener muchos generos).
+        if isinstance(valor, str):
+            valor = [valor]
+        aceptados = []
+        #recorremos el json y buscamos los generos que nos vienen dados.
+        for g in valor:
+            g_norm = g.lower()
+            if g_norm in generos_normalizados:
+                #si encontramos, anadmios a una lista que sera nuestro self._genero.
+                aceptados.append(g)
+            else:
+                #si no lo encontramos, muestramos el mensaje.
+                print(f"Género '{g}' no válido")
+        self._genero = aceptados
+
+# ------------------------------------------------------------
 
     # el metodo que nos sirve para mostrar toda la inforamcion del contendido (sea cancion, playlist, ...) la usaremos luego en la herencia.
     def mostrar_info(self):
@@ -41,8 +54,7 @@ class Contenido:
         print(f'Genero: {self.genero}')
         print(f'Estado de reproduccion: {"reproduciendo" if self.estado_reproduccion == True else "pausado"}')
 
-
-    #metodos-------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------
 
     #metodo de validar la duracion (recibe una cadena y convierte a segundos para poder operar con segundos):
     #como no hemos visto manejo de errores, si hay formato incorrecto o algo no cumple, pongo la duracion a 0.
@@ -111,6 +123,8 @@ class Contenido:
         self.duracion = total
         return self.duracion
 
+# ------------------------------------------------------------
+
     # metodo de formatear la duracion (recibe segundos caluclados por la funcion anterior y devuelve un formato de duracion):
     def formatear_duracion(self):
         total = self.duracion
@@ -141,3 +155,5 @@ class Contenido:
                 seg = str(s)
             resultado = hor + ':' + minu + ':' + seg
         return resultado
+
+#------------------------------------------------------------
