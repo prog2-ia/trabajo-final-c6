@@ -1,4 +1,9 @@
+from clases.Otros.generos import Genero
+
 class Contenido:
+    #Atributo de clase
+    generos_validos=[]
+
     def __init__(self,titulo, fecha_lanzamiento, duracion,genero,artista, estado_reproduccion=False):
         self.titulo = titulo
         self.artista = artista
@@ -6,8 +11,26 @@ class Contenido:
         self.duracion = duracion
         #validamos el formato y convertimos la duraciona a segundos
         self.validar_duracion()
-        self.genero = genero
+        self.genero = genero or []
         self.estado_reproduccion = estado_reproduccion
+
+    # Metodo de clase para agregar géneros
+    @classmethod
+    def añadir_metodo(cls, genero: Genero):
+        if genero not in cls.generos_validos:
+            cls.generos_validos.append(genero)
+
+    # Propiedad para el género
+    @property
+    def genero(self):
+        return self._genero
+
+    @genero.setter
+    def genero(self, valor: Genero):
+        if valor in Contenido.generos_validos:
+            self._genero= valor
+        else:
+            print(f"Género {valor.nombre} no válido")
 
     # el metodo que nos sirve para mostrar toda la inforamcion del contendido (sea cancion, playlist, ...) la usaremos luego en la herencia.
     def mostrar_info(self):

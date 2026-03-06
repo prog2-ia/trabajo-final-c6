@@ -2,6 +2,7 @@
 
 from clases.Contenido.contenido import Contenido
 
+
 class Cancion(Contenido):
     def __init__(self,titulo, fecha_lanzamiento, duracion,genero,artista, discografia):
         super().__init__(titulo,fecha_lanzamiento,duracion,genero,artista,estado_reproduccion=False)
