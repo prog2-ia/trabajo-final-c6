@@ -6,7 +6,7 @@ with open("archivos/generos_disponibles.json", "r", encoding="utf-8") as f:
 
 
 class Contenido:
-    def __init__(self,titulo, fecha_lanzamiento, duracion,genero,artista, estado_reproduccion=False):
+    def __init__(self,titulo, fecha_lanzamiento, duracion,genero,artista):
         self.titulo = titulo
         self.artista = artista
         self.fecha_lanzamiento = fecha_lanzamiento
@@ -15,7 +15,6 @@ class Contenido:
         self.validar_duracion()
         self._genero = None
         self.genero = genero
-        self.estado_reproduccion = estado_reproduccion
 
 #------------------------------------------------------------
 
@@ -52,7 +51,6 @@ class Contenido:
         print(f'Fecha de lanzamiento: {self.fecha_lanzamiento}')
         print(f'Duracion: {self.formatear_duracion()}')
         print(f'Genero: {self.genero}')
-        print(f'Estado de reproduccion: {"reproduciendo" if self.estado_reproduccion == True else "pausado"}')
 
 # ------------------------------------------------------------
 
