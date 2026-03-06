@@ -12,8 +12,10 @@ class Genero:
                 f"nombre='{self.nombre}', "
                 f"descripcion='{self.descripcion}')")
 
-    #Método para indicar la popularidad de un género: Importarte para crear Playlist de géneros concretos con canciones populares.
-     def es_popular(self):
+    '''
+    Método para indicar la popularidad de un género: Importarte para crear Playlist de géneros concretos con canciones populares.
+    '''
+    def es_popular(self):
         populares = ["Pop", "Rock", "Reggaetón", "Hip Hop", "Electrónica"]
         return self.nombre in populares
 
