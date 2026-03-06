@@ -26,7 +26,9 @@ class Contenido:
     @genero.setter
     def genero(self, valor):
         # normalizamos cada genero del json.
-        generos_normalizados = [g.lower() for g in generos_validos]
+        generos_normalizados = []
+        for gen in generos_validos:
+            generos_normalizados.append(gen.lower())
         #comprobamos que es un string, y lo convertimos a lista (porque una cancion puede tener muchos generos).
         if isinstance(valor, str):
             valor = [valor]
@@ -50,9 +52,9 @@ class Contenido:
         print(f'Artista: {self.artista}')
         print(f'Fecha de lanzamiento: {self.fecha_lanzamiento}')
         print(f'Duracion: {self.formatear_duracion()}')
-        print(f'Genero: {self.genero}')
+        print(f'Genero(s): {self._genero}')
 
-# ------------------------------------------------------------
+    # ------------------------------------------------------------
 
     #metodo de validar la duracion (recibe una cadena y convierte a segundos para poder operar con segundos):
     #como no hemos visto manejo de errores, si hay formato incorrecto o algo no cumple, pongo la duracion a 0.
@@ -155,3 +157,4 @@ class Contenido:
         return resultado
 
 #------------------------------------------------------------
+

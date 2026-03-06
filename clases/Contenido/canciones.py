@@ -1,7 +1,5 @@
-# clase alternativa para canciones (usando herencia)
-
+import json
 from clases.Contenido.contenido import Contenido
-
 
 class Cancion(Contenido):
     def __init__(self,titulo, fecha_lanzamiento, duracion,genero,artista, discografia):
@@ -14,4 +12,3 @@ class Cancion(Contenido):
         print(f'Discografia: {self.discografia}')
 
 #-----------------------------------------
-
