@@ -1,7 +1,0 @@
-27 febrero.
-- he modificado las clases que hemos creado previamente para aplicar la herencia
-- he creado una clase general de la que salen varias clases (contenido.py)
-- usando la herencia he creado clases como (canciones2.py, lista_reproduccion.py, album.py)
-- he implementado unas funciones de reproduir, pausar el contenido
-- he puesto ejemplo de ejecucion para cada clase
-- duracion: he creado metodos en la clase contenido (que se aplican para sus herencias) que recibe una cadena en formato 'hh:mm:ss' o 'mm:ss', calcula la duracion, lo valida, y lo convierte a segundos. Luego otra funcion que recibe estos segundos y devuelve el formato valido de la duracion de tipo: 'hh:mm:ss' o 'mm:ss'. Cuando proporcionamos un formato incorrecto de la duracion, el tiempo automaticamente se pone a 0.

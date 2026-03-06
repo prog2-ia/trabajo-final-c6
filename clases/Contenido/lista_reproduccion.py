@@ -1,5 +1,5 @@
 #clase de lista de reproduccion.
-from contenido import Contenido
+from clases.Contenido.contenido import Contenido
 
 class ListaReproduccion(Contenido):
     def __init__(self,titulo, fecha_lanzamiento, duracion, genero, lista_canciones,estado_reproduccion=False):
