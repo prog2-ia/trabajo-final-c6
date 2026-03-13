@@ -16,3 +16,4 @@ class Album(Contenido):
         print(f'Tipo de album: {self.tipo}')
 
 #----------------------------------------
+
