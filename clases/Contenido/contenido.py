@@ -159,7 +159,7 @@ class Contenido:
 
         # ------------------------------------------------------------
 
-        #Mostrar la duración total de la playlist
+    #Mostrar la duración total de la playlist
         def mostrar_duracion(self, lista_contenidos):
             total_segundos = 0
 
