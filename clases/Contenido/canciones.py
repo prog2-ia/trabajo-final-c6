@@ -14,9 +14,9 @@ class Cancion(Contenido):
         super().mostrar_info()
         print(f'Discografia: {self.discografia}')
 
-    # Método estático para añadir canción al archivo JSON
+    # Méodo estático para añadir canción al archivo JSON
     @staticmethod
-    def añadir_cancion(nueva_cancion, ruta_json="archivos/Lista_de_canciones/canciones.json"):
+    def anadir_cancion(nueva_cancion, ruta_json="archivos/canciones_guardadas.json"):
         # Entrar en el archivo canción.json como lectura
         with open(ruta_json, "r", encoding="utf-8") as f:
             canciones = json.load(f)
@@ -26,7 +26,7 @@ class Cancion(Contenido):
             "Titulo": nueva_cancion.titulo,
             "Artista": nueva_cancion.artista,
             "Fecha de lanzamiento": nueva_cancion.fecha_lanzamiento,
-            "Duracion": nueva_cancion.duracion,
+            "Duracion": nueva_cancion.formatear_duracion(),
             "Genero": nueva_cancion.genero,
             "Discografia": nueva_cancion.discografia
         })

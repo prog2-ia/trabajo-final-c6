@@ -25,3 +25,4 @@ class Genero:
     def actualizar_genero(self, nuevo_nombre, nueva_descripcion):
         self.nombre = nuevo_nombre
         self.descripcion = nueva_descripcion
+

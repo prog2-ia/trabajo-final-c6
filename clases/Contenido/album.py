@@ -5,7 +5,7 @@ from clases.Contenido.contenido import Contenido
 
 class Album(Contenido):
     def __init__(self,titulo,artista,anyo_lanzamiento,duracion,genero, numero_canciones, tipo, estado_reproduccion=False):
-        super().__init__(titulo,artista,anyo_lanzamiento,duracion,genero)
+        super().__init__(titulo, anyo_lanzamiento, duracion, genero, artista)
         self.numero_canciones = numero_canciones
         self.tipo = tipo #con tipo me refiero si es estudio/single/EP/bestof
 

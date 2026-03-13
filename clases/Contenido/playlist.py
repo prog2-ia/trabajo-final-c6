@@ -37,7 +37,7 @@ class ListaReproduccion(Contenido):
     # ---------------------------------------------------------
 
     def mostrar_info(self):
-        print('==== LISTA DE REPRODUCCION ====')
+        print('==== PLAYLIST ====')
         super().mostrar_info()
 
         if not self._cargada:
