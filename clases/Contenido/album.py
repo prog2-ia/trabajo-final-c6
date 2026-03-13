@@ -1,4 +1,5 @@
 #clase de album
+#CAMBIAR NOMBRE A DISCOGRAFIA
 from clases.Contenido.contenido import Contenido
 
 
