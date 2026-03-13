@@ -12,3 +12,6 @@ class Cancion(Contenido):
         print(f'Discografia: {self.discografia}')
 
 #-----------------------------------------
+    def añadir_cancion(cancion):
+
+
