@@ -1,6 +1,7 @@
 import json
 from clases.Otros.generos import Genero
 
+#Importamos
 with open("archivos/generos_disponibles.json", "r", encoding="utf-8") as f:
     generos_validos = json.load(f)["generos"]
 
@@ -156,5 +157,47 @@ class Contenido:
             resultado = hor + ':' + minu + ':' + seg
         return resultado
 
-#------------------------------------------------------------
+        # ------------------------------------------------------------
 
+        #Mostrar la duración total de la playlist
+        def mostrar_duracion(self, lista_contenidos):
+            total_segundos = 0
+
+            # sumamos las duraciones (ya están en segundos)
+            for contenido in lista_contenidos:
+                total_segundos += contenido.duracion
+
+            # Cambiamos el formato del texto
+            if total_segundos < 3600:
+                m = total_segundos // 60
+                s = total_segundos % 60
+                if s < 10:
+                    seg = '0' + str(s)
+                else:
+                    seg = str(s)
+                resultado = str(m) + ':' + seg
+            else:
+                h = total_segundos // 3600
+                resto = total_segundos % 3600
+                m = resto // 60
+                s = resto % 60
+
+                if h < 10:
+                    hor = '0' + str(h)
+                else:
+                    hor = str(h)
+
+                if m < 10:
+                    minu = '0' + str(m)
+                else:
+                    minu = str(m)
+
+                if s < 10:
+                    seg = '0' + str(s)
+                else:
+                    seg = str(s)
+
+                resultado = hor + ':' + minu + ':' + seg
+
+            print("Duración total de la playlist:", resultado)
+            return resultado
