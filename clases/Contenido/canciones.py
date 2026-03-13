@@ -1,4 +1,13 @@
 import json
+import from clases.Otros.generos import Genero
+
+#Importamos
+with open("archivos/Lista_de_canciones/canciones.json", "r", encoding="utf-8") as f:
+    canciones = json.load(f)
+
+
+
+
 from clases.Contenido.contenido import Contenido
 
 class Cancion(Contenido):
@@ -12,6 +21,8 @@ class Cancion(Contenido):
         print(f'Discografia: {self.discografia}')
 
 #-----------------------------------------
-    def añadir_cancion(cancion):
+    def añadir_cancion(self, cancion):
+
+
 
 

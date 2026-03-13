@@ -8,6 +8,7 @@ from clases.Artistas.cantantes import Cantantes
 from clases.Artistas.grupo import Grupos
 from clases.Artistas.orquesta import Orquestas
 
+
 def submenu_canciones():
     print('=== SUBMENU CANCIONES ===')
     print(f'1- Añadir cancion')
