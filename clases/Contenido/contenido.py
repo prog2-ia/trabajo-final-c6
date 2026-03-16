@@ -1,3 +1,4 @@
+# Importamos json
 import json
 
 # Cargamos los géneros válidos desde el JSON
