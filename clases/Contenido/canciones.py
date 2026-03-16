@@ -5,10 +5,24 @@ from clases.Contenido.contenido import Contenido
 
 # Clase Cancion
 class Cancion(Contenido):
+    #Clase Canción: hereda de Contenido.
     def __init__(self, titulo, fecha_lanzamiento, duracion, genero, artista, discografia):
         super().__init__(titulo, fecha_lanzamiento, duracion, genero, artista)
-        self.discografia = discografia
+        self._discografia = discografia
 
+    # --------------------PROPIEDADES --------------------
+    #Validar que la discografia introducida sea de tipo str.
+    @property
+    def discografia(self):
+        return self._discografia
+    @discografia.setter
+    def discografia(self, discografia):
+        if not isinstance(discografia, str):
+            print('La discografía debe ser texto')
+        else:
+            self._discografia = discografia
+
+    #--------------------MÉTODOS --------------------
     def mostrar_info(self):
         print('==== CANCION ====')
         super().mostrar_info()
