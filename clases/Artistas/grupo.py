@@ -10,12 +10,12 @@ class Grupos(Artista):
     #Método para agregar un miembro
     def agregar_miembro(self, nombre):
         if nombre not in self.componentes:
-            nombre.append(self.componentes)
+            self.componentes.append(nombre)
 
     # Método para eliminar un miembro
     def eliminar_miembro(self, nombre):
         if nombre  in self.componentes:
-            nombre.remove(self.componentes)
+            self.componentes.remove(nombre)
 
     #Método para contar integrantes
 
