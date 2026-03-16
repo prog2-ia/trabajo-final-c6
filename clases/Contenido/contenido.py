@@ -1,25 +1,79 @@
 import json
-from clases.Otros.generos import Genero
 
-#Importamos
+# Cargamos los géneros válidos desde el JSON
+
 with open("archivos/generos_disponibles.json", "r", encoding="utf-8") as f:
     generos_validos = json.load(f)["generos"]
 
-
+"""
+Clase base para cualquier contenido musical (canción, álbum, playlist...).
+"""
 class Contenido:
-    def __init__(self,titulo, fecha_lanzamiento, duracion,genero,artista):
-        self.titulo = titulo
-        self.artista = artista
-        self.fecha_lanzamiento = fecha_lanzamiento
-        self.duracion = duracion
-        #validamos el formato y convertimos la duraciona a segundos
+
+    def __init__(self, titulo, fecha_lanzamiento, duracion, genero, artista):
+        # Atributos encapsulados
+        self._titulo = titulo
+        self._artista = artista
+        self._fecha_lanzamiento = fecha_lanzamiento
+
+        # Duración se valida y se convierte a segundos
+        self._duracion = duracion
         self.validar_duracion()
+
+        # Género se valida mediante property
         self._genero = None
         self.genero = genero
 
-#------------------------------------------------------------
+    #--------------------PROPIEDADES --------------------
+    # Propiedad para el título. Válidamos que sea str.
+    @property
+    def titulo(self):
+        return self._titulo
+    @titulo.setter
+    def titulo(self, valor):
+        if not isinstance(valor, str):
+            print("El título debe ser texto.")
+        else:
+            self._titulo = valor
 
-    # Propiedad para el género.
+    # Propiedad para el artista. Válidamos que sea str.
+    @property
+    def artista(self):
+        return self._artista
+
+    @artista.setter
+    def artista(self, valor):
+        if not isinstance(valor, str):
+            print("El artista debe ser texto.")
+        else:
+            self._artista = valor
+
+    # Propiedad para la fecha. Válidamos que sea str.
+    @property
+    def fecha_lanzamiento(self):
+        return self._fecha_lanzamiento
+
+    @artista.setter
+    def fecha_lanzamiento(self, valor):
+        if not isinstance(valor, str):
+            print("La fecha de lanzamiento debe ser texto.")
+        else:
+            self._fecha_lanzamiento = valor
+
+
+    # Propiedad para la duración. Vinculado con el me_todo para validar su duracion.
+    @property
+    def duracion(self):
+        return self._duracion
+
+    @duracion.setter
+    def duracion(self, valor):
+        self._duracion = valor
+        self.validar_duracion()
+
+
+    # Propiedad para el género. Valida que el género esté dentro del JSON.
+    # Acepta string o lista de strings.
     @property
     def genero(self):
         return self._genero
@@ -45,7 +99,7 @@ class Contenido:
                 print(f"Género '{g}' no válido")
         self._genero = aceptados
 
-# ------------------------------------------------------------
+# ---------------------MÉTODOS ---------------------------
 
     # el metodo que nos sirve para mostrar toda la inforamcion del contendido (sea cancion, playlist, ...) la usaremos luego en la herencia.
     def mostrar_info(self):
