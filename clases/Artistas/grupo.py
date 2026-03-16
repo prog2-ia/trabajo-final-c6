@@ -1,23 +1,45 @@
 from clases.Artistas.artistas import Artista
 
+
+# Subclase de Artista que representa un grupo musical.
 class Grupos(Artista):
-    def __init__(self, nombre, fecha_formacion, pais_origen, lider, activo:bool, genero=None, canciones_populares=None, componentes=None):
-        super().__init__(nombre, fecha_formacion, pais_origen, activo, genero, canciones_populares, componentes)
-        self.lider=lider
 
+    def __init__(self, nombre, fecha_formacion, pais_origen, lider,
+                 activo: bool, genero=None, canciones_populares=None,
+                 componentes=None):
 
+        super().__init__(nombre, fecha_formacion, pais_origen, activo,
+                         genero, canciones_populares, componentes)
 
-    #Método para agregar un miembro
+        self._lider = lider
+
+    # -------- PROPIEDADES --------
+
+    #Verifica que el atributo lider sea del tipo str
+    @property
+    def lider(self):
+        return self._lider
+
+    @lider.setter
+    def lider(self, valor):
+        if not isinstance(valor, str):
+            print("El líder debe ser texto.")
+        else:
+            self._lider = valor
+
+    # -------- MÉTODOS --------
+
     def agregar_miembro(self, nombre):
-        if nombre not in self.componentes:
-            self.componentes.append(nombre)
+        if nombre not in self._componentes:
+            self._componentes.append(nombre)
+        else:
+            print(f"{nombre} ya está en el grupo.")
 
-    # Método para eliminar un miembro
     def eliminar_miembro(self, nombre):
-        if nombre  in self.componentes:
-            self.componentes.remove(nombre)
-
-    #Método para contar integrantes
+        if nombre in self._componentes:
+            self._componentes.remove(nombre)
+        else:
+            print(f"{nombre} no se encuentra en el grupo.")
 
     def contar_componentes(self):
-        return len(self.componentes)
+        return len(self._componentes)
