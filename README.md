@@ -22,7 +22,6 @@ La idea principal de este programa es ofrecer una gestion sencilla del contenido
 - Del mismo modo tenemos las carpetas `Contenido` y `Otros` que contienen las clases que nos serviran para gestinar el contenido musical (canciones, albumes...), y controlar estados de animos y generos, respectivamente.
 
 ---
-\
 A lo largo de la practica hemos intentado introducir todo lo que hemos visto en clases. La idea es manerar los archivos `.json` para guardar la informacion. A dia de hoy, hemos intentado implementar un poco de `.json`, pero por ahora nos hemos centrado mas en las clases y objetos vistas en clase. 
 
 ---
