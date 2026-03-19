@@ -1,33 +1,62 @@
-# Subclases específicas con métodos propios
-from orquesta import Orquestas
+from clases.Artistas.artistas import Artista
 
-class Duo(Orquestas):
-    def es_duo(self):
-        if len(self.componentes) == 2:
-            print("Es un duo")
+class Orquestas(Artista):
+    def __init__(self, nombre, fecha_formacion, pais_origen, director,
+                 activo: bool, instrumentos=None, genero=None,
+                 canciones_populares=None, componentes=None):
+
+        super().__init__(nombre, fecha_formacion, pais_origen, activo,
+                         genero, canciones_populares, componentes)
+
+        # Validación mediante setters
+        self.director = director
+        self.instrumentos = instrumentos or []
+
+    # -------- PROPIEDADES --------
+
+    @property
+    def director(self):
+        return self._director
+
+    @director.setter
+    def director(self, valor):
+        if not isinstance(valor, str):
+            print("El director debe ser texto.")
+            self._director = "desconocido"
         else:
-            print("No es un duo")
+            self._director = valor
 
+    @property
+    def instrumentos(self):
+        return self._instrumentos
 
-class Trio(Orquestas):
-    def es_trio(self):
-        if len(self.componentes) == 3:
-            print("Es un trio")
+    @instrumentos.setter
+    def instrumentos(self, valor):
+        if not isinstance(valor, list):
+            print("Los instrumentos deben ser una lista.")
+            self._instrumentos = []
         else:
-            print("No es un trio")
+            self._instrumentos = valor
 
-class Cuarteto(Orquestas):
-    def es_cuarteto(self):
-        if len(self.componentes) == 4:
-            print("Es un cuarteto")
+    # -------- MÉTODOS --------
+
+    def agregar_miembro(self, nombre):
+        if nombre not in self._componentes:
+            self._componentes.append(nombre)
         else:
-            print("No es un cuarteto")
+            print(f"El miembro {nombre} ya está en la orquesta.")
 
-class Sinfonica(Orquestas):
-
-    def agregar_seccion(self, seccion):
-        if seccion not in self.instrumentos:
-            self.instrumentos.append(seccion)
-            print(f"Sección {seccion} agregada a la Sinfónica")
+    def eliminar_miembro(self, nombre):
+        if nombre in self._componentes:
+            self._componentes.remove(nombre)
         else:
-            print(f" La sección {seccion} ya existe")
+            print(f"El miembro {nombre} no se encuentra en la orquesta.")
+
+    def contar_componentes(self):
+        return len(self._componentes)
+
+    def agregar_instrumento(self, instrumento):
+        if instrumento not in self._instrumentos:
+            self._instrumentos.append(instrumento)
+        else:
+            print(f"El instrumento {instrumento} ya está registrado en la orquesta.")

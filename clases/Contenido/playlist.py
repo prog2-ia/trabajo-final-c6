@@ -1,25 +1,47 @@
-#clase de lista de reproduccion.
+# clase de lista de reproduccion.
 import json
 from clases.Contenido.contenido import Contenido
 from clases.Contenido.canciones import Cancion
 
-#clase de listas de reproduccion (playlist)
 class ListaReproduccion(Contenido):
-    def __init__(self,titulo, fecha_lanzamiento, duracion, genero,):
-        super().__init__(titulo,fecha_lanzamiento,duracion,genero, artista='varios')
-        self.lista = []
-        self._cargada = False #para asegurarnos de que la lista se ha cargado correctamente.
+    def __init__(self, titulo, fecha_lanzamiento, duracion, genero):
+        super().__init__(titulo, fecha_lanzamiento, duracion, genero, artista="varios")
+        self._lista = []
+        self._cargada = False
+
+        # Guardamos la playlist al crearla
+        self.guardar_playlist()
 
     # ---------------------------------------------------------
 
-    #cargamos canciones desde json (donde guardamos nuestra playlist)
-    def cargar_canciones(self, ruta='archivos/playlists/playlist1.json'):
+    def guardar_playlist(self):
+        ruta = f"archivos/playlists/{self.titulo}.json"
+
+        # Estructura del archivo
+        datos = {
+            "titulo": self.titulo,
+            "fecha_lanzamiento": self.fecha_lanzamiento,
+            "genero": self.genero,
+            "canciones": []   # inicialmente vacio
+        }
+
+        with open(ruta, "w", encoding="utf-8") as f:
+            json.dump(datos, f, ensure_ascii=False, indent=4)
+
+        print(f"Playlist '{self.titulo}' creada y guardada en {ruta}")
+
+    # ---------------------------------------------------------
+
+    def cargar_canciones(self, ruta=None):
+        if ruta is None:
+            ruta = f"archivos/playlists/{self.titulo}.json"
+
         if self._cargada:
-            return self.lista
-        #abrimos json
+            return self._lista
+
         with open(ruta, "r", encoding="utf-8") as f:
             datos = json.load(f)["canciones"]
-        #recorremos archivo json y recogemos datos, y guardamos en una lista.
+
         for c in datos:
             cancion = Cancion(
                 c["Titulo"],
@@ -29,26 +51,23 @@ class ListaReproduccion(Contenido):
                 c["Artista"],
                 c["Discografia"]
             )
-            self.lista.append(cancion)
+            self._lista.append(cancion)
+
         self._cargada = True
-        #devolvemos la lista.
-        return self.lista
+        return self._lista
 
     # ---------------------------------------------------------
 
     def mostrar_info(self):
-        print('==== PLAYLIST ====')
+        print("==== PLAYLIST ====")
         super().mostrar_info()
 
         if not self._cargada:
             self.cargar_canciones()
 
-        print('Lista de canciones:')
-        if not self.lista:
-            print('- (vacía)')
+        print("Lista de canciones:")
+        if not self._lista:
+            print("- (vacía)")
         else:
-            for cancion in self.lista:
-                print(f'- {cancion.titulo} — {cancion.artista} ({cancion.formatear_duracion()})')
-
-    #---------------------------------------------------------
-
+            for cancion in self._lista:
+                print(f"- {cancion.titulo} — {cancion.artista} ({cancion.formatear_duracion()})")

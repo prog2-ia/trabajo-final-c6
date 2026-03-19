@@ -1,14 +1,19 @@
 from clases.Artistas.artistas import Artista
 
 class Orquestas(Artista):
-    def __init__(self, nombre, fecha_formacion, pais_origen, director, activo:bool, instrumentos=None, genero=None, canciones_populares=None, componentes=None):
-        super().__init__(nombre, fecha_formacion, pais_origen, activo, genero, canciones_populares, componentes)
-        self._director = director
-        self.__instrumentos = instrumentos or []
+    def __init__(self, nombre, fecha_formacion, pais_origen, director,
+                 activo: bool, instrumentos=None, genero=None,
+                 canciones_populares=None, componentes=None):
+
+        super().__init__(nombre, fecha_formacion, pais_origen, activo,
+                         genero, canciones_populares, componentes)
+
+        # Validación mediante setters
+        self.director = director
+        self.instrumentos = instrumentos or []
 
     # -------- PROPIEDADES --------
 
-    #Verificar que el atributo director sea de tipo str
     @property
     def director(self):
         return self._director
@@ -17,10 +22,10 @@ class Orquestas(Artista):
     def director(self, valor):
         if not isinstance(valor, str):
             print("El director debe ser texto.")
+            self._director = "desconocido"
         else:
             self._director = valor
 
-    #Verificar que el atributo instrumentos sea de tipo list
     @property
     def instrumentos(self):
         return self._instrumentos
@@ -29,28 +34,27 @@ class Orquestas(Artista):
     def instrumentos(self, valor):
         if not isinstance(valor, list):
             print("Los instrumentos deben ser una lista.")
+            self._instrumentos = []
         else:
             self._instrumentos = valor
 
-    # Agregar un miembro
+    # -------- MÉTODOS --------
+
     def agregar_miembro(self, nombre):
-        if nombre not in self.componentes:
+        if nombre not in self._componentes:
             self._componentes.append(nombre)
         else:
             print(f"El miembro {nombre} ya está en la orquesta.")
 
-        # Eliminar un miembro
     def eliminar_miembro(self, nombre):
-        if nombre in self.componentes:
+        if nombre in self._componentes:
             self._componentes.remove(nombre)
         else:
             print(f"El miembro {nombre} no se encuentra en la orquesta.")
 
-        # Contar integrantes
     def contar_componentes(self):
-        return len(self.componentes)
+        return len(self._componentes)
 
-        # Agregar nuevo instrumento
     def agregar_instrumento(self, instrumento):
         if instrumento not in self._instrumentos:
             self._instrumentos.append(instrumento)

@@ -1,6 +1,5 @@
 from clases.Artistas.artistas import Artista
 
-
 # Subclase de Artista que representa un grupo musical.
 class Grupos(Artista):
 
@@ -11,11 +10,11 @@ class Grupos(Artista):
         super().__init__(nombre, fecha_formacion, pais_origen, activo,
                          genero, canciones_populares, componentes)
 
-        self._lider = lider
+        # Usamos el setter para validar
+        self.lider = lider
 
     # -------- PROPIEDADES --------
 
-    #Verifica que el atributo lider sea del tipo str
     @property
     def lider(self):
         return self._lider
@@ -24,6 +23,7 @@ class Grupos(Artista):
     def lider(self, valor):
         if not isinstance(valor, str):
             print("El líder debe ser texto.")
+            self._lider = "desconocido"   # Valor seguro
         else:
             self._lider = valor
 
