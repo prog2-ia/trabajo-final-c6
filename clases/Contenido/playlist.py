@@ -31,7 +31,7 @@ class ListaReproduccion(Contenido):
         print(f"Playlist '{self.titulo}' creada y guardada en {ruta}")
 
     # ---------------------------------------------------------
-
+    # funcion que nos sirve para cargar canciones de un archivo json.
     def cargar_canciones(self, ruta=None):
         if ruta is None:
             ruta = f"archivos/playlists/{self.titulo}.json"

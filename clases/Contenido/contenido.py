@@ -2,9 +2,9 @@
 import json
 
 # Cargamos los géneros válidos desde el JSON
-
 with open("archivos/generos_disponibles.json", "r", encoding="utf-8") as f:
     generos_validos = json.load(f)["generos"]
+
 
 class Contenido:
 
@@ -23,10 +23,11 @@ class Contenido:
         self.genero = genero
 
     #--------------------PROPIEDADES --------------------
-    # Propiedad para el título. Válidamos que sea str.
+
     @property
     def titulo(self):
         return self._titulo
+
     @titulo.setter
     def titulo(self, valor):
         if not isinstance(valor, str):
@@ -34,7 +35,6 @@ class Contenido:
         else:
             self._titulo = valor
 
-    # Propiedad para el artista. Válidamos que sea str.
     @property
     def artista(self):
         return self._artista
@@ -45,8 +45,6 @@ class Contenido:
             print("El artista debe ser texto.")
         else:
             self._artista = valor
-
-    # Propiedad para la fecha. Válidamos que sea str.
 
     @property
     def fecha_lanzamiento(self):
@@ -59,7 +57,6 @@ class Contenido:
         else:
             self._fecha_lanzamiento = valor
 
-    # Propiedad para la duración. Vinculado con el me_todo para validar su duracion.
     @property
     def duracion(self):
         return self._duracion
@@ -69,37 +66,29 @@ class Contenido:
         self._duracion = valor
         self.validar_duracion()
 
-
-    # Propiedad para el género. Valida que el género esté dentro del JSON.
-    # Acepta string o lista de strings.
     @property
     def genero(self):
         return self._genero
 
     @genero.setter
     def genero(self, valor):
-        # normalizamos cada genero del json.
-        generos_normalizados = []
-        for gen in generos_validos:
-            generos_normalizados.append(gen.lower())
-        #comprobamos que es un string, y lo convertimos a lista (porque una cancion puede tener muchos generos).
+        generos_normalizados = [g.lower() for g in generos_validos]
+
         if isinstance(valor, str):
             valor = [valor]
+
         aceptados = []
-        #recorremos el json y buscamos los generos que nos vienen dados.
         for g in valor:
             g_norm = g.lower()
             if g_norm in generos_normalizados:
-                #si encontramos, anadmios a una lista que sera nuestro self._genero.
                 aceptados.append(g)
             else:
-                #si no lo encontramos, muestramos el mensaje.
                 print(f"Género '{g}' no válido")
+
         self._genero = aceptados
 
-# ---------------------MÉTODOS ---------------------------
+    #-------------------- MÉTODOS ---------------------------
 
-    # el metodo que nos sirve para mostrar toda la inforamcion del contendido (sea cancion, playlist, ...) la usaremos luego en la herencia.
     def mostrar_info(self):
         print(f'Titulo: {self.titulo}')
         print(f'Artista: {self.artista}')
@@ -107,12 +96,28 @@ class Contenido:
         print(f'Duracion: {self.formatear_duracion()}')
         print(f'Genero(s): {self._genero}')
 
-    # ------------------------------------------------------------
+    # Me_todo privado para formatear segundos
+    @staticmethod
+    def _formatear_segundos(total):
+        if total < 3600:
+            m = total // 60
+            s = total % 60
+            seg = f"0{s}" if s < 10 else str(s)
+            return f"{m}:{seg}"
+        else:
+            h = total // 3600
+            resto = total % 3600
+            m = resto // 60
+            s = resto % 60
 
-    #metodo de validar la duracion (recibe una cadena y convierte a segundos para poder operar con segundos):
-    #como no hemos visto manejo de errores, si hay formato incorrecto o algo no cumple, pongo la duracion a 0.
+            hor = f"0{h}" if h < 10 else str(h)
+            minu = f"0{m}" if m < 10 else str(m)
+            seg = f"0{s}" if s < 10 else str(s)
+
+            return f"{hor}:{minu}:{seg}"
+
+    # Validar duración: convierte mm:ss o hh:mm:ss a segundos
     def validar_duracion(self):
-        # Verificar que es string
         if not isinstance(self._duracion, str):
             self._duracion = 0
             return self._duracion
@@ -148,81 +153,17 @@ class Contenido:
         self._duracion = total
         return self._duracion
 
-# ------------------------------------------------------------
-
-    # metodo de formatear la duracion (recibe segundos caluclados por la funcion anterior y devuelve un formato de duracion):
+    # Me_todo limpio sin duplicación de código
     def formatear_duracion(self):
-        total = self._duracion
-        if total < 3600:
-            m = total // 60
-            s = total % 60
-            if s < 10:
-                seg = '0'+str(s)
-            else:
-                seg = str(s)
-            resultado = str(m) + ':' + seg
-        else:
-            h = total //3600
-            resto = total %3600
-            m = resto//60
-            s = resto % 60
-            if h < 10:
-                hor = '0'+str(h)
-            else:
-                hor = str(h)
-            if m < 10:
-                minu = '0'+str(m)
-            else:
-                minu = str(m)
-            if s < 10:
-                seg = '0'+str(s)
-            else:
-                seg = str(s)
-            resultado = hor + ':' + minu + ':' + seg
-        return resultado
+        return self._formatear_segundos(self._duracion)
 
+    @staticmethod
+    def mostrar_duracion(lista_contenidos):
+        total_segundos = sum(con.duracion for con in lista_contenidos)
 
-    #Mostrar la duración total de la playlist
-    def mostrar_duracion(self, lista_contenidos):
-        total_segundos = 0
-
-        # sumamos las duraciones (ya están en segundos)
-        for contenido in lista_contenidos:
-            total_segundos += contenido.duracion
-
-        # Cambiamos el formato del texto
-        if total_segundos < 3600:
-            m = total_segundos // 60
-            s = total_segundos % 60
-            if s < 10:
-                seg = '0' + str(s)
-            else:
-                seg = str(s)
-            resultado = str(m) + ':' + seg
-        else:
-            h = total_segundos // 3600
-            resto = total_segundos % 3600
-            m = resto // 60
-            s = resto % 60
-
-            if h < 10:
-                hor = '0' + str(h)
-            else:
-                hor = str(h)
-
-            if m < 10:
-                minu = '0' + str(m)
-            else:
-                minu = str(m)
-
-            if s < 10:
-                seg = '0' + str(s)
-            else:
-                seg = str(s)
-
-            resultado = hor + ':' + minu + ':' + seg
+        # Creamos objeto temporal solo para formatear
+        temp = Contenido("temp", "temp", "0:00", "temp", "temp")
+        resultado = temp._formatear_segundos(total_segundos)
 
         print("Duración total de la playlist:", resultado)
         return resultado
-
-#---------------------
