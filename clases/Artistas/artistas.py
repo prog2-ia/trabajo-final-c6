@@ -19,6 +19,7 @@ class Artista(ABC):
 
     # ---------------- PROPIEDADES ----------------
 
+    # Comprueba que el nombre sea un string antes de asignarlo
     @property
     def nombre(self):
         return self._nombre
@@ -31,6 +32,7 @@ class Artista(ABC):
         else:
             self._nombre = valor
 
+    # Comprueba que la fecha_formacion sea un string antes de asignarlo
     @property
     def fecha_formacion(self):
         return self._fecha_formacion
@@ -43,6 +45,7 @@ class Artista(ABC):
         else:
             self._fecha_formacion = valor
 
+    # Comprueba que el pais_origen sea un string antes de asignarlo
     @property
     def pais_origen(self):
         return self._pais_origen
@@ -55,6 +58,7 @@ class Artista(ABC):
         else:
             self._pais_origen = valor
 
+    # Comprueba que activo sea un valor booleano antes de asignarlo
     @property
     def activo(self):
         return self._activo
@@ -67,6 +71,7 @@ class Artista(ABC):
         else:
             self._activo = valor
 
+    # Comprueba que el genero sea una lista antes de asignarlo
     @property
     def genero(self):
         return self._genero
@@ -79,6 +84,7 @@ class Artista(ABC):
         else:
             self._genero = valor
 
+    # Comprueba que canciones_populares sea una lista antes de asignarlo
     @property
     def canciones_populares(self):
         return self._canciones_populares
@@ -91,6 +97,7 @@ class Artista(ABC):
         else:
             self._canciones_populares = valor
 
+    # Comprueba que componentes sea una lista antes de asignarlo
     @property
     def componentes(self):
         return self._componentes
@@ -104,6 +111,8 @@ class Artista(ABC):
             self._componentes = valor
 
     # ---------------- MÉTODOS ----------------
+
+    #Metodo abstracto para mostrar la información en las subclases
     @abstractmethod
     def mostrar_info(self):
         print(f'Nombre: {self.nombre}')
