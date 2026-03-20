@@ -13,7 +13,7 @@ from clases.Artistas.productor_musical import ProductorMusical
 
 def menu_canciones():
     print()
-    print('=== MENU CANCIONES ===')
+    print('===== MENU CANCIONES =====')
     print(f'1- Añadir cancion')
     print(f'2- Eliminar cancion')
     print(f'3- Mostrar todas canciones disponibles')
@@ -23,7 +23,7 @@ def menu_canciones():
 
 def menu_playlists():
     print()
-    print('=== MENU PLAYLISTS ===')
+    print('===== MENU PLAYLISTS =====')
     print(f'1- Crear playlist')
     print(f'2- Eliminar playlist')
     print(f'3- Anadir cancion a la playlist')
@@ -35,7 +35,7 @@ def menu_playlists():
 
 def menu_artista():
     print()
-    print('==== MENU ARTISTA ====')
+    print('===== MENU ARTISTA =====')
     print(f'1- Añadir artista')
     print(f'2- Eliminar artista')
     print(f'3- Buscar artista')
