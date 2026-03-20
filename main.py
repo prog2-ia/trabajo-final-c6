@@ -258,6 +258,5 @@ def main():
         # AQUI ACABA LA CUARTA OPCION (ARTISTAS)
     # AQUI ACABA LA OPCION ZERO (BUCLE GENERAL)
 
-
 #----------------------------------------------
-main()
+#main()
