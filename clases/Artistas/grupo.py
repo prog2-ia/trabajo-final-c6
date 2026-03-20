@@ -43,3 +43,8 @@ class Grupos(Artista):
 
     def contar_componentes(self):
         return len(self._componentes)
+
+    def mostrar_info(self):
+        print('INFORMACIÓN GRUPO')
+        super().mostrar_info()
+        print(f'Lider: {self.lider}')

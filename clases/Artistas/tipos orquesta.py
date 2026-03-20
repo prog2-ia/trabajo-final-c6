@@ -60,3 +60,9 @@ class Orquestas(Artista):
             self._instrumentos.append(instrumento)
         else:
             print(f"El instrumento {instrumento} ya está registrado en la orquesta.")
+
+    def mostrar_info(self):
+        print('INFORMACIÓN ORQUESTA')
+        super().mostrar_info()
+        print(f'Director: {self.director}')
+        print(f'Instrumentos: {self.instrumentos}')

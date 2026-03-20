@@ -58,3 +58,11 @@ class Cantantes(Artista):
 
     def agregar_instrumento(self, instrumento):
         self._instrumentos.append(instrumento)
+
+    def mostrar_info(self):
+        print('INFORMACIÓN CANTANTE')
+        super().mostrar_info()
+        print(f'Tipo de voz: {self.tipo_voz}')
+        print(f'Colaboraciones: {self.colaboraciones}')
+        print(f'Instrumentos: {self.instrumentos}')
+
