@@ -1,3 +1,4 @@
+import json
 #importamos clases que heredan del Contenido:
 from clases.Contenido.canciones import Cancion
 from clases.Contenido.album import Album
@@ -17,7 +18,7 @@ def menu_canciones():
     print(f'1- Añadir cancion')
     print(f'2- Eliminar cancion')
     print(f'3- Mostrar todas canciones disponibles')
-    print(f'4- Buscar cancion')
+    print(f'4- filtrar canciones')
     print(f'0- Salir al menu general')
     print('======================')
 
@@ -74,6 +75,7 @@ def menu():
     print(f'0- Salir')
     print('==========================================')
 
+
 def pedir_opcion():
     print()
     opcion = input('Elige una opcion: ').strip()
@@ -127,21 +129,40 @@ def main():
 
                 elif opcion_canciones =='1':
                     # codigo: Anadir cancion a la base de datos
-                    print('Añadiendo cancion a la base de datos...')
+                    print()
+                    print('==== ANADIENDO CANCION ====')
+                    cancion = Cancion(
+                        titulo =  input('Introduce el titulo de la cancion: '),
+                        artista = input('Introduce el autor de la cancion: '),
+                        fecha_lanzamiento = input('Introduce el año de lanzamiento de la cancion: '),
+                        duracion = input('Introduce la duracion de la cancion: '),
+                        genero=[g.strip() for g in input('Introduce el genero(s) de la cancion: ').split(',')],
+                        discografia= input('Introduce la discografia de la cancion: ')
+                    )
+                    #utilizamos el metodo de guardar canciones de la clase cancion.
+                    Cancion.anadir_cancion(cancion,'archivos/canciones_guardadas.json')
 
+                #eliminamos canciones de la base de datos.
                 elif opcion_canciones =='2':
                     # codigo: Eliminar cancion a la base de datos
-                    print('Eliminando cancion de la base de datos...')
+                    print()
+                    print('==== ELIMINANDO CANCION ====')
+                    titulo = input('Introduce el titulo de la cancion a borrar: ')
+                    artista = input('Introduce el autor de la cancion: ')
+                    Cancion.eliminar_cancion(titulo,artista)
 
+                #mostramos todas las canciones disponibles.
                 elif opcion_canciones =='3':
                     print('Mostrando todas las canciones...')
                     print()
                     print(f'== LISTADO DE CANCIONES DISPONIBLES ==')
-                    #codigo: mostrar el listado de todas las canciones en la base de datos
+                    #codigo: mostrar el listado de todas las canciones en la base de datos.
+                    Cancion.mostrar_canciones()
 
+                #filtramos las canciones segun gustos.
                 elif opcion_canciones =='4':
-                    print('Buscando canciones en la base de datos...')
                     #codigo: buscar artista en la base de datos.
+                    Cancion.filtrar_canciones()
 
         #AQUI ACABA LA PRIMERA OPCION (CANCIONES)
 

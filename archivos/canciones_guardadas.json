@@ -2,462 +2,369 @@
     {
         "Titulo": "Livin' on a Prayer",
         "Artista": "Bon Jovi",
-        "Fecha de lanzamiento": 1986,
+        "Fecha de lanzamiento": "1986",
         "Duracion": "4:11",
-        "Genero": [
-            "Glam Metal",
-            "Hard Rock"
-        ],
+        "Genero": ["Glam Metal", "Hard Rock"],
         "Discografia": "Slippery When Wet"
     },
     {
         "Titulo": "Back in Black",
         "Artista": "AC/DC",
-        "Fecha de lanzamiento": 1980,
+        "Fecha de lanzamiento": "1980",
         "Duracion": "4:15",
-        "Genero": [
-            "Hard Rock"
-        ],
+        "Genero": ["Hard Rock"],
         "Discografia": "Back in Black"
     },
     {
         "Titulo": "Sweet Child O' Mine",
         "Artista": "Guns N' Roses",
-        "Fecha de lanzamiento": 1987,
+        "Fecha de lanzamiento": "1987",
         "Duracion": "5:56",
-        "Genero": [
-            "Hard Rock"
-        ],
+        "Genero": ["Hard Rock"],
         "Discografia": "Appetite for Destruction"
     },
     {
         "Titulo": "We Will Rock You",
         "Artista": "Queen",
-        "Fecha de lanzamiento": 1977,
+        "Fecha de lanzamiento": "1977",
         "Duracion": "2:02",
-        "Genero": [
-            "Rock"
-        ],
+        "Genero": ["Rock"],
         "Discografia": "News of the World"
     },
     {
         "Titulo": "Smells Like Teen Spirit",
         "Artista": "Nirvana",
-        "Fecha de lanzamiento": 1991,
+        "Fecha de lanzamiento": "1991",
         "Duracion": "5:01",
-        "Genero": [
-            "Grunge"
-        ],
+        "Genero": ["Grunge"],
         "Discografia": "Nevermind"
     },
     {
         "Titulo": "Highway to Hell",
         "Artista": "AC/DC",
-        "Fecha de lanzamiento": 1979,
+        "Fecha de lanzamiento": "1979",
         "Duracion": "3:29",
-        "Genero": [
-            "Hard Rock"
-        ],
+        "Genero": ["Hard Rock"],
         "Discografia": "Highway to Hell"
     },
     {
         "Titulo": "Enter Sandman",
         "Artista": "Metallica",
-        "Fecha de lanzamiento": 1991,
+        "Fecha de lanzamiento": "1991",
         "Duracion": "5:31",
-        "Genero": [
-            "Heavy Metal"
-        ],
+        "Genero": ["Heavy Metal"],
         "Discografia": "Metallica (The Black Album)"
     },
     {
         "Titulo": "Bohemian Rhapsody",
         "Artista": "Queen",
-        "Fecha de lanzamiento": 1975,
+        "Fecha de lanzamiento": "1975",
         "Duracion": "5:55",
-        "Genero": [
-            "Rock"
-        ],
+        "Genero": ["Rock"],
         "Discografia": "A Night at the Opera"
     },
     {
         "Titulo": "Paranoid",
         "Artista": "Black Sabbath",
-        "Fecha de lanzamiento": 1970,
+        "Fecha de lanzamiento": "1970",
         "Duracion": "2:48",
-        "Genero": [
-            "Heavy Metal"
-        ],
+        "Genero": ["Heavy Metal"],
         "Discografia": "Paranoid"
     },
     {
         "Titulo": "Born to Run",
         "Artista": "Bruce Springsteen",
-        "Fecha de lanzamiento": 1975,
+        "Fecha de lanzamiento": "1975",
         "Duracion": "4:30",
-        "Genero": [
-            "Rock"
-        ],
+        "Genero": ["Rock"],
         "Discografia": "Born to Run"
     },
     {
         "Titulo": "Stairway to Heaven",
         "Artista": "Led Zeppelin",
-        "Fecha de lanzamiento": 1971,
+        "Fecha de lanzamiento": "1971",
         "Duracion": "8:02",
-        "Genero": [
-            "Rock"
-        ],
+        "Genero": ["Rock"],
         "Discografia": "Led Zeppelin IV"
     },
     {
         "Titulo": "Hotel California",
         "Artista": "Eagles",
-        "Fecha de lanzamiento": 1976,
+        "Fecha de lanzamiento": "1976",
         "Duracion": "6:30",
-        "Genero": [
-            "Rock"
-        ],
+        "Genero": ["Rock"],
         "Discografia": "Hotel California"
     },
     {
         "Titulo": "Another Brick in the Wall",
         "Artista": "Pink Floyd",
-        "Fecha de lanzamiento": 1979,
+        "Fecha de lanzamiento": "1979",
         "Duracion": "5:35",
-        "Genero": [
-            "Progressive Rock"
-        ],
+        "Genero": ["Progressive Rock"],
         "Discografia": "The Wall"
     },
     {
         "Titulo": "Imagine",
         "Artista": "John Lennon",
-        "Fecha de lanzamiento": 1971,
+        "Fecha de lanzamiento": "1971",
         "Duracion": "3:03",
-        "Genero": [
-            "Rock"
-        ],
+        "Genero": ["Rock"],
         "Discografia": "Imagine"
     },
     {
         "Titulo": "Purple Haze",
         "Artista": "Jimi Hendrix",
-        "Fecha de lanzamiento": 1967,
+        "Fecha de lanzamiento": "1967",
         "Duracion": "2:50",
-        "Genero": [
-            "Psychedelic Rock"
-        ],
+        "Genero": ["Psychedelic Rock"],
         "Discografia": "Are You Experienced"
     },
     {
         "Titulo": "Whole Lotta Love",
         "Artista": "Led Zeppelin",
-        "Fecha de lanzamiento": 1969,
+        "Fecha de lanzamiento": "1969",
         "Duracion": "5:33",
-        "Genero": [
-            "Hard Rock"
-        ],
+        "Genero": ["Hard Rock"],
         "Discografia": "Led Zeppelin II"
     },
     {
         "Titulo": "Comfortably Numb",
         "Artista": "Pink Floyd",
-        "Fecha de lanzamiento": 1979,
+        "Fecha de lanzamiento": "1979",
         "Duracion": "6:22",
-        "Genero": [
-            "Progressive Rock"
-        ],
+        "Genero": ["Progressive Rock"],
         "Discografia": "The Wall"
     },
     {
         "Titulo": "Wish You Were Here",
         "Artista": "Pink Floyd",
-        "Fecha de lanzamiento": 1975,
+        "Fecha de lanzamiento": "1975",
         "Duracion": "5:40",
-        "Genero": [
-            "Progressive Rock"
-        ],
+        "Genero": ["Progressive Rock"],
         "Discografia": "Wish You Were Here"
     },
     {
         "Titulo": "Dream On",
         "Artista": "Aerosmith",
-        "Fecha de lanzamiento": 1973,
+        "Fecha de lanzamiento": "1973",
+        "Duracion": "4:29",
+        "Genero": ["Hard Rock"],
+        "Discografia": "Aerosmith"
+    },
+    {
+        "Titulo": "Mama Kin",
+        "Artista": "Aerosmith",
+        "Fecha de lanzamiento": "1973",
         "Duracion": "4:28",
-        "Genero": [
-            "Hard Rock"
-        ],
+        "Genero": ["Hard Rock"],
         "Discografia": "Aerosmith"
     },
     {
         "Titulo": "Free Bird",
         "Artista": "Lynyrd Skynyrd",
-        "Fecha de lanzamiento": 1973,
+        "Fecha de lanzamiento": "1973",
         "Duracion": "9:08",
-        "Genero": [
-            "Southern Rock"
-        ],
+        "Genero": ["Southern Rock"],
         "Discografia": "Pronounced Leh-Nerd Skin-Nerd"
     },
     {
         "Titulo": "Iron Man",
         "Artista": "Black Sabbath",
-        "Fecha de lanzamiento": 1970,
+        "Fecha de lanzamiento": "1970",
         "Duracion": "5:55",
-        "Genero": [
-            "Heavy Metal"
-        ],
+        "Genero": ["Heavy Metal"],
         "Discografia": "Paranoid"
     },
     {
         "Titulo": "Run to the Hills",
         "Artista": "Iron Maiden",
-        "Fecha de lanzamiento": 1982,
+        "Fecha de lanzamiento": "1982",
         "Duracion": "3:53",
-        "Genero": [
-            "Heavy Metal"
-        ],
+        "Genero": ["Heavy Metal"],
         "Discografia": "The Number of the Beast"
     },
     {
         "Titulo": "The Trooper",
         "Artista": "Iron Maiden",
-        "Fecha de lanzamiento": 1983,
+        "Fecha de lanzamiento": "1983",
         "Duracion": "4:12",
-        "Genero": [
-            "Heavy Metal"
-        ],
+        "Genero": ["Heavy Metal"],
         "Discografia": "Piece of Mind"
     },
     {
         "Titulo": "Nothing Else Matters",
         "Artista": "Metallica",
-        "Fecha de lanzamiento": 1991,
+        "Fecha de lanzamiento": "1991",
         "Duracion": "6:28",
-        "Genero": [
-            "Heavy Metal"
-        ],
+        "Genero": ["Heavy Metal"],
         "Discografia": "Metallica"
     },
     {
         "Titulo": "Master of Puppets",
         "Artista": "Metallica",
-        "Fecha de lanzamiento": 1986,
+        "Fecha de lanzamiento": "1986",
         "Duracion": "8:36",
-        "Genero": [
-            "Thrash Metal"
-        ],
+        "Genero": ["Thrash Metal"],
         "Discografia": "Master of Puppets"
     },
     {
         "Titulo": "Ace of Spades",
         "Artista": "Motorhead",
-        "Fecha de lanzamiento": 1980,
+        "Fecha de lanzamiento": "1980",
         "Duracion": "2:48",
-        "Genero": [
-            "Heavy Metal"
-        ],
+        "Genero": ["Heavy Metal"],
         "Discografia": "Ace of Spades"
     },
     {
         "Titulo": "Kashmir",
         "Artista": "Led Zeppelin",
-        "Fecha de lanzamiento": 1975,
+        "Fecha de lanzamiento": "1975",
         "Duracion": "8:37",
-        "Genero": [
-            "Rock"
-        ],
+        "Genero": ["Rock"],
         "Discografia": "Physical Graffiti"
     },
     {
         "Titulo": "Paint It Black",
         "Artista": "The Rolling Stones",
-        "Fecha de lanzamiento": 1966,
+        "Fecha de lanzamiento": "1966",
         "Duracion": "3:22",
-        "Genero": [
-            "Rock"
-        ],
+        "Genero": ["Rock"],
         "Discografia": "Aftermath"
     },
     {
         "Titulo": "Satisfaction",
         "Artista": "The Rolling Stones",
-        "Fecha de lanzamiento": 1965,
+        "Fecha de lanzamiento": "1965",
         "Duracion": "3:43",
-        "Genero": [
-            "Rock"
-        ],
+        "Genero": ["Rock"],
         "Discografia": "Out of Our Heads"
     },
     {
         "Titulo": "Light My Fire",
         "Artista": "The Doors",
-        "Fecha de lanzamiento": 1967,
+        "Fecha de lanzamiento": "1967",
         "Duracion": "7:06",
-        "Genero": [
-            "Rock"
-        ],
+        "Genero": ["Rock"],
         "Discografia": "The Doors"
     },
     {
         "Titulo": "Riders on the Storm",
         "Artista": "The Doors",
-        "Fecha de lanzamiento": 1971,
+        "Fecha de lanzamiento": "1971",
         "Duracion": "7:14",
-        "Genero": [
-            "Rock"
-        ],
+        "Genero": ["Rock"],
         "Discografia": "L.A. Woman"
     },
     {
         "Titulo": "Losing My Religion",
         "Artista": "R.E.M.",
-        "Fecha de lanzamiento": 1991,
+        "Fecha de lanzamiento": "1991",
         "Duracion": "4:28",
-        "Genero": [
-            "Alternative Rock"
-        ],
+        "Genero": ["Alternative Rock"],
         "Discografia": "Out of Time"
     },
     {
         "Titulo": "Creep",
         "Artista": "Radiohead",
-        "Fecha de lanzamiento": 1992,
+        "Fecha de lanzamiento": "1992",
         "Duracion": "3:58",
-        "Genero": [
-            "Alternative Rock"
-        ],
+        "Genero": ["Alternative Rock"],
         "Discografia": "Pablo Honey"
-    },
-    {
-        "Titulo": "Killing in the Name",
-        "Artista": "Rage Against the Machine",
-        "Fecha de lanzamiento": 1992,
-        "Duracion": "5:14",
-        "Genero": [
-            "Rap Metal"
-        ],
-        "Discografia": "Rage Against the Machine"
     },
     {
         "Titulo": "Zombie",
         "Artista": "The Cranberries",
-        "Fecha de lanzamiento": 1994,
+        "Fecha de lanzamiento": "1994",
         "Duracion": "5:06",
-        "Genero": [
-            "Alternative Rock"
-        ],
+        "Genero": ["Alternative Rock"],
         "Discografia": "No Need to Argue"
     },
     {
         "Titulo": "Everlong",
         "Artista": "Foo Fighters",
-        "Fecha de lanzamiento": 1997,
+        "Fecha de lanzamiento": "1997",
         "Duracion": "4:10",
-        "Genero": [
-            "Alternative Rock"
-        ],
+        "Genero": ["Alternative Rock"],
         "Discografia": "The Colour and the Shape"
     },
     {
         "Titulo": "American Idiot",
         "Artista": "Green Day",
-        "Fecha de lanzamiento": 2004,
+        "Fecha de lanzamiento": "2004",
         "Duracion": "2:54",
-        "Genero": [
-            "Punk Rock"
-        ],
+        "Genero": ["Punk Rock"],
         "Discografia": "American Idiot"
     },
     {
         "Titulo": "Boulevard of Broken Dreams",
         "Artista": "Green Day",
-        "Fecha de lanzamiento": 2004,
+        "Fecha de lanzamiento": "2004",
         "Duracion": "4:20",
-        "Genero": [
-            "Alternative Rock"
-        ],
+        "Genero": ["Alternative Rock"],
         "Discografia": "American Idiot"
     },
     {
         "Titulo": "Seven Nation Army",
         "Artista": "The White Stripes",
-        "Fecha de lanzamiento": 2003,
+        "Fecha de lanzamiento": "2003",
         "Duracion": "3:52",
-        "Genero": [
-            "Garage Rock"
-        ],
+        "Genero": ["Garage Rock"],
         "Discografia": "Elephant"
     },
     {
         "Titulo": "Mr. Brightside",
         "Artista": "The Killers",
-        "Fecha de lanzamiento": 2003,
+        "Fecha de lanzamiento": "2003",
         "Duracion": "3:42",
-        "Genero": [
-            "Alternative Rock"
-        ],
+        "Genero": ["Alternative Rock"],
         "Discografia": "Hot Fuss"
     },
     {
         "Titulo": "Use Somebody",
         "Artista": "Kings of Leon",
-        "Fecha de lanzamiento": 2008,
+        "Fecha de lanzamiento": "2008",
         "Duracion": "3:50",
-        "Genero": [
-            "Alternative Rock"
-        ],
+        "Genero": ["Alternative Rock"],
         "Discografia": "Only by the Night"
     },
     {
         "Titulo": "Radioactive",
         "Artista": "Imagine Dragons",
-        "Fecha de lanzamiento": 2012,
+        "Fecha de lanzamiento": "2012",
         "Duracion": "3:06",
-        "Genero": [
-            "Alternative Rock"
-        ],
+        "Genero": ["Alternative Rock"],
         "Discografia": "Night Visions"
     },
     {
         "Titulo": "Do I Wanna Know?",
         "Artista": "Arctic Monkeys",
-        "Fecha de lanzamiento": 2013,
+        "Fecha de lanzamiento": "2013",
         "Duracion": "4:32",
-        "Genero": [
-            "Indie Rock"
-        ],
+        "Genero": ["Indie Rock"],
         "Discografia": "AM"
     },
     {
         "Titulo": "Take Me Out",
         "Artista": "Franz Ferdinand",
-        "Fecha de lanzamiento": 2004,
+        "Fecha de lanzamiento": "2004",
         "Duracion": "3:59",
-        "Genero": [
-            "Indie Rock"
-        ],
+        "Genero": ["Indie Rock"],
         "Discografia": "Franz Ferdinand"
     },
     {
         "Titulo": "Clocks",
         "Artista": "Coldplay",
-        "Fecha de lanzamiento": 2002,
+        "Fecha de lanzamiento": "2002",
         "Duracion": "5:07",
-        "Genero": [
-            "Alternative Rock"
-        ],
+        "Genero": ["Alternative Rock"],
         "Discografia": "A Rush of Blood to the Head"
     },
     {
         "Titulo": "Viva la Vida",
         "Artista": "Coldplay",
-        "Fecha de lanzamiento": 2008,
+        "Fecha de lanzamiento": "2008",
         "Duracion": "4:02",
-        "Genero": [
-            "Alternative Rock"
-        ],
+        "Genero": ["Alternative Rock"],
         "Discografia": "Viva la Vida"
     },
     {
@@ -465,10 +372,479 @@
         "Artista": "Fleetwood Mac",
         "Fecha de lanzamiento": "1977",
         "Duracion": "4:49",
-        "Genero": [
-            "Soft rock",
-            "Rock"
-        ],
+        "Genero": ["Soft rock", "Rock"],
         "Discografia": "Rumors"
+    },
+    {
+        "Titulo": "Livin' on a Prayer",
+        "Artista": "Bon Jovi",
+        "Fecha de lanzamiento": "1986",
+        "Duracion": "4:11",
+        "Genero": ["Glam Metal", "Hard Rock"],
+        "Discografia": "Slippery When Wet"
+    },
+    {
+        "Titulo": "Back in Black",
+        "Artista": "AC/DC",
+        "Fecha de lanzamiento": "1980",
+        "Duracion": "4:15",
+        "Genero": ["Hard Rock"],
+        "Discografia": "Back in Black"
+    },
+    {
+        "Titulo": "Sweet Child O' Mine",
+        "Artista": "Guns N' Roses",
+        "Fecha de lanzamiento": "1987",
+        "Duracion": "5:56",
+        "Genero": ["Hard Rock"],
+        "Discografia": "Appetite for Destruction"
+    },
+    {
+        "Titulo": "We Will Rock You",
+        "Artista": "Queen",
+        "Fecha de lanzamiento": "1977",
+        "Duracion": "2:02",
+        "Genero": ["Rock"],
+        "Discografia": "News of the World"
+    },
+    {
+        "Titulo": "Smells Like Teen Spirit",
+        "Artista": "Nirvana",
+        "Fecha de lanzamiento": "1991",
+        "Duracion": "5:01",
+        "Genero": ["Grunge"],
+        "Discografia": "Nevermind"
+    },
+    {
+        "Titulo": "Highway to Hell",
+        "Artista": "AC/DC",
+        "Fecha de lanzamiento": "1979",
+        "Duracion": "3:29",
+        "Genero": ["Hard Rock"],
+        "Discografia": "Highway to Hell"
+    },
+    {
+        "Titulo": "Enter Sandman",
+        "Artista": "Metallica",
+        "Fecha de lanzamiento": "1991",
+        "Duracion": "5:31",
+        "Genero": ["Heavy Metal"],
+        "Discografia": "Metallica (The Black Album)"
+    },
+    {
+        "Titulo": "Bohemian Rhapsody",
+        "Artista": "Queen",
+        "Fecha de lanzamiento": "1975",
+        "Duracion": "5:55",
+        "Genero": ["Rock"],
+        "Discografia": "A Night at the Opera"
+    },
+    {
+        "Titulo": "Paranoid",
+        "Artista": "Black Sabbath",
+        "Fecha de lanzamiento": "1970",
+        "Duracion": "2:48",
+        "Genero": ["Heavy Metal"],
+        "Discografia": "Paranoid"
+    },
+    {
+        "Titulo": "Born to Run",
+        "Artista": "Bruce Springsteen",
+        "Fecha de lanzamiento": "1975",
+        "Duracion": "4:30",
+        "Genero": ["Rock"],
+        "Discografia": "Born to Run"
+    },
+    {
+        "Titulo": "Stairway to Heaven",
+        "Artista": "Led Zeppelin",
+        "Fecha de lanzamiento": "1971",
+        "Duracion": "8:02",
+        "Genero": ["Rock"],
+        "Discografia": "Led Zeppelin IV"
+    },
+    {
+        "Titulo": "Hotel California",
+        "Artista": "Eagles",
+        "Fecha de lanzamiento": "1976",
+        "Duracion": "6:30",
+        "Genero": ["Rock"],
+        "Discografia": "Hotel California"
+    },
+    {
+        "Titulo": "Another Brick in the Wall",
+        "Artista": "Pink Floyd",
+        "Fecha de lanzamiento": "1979",
+        "Duracion": "5:35",
+        "Genero": ["Progressive Rock"],
+        "Discografia": "The Wall"
+    },
+    {
+        "Titulo": "Imagine",
+        "Artista": "John Lennon",
+        "Fecha de lanzamiento": "1971",
+        "Duracion": "3:03",
+        "Genero": ["Rock"],
+        "Discografia": "Imagine"
+    },
+    {
+        "Titulo": "Purple Haze",
+        "Artista": "Jimi Hendrix",
+        "Fecha de lanzamiento": "1967",
+        "Duracion": "2:50",
+        "Genero": ["Psychedelic Rock"],
+        "Discografia": "Are You Experienced"
+    },
+    {
+        "Titulo": "Whole Lotta Love",
+        "Artista": "Led Zeppelin",
+        "Fecha de lanzamiento": "1969",
+        "Duracion": "5:33",
+        "Genero": ["Hard Rock"],
+        "Discografia": "Led Zeppelin II"
+    },
+    {
+        "Titulo": "Comfortably Numb",
+        "Artista": "Pink Floyd",
+        "Fecha de lanzamiento": "1979",
+        "Duracion": "6:22",
+        "Genero": ["Progressive Rock"],
+        "Discografia": "The Wall"
+    },
+    {
+        "Titulo": "Wish You Were Here",
+        "Artista": "Pink Floyd",
+        "Fecha de lanzamiento": "1975",
+        "Duracion": "5:40",
+        "Genero": ["Progressive Rock"],
+        "Discografia": "Wish You Were Here"
+    },
+    {
+        "Titulo": "Dream On",
+        "Artista": "Aerosmith",
+        "Fecha de lanzamiento": "1973",
+        "Duracion": "4:29",
+        "Genero": ["Hard Rock"],
+        "Discografia": "Aerosmith"
+    },
+    {
+        "Titulo": "Mama Kin",
+        "Artista": "Aerosmith",
+        "Fecha de lanzamiento": "1973",
+        "Duracion": "4:28",
+        "Genero": ["Hard Rock"],
+        "Discografia": "Aerosmith"
+    },
+    {
+        "Titulo": "Free Bird",
+        "Artista": "Lynyrd Skynyrd",
+        "Fecha de lanzamiento": "1973",
+        "Duracion": "9:08",
+        "Genero": ["Southern Rock"],
+        "Discografia": "Pronounced Leh-Nerd Skin-Nerd"
+    },
+    {
+        "Titulo": "Iron Man",
+        "Artista": "Black Sabbath",
+        "Fecha de lanzamiento": "1970",
+        "Duracion": "5:55",
+        "Genero": ["Heavy Metal"],
+        "Discografia": "Paranoid"
+    },
+    {
+        "Titulo": "Run to the Hills",
+        "Artista": "Iron Maiden",
+        "Fecha de lanzamiento": "1982",
+        "Duracion": "3:53",
+        "Genero": ["Heavy Metal"],
+        "Discografia": "The Number of the Beast"
+    },
+    {
+        "Titulo": "The Trooper",
+        "Artista": "Iron Maiden",
+        "Fecha de lanzamiento": "1983",
+        "Duracion": "4:12",
+        "Genero": ["Heavy Metal"],
+        "Discografia": "Piece of Mind"
+    },
+    {
+        "Titulo": "Nothing Else Matters",
+        "Artista": "Metallica",
+        "Fecha de lanzamiento": "1991",
+        "Duracion": "6:28",
+        "Genero": ["Heavy Metal"],
+        "Discografia": "Metallica"
+    },
+    {
+        "Titulo": "Master of Puppets",
+        "Artista": "Metallica",
+        "Fecha de lanzamiento": "1986",
+        "Duracion": "8:36",
+        "Genero": ["Thrash Metal"],
+        "Discografia": "Master of Puppets"
+    },
+    {
+        "Titulo": "Ace of Spades",
+        "Artista": "Motorhead",
+        "Fecha de lanzamiento": "1980",
+        "Duracion": "2:48",
+        "Genero": ["Heavy Metal"],
+        "Discografia": "Ace of Spades"
+    },
+    {
+        "Titulo": "Kashmir",
+        "Artista": "Led Zeppelin",
+        "Fecha de lanzamiento": "1975",
+        "Duracion": "8:37",
+        "Genero": ["Rock"],
+        "Discografia": "Physical Graffiti"
+    },
+    {
+        "Titulo": "Paint It Black",
+        "Artista": "The Rolling Stones",
+        "Fecha de lanzamiento": "1966",
+        "Duracion": "3:22",
+        "Genero": ["Rock"],
+        "Discografia": "Aftermath"
+    },
+    {
+        "Titulo": "Satisfaction",
+        "Artista": "The Rolling Stones",
+        "Fecha de lanzamiento": "1965",
+        "Duracion": "3:43",
+        "Genero": ["Rock"],
+        "Discografia": "Out of Our Heads"
+    },
+    {
+        "Titulo": "Light My Fire",
+        "Artista": "The Doors",
+        "Fecha de lanzamiento": "1967",
+        "Duracion": "7:06",
+        "Genero": ["Rock"],
+        "Discografia": "The Doors"
+    },
+    {
+        "Titulo": "Riders on the Storm",
+        "Artista": "The Doors",
+        "Fecha de lanzamiento": "1971",
+        "Duracion": "7:14",
+        "Genero": ["Rock"],
+        "Discografia": "L.A. Woman"
+    },
+    {
+        "Titulo": "Losing My Religion",
+        "Artista": "R.E.M.",
+        "Fecha de lanzamiento": "1991",
+        "Duracion": "4:28",
+        "Genero": ["Alternative Rock"],
+        "Discografia": "Out of Time"
+    },
+    {
+        "Titulo": "Creep",
+        "Artista": "Radiohead",
+        "Fecha de lanzamiento": "1992",
+        "Duracion": "3:58",
+        "Genero": ["Alternative Rock"],
+        "Discografia": "Pablo Honey"
+    },
+    {
+        "Titulo": "Zombie",
+        "Artista": "The Cranberries",
+        "Fecha de lanzamiento": "1994",
+        "Duracion": "5:06",
+        "Genero": ["Alternative Rock"],
+        "Discografia": "No Need to Argue"
+    },
+    {
+        "Titulo": "Everlong",
+        "Artista": "Foo Fighters",
+        "Fecha de lanzamiento": "1997",
+        "Duracion": "4:10",
+        "Genero": ["Alternative Rock"],
+        "Discografia": "The Colour and the Shape"
+    },
+    {
+        "Titulo": "American Idiot",
+        "Artista": "Green Day",
+        "Fecha de lanzamiento": "2004",
+        "Duracion": "2:54",
+        "Genero": ["Punk Rock"],
+        "Discografia": "American Idiot"
+    },
+    {
+        "Titulo": "Boulevard of Broken Dreams",
+        "Artista": "Green Day",
+        "Fecha de lanzamiento": "2004",
+        "Duracion": "4:20",
+        "Genero": ["Alternative Rock"],
+        "Discografia": "American Idiot"
+    },
+    {
+        "Titulo": "Seven Nation Army",
+        "Artista": "The White Stripes",
+        "Fecha de lanzamiento": "2003",
+        "Duracion": "3:52",
+        "Genero": ["Garage Rock"],
+        "Discografia": "Elephant"
+    },
+    {
+        "Titulo": "Mr. Brightside",
+        "Artista": "The Killers",
+        "Fecha de lanzamiento": "2003",
+        "Duracion": "3:42",
+        "Genero": ["Alternative Rock"],
+        "Discografia": "Hot Fuss"
+    },
+    {
+        "Titulo": "Use Somebody",
+        "Artista": "Kings of Leon",
+        "Fecha de lanzamiento": "2008",
+        "Duracion": "3:50",
+        "Genero": ["Alternative Rock"],
+        "Discografia": "Only by the Night"
+    },
+    {
+        "Titulo": "Radioactive",
+        "Artista": "Imagine Dragons",
+        "Fecha de lanzamiento": "2012",
+        "Duracion": "3:06",
+        "Genero": ["Alternative Rock"],
+        "Discografia": "Night Visions"
+    },
+    {
+        "Titulo": "Do I Wanna Know?",
+        "Artista": "Arctic Monkeys",
+        "Fecha de lanzamiento": "2013",
+        "Duracion": "4:32",
+        "Genero": ["Indie Rock"],
+        "Discografia": "AM"
+    },
+    {
+        "Titulo": "Take Me Out",
+        "Artista": "Franz Ferdinand",
+        "Fecha de lanzamiento": "2004",
+        "Duracion": "3:59",
+        "Genero": ["Indie Rock"],
+        "Discografia": "Franz Ferdinand"
+    },
+    {
+        "Titulo": "Clocks",
+        "Artista": "Coldplay",
+        "Fecha de lanzamiento": "2002",
+        "Duracion": "5:07",
+        "Genero": ["Alternative Rock"],
+        "Discografia": "A Rush of Blood to the Head"
+    },
+    {
+        "Titulo": "Viva la Vida",
+        "Artista": "Coldplay",
+        "Fecha de lanzamiento": "2008",
+        "Duracion": "4:02",
+        "Genero": ["Alternative Rock"],
+        "Discografia": "Viva la Vida"
+    },
+    {
+        "Titulo": "Silver Springs",
+        "Artista": "Fleetwood Mac",
+        "Fecha de lanzamiento": "1977",
+        "Duracion": "4:49",
+        "Genero": ["Soft rock", "Rock"],
+        "Discografia": "Rumors"
+    },
+    {
+        "Titulo": "Billie Jean",
+        "Artista": "Michael Jackson",
+        "Fecha de lanzamiento": "1983",
+        "Duracion": "4:54",
+        "Genero": ["Pop"],
+        "Discografia": "Thriller"
+    },
+    {
+        "Titulo": "Like a Prayer",
+        "Artista": "Madonna",
+        "Fecha de lanzamiento": "1989",
+        "Duracion": "5:42",
+        "Genero": ["Pop"],
+        "Discografia": "Like a Prayer"
+    },
+    {
+        "Titulo": "Poker Face",
+        "Artista": "Lady Gaga",
+        "Fecha de lanzamiento": "2008",
+        "Duracion": "3:57",
+        "Genero": ["Pop"],
+        "Discografia": "The Fame"
+    },
+    {
+        "Titulo": "Superstition",
+        "Artista": "Stevie Wonder",
+        "Fecha de lanzamiento": "1972",
+        "Duracion": "4:26",
+        "Genero": ["Funk"],
+        "Discografia": "Talking Book"
+    },
+    {
+        "Titulo": "Get Up (I Feel Like Being a) Sex Machine",
+        "Artista": "James Brown",
+        "Fecha de lanzamiento": "1970",
+        "Duracion": "5:16",
+        "Genero": ["Funk"],
+        "Discografia": "Sex Machine"
+    },
+    {
+        "Titulo": "Uptown Funk",
+        "Artista": "Mark Ronson ft. Bruno Mars",
+        "Fecha de lanzamiento": "2014",
+        "Duracion": "4:30",
+        "Genero": ["Funk"],
+        "Discografia": "Uptown Special"
+    },
+    {
+        "Titulo": "Enjoy the Silence",
+        "Artista": "Depeche Mode",
+        "Fecha de lanzamiento": "1990",
+        "Duracion": "4:15",
+        "Genero": ["Synthpop"],
+        "Discografia": "Violator"
+    },
+    {
+        "Titulo": "Blue Monday",
+        "Artista": "New Order",
+        "Fecha de lanzamiento": "1983",
+        "Duracion": "7:29",
+        "Genero": ["Synthpop"],
+        "Discografia": "Power, Corruption & Lies"
+    },
+    {
+        "Titulo": "Strobe",
+        "Artista": "Deadmau5",
+        "Fecha de lanzamiento": "2009",
+        "Duracion": "10:33",
+        "Genero": ["Electronic"],
+        "Discografia": "For Lack of a Better Name"
+    },
+    {
+        "Titulo": "Blitzkrieg Bop",
+        "Artista": "Ramones",
+        "Fecha de lanzamiento": "1976",
+        "Duracion": "2:12",
+        "Genero": ["Punk Rock"],
+        "Discografia": "Ramones"
+    },
+    {
+        "Titulo": "London Calling",
+        "Artista": "The Clash",
+        "Fecha de lanzamiento": "1979",
+        "Duracion": "3:19",
+        "Genero": ["Punk Rock"],
+        "Discografia": "London Calling"
+    },
+    {
+        "Titulo": "I Wanna Be Sedated",
+        "Artista": "Ramones",
+        "Fecha de lanzamiento": "1978",
+        "Duracion": "2:29",
+        "Genero": ["Punk Rock"],
+        "Discografia": "Road to Ruin"
     }
 ]
