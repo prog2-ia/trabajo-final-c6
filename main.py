@@ -44,14 +44,20 @@ def menu_artista():
     print(f'0- Salir al menu general')
     print('======================')
 
-def menu_album():
+def menu_elegir_album():
     print()
+    print('===== ALBUMES DISPONIBLES =====')
+    archivos = Album.listar_albumes("archivos/albumes")
+    print('0- Salir al menu general')
+    print('======================')
+    return archivos
+
+def menu_album():
     print('===== MENU ALBUM =====')
-    print(f'1- Añadir nuevo album')
-    print(f'2- Eliminar album')
-    print(f'3- Buscar album')
-    print(f'4- Mostrar todos albumes disponibles')
-    print(f'0- Salir al menu general')
+    print(f'1- Mostrar informacion')
+    print(f'2- Mostrar el listado de canciones')
+    print(f'3- Eliminar album')
+    print(f'0- salir la listado de albumes')
     print('======================')
 
 def menu_productor_musical():
@@ -214,43 +220,69 @@ def main():
 
 
         #cuando elegimos en el menu principal 3- entramos en el gestor de albumes.
+
         elif opcion_general == '3':
             start3 = True
             while start3:
 
-                #llamamos la funcion que muestre el menu de albumes.
-                menu_album()
+                #muestramos los albumes dispobibles.
+                albumes_disponibles = menu_elegir_album()
+                #pedimos al usuario que eliga una opcion.
+                opcion_elegir_album = pedir_opcion()
 
-                opcion_album = pedir_opcion()
-                # nos aseguramos de que la opcion es valida dentro de las posibles.
-                while opcion_album not in ('0', '1', '2', '3', '4'):
+                #validamos la opcion.
+                while not (opcion_elegir_album.isdigit() and 0 <= int(opcion_elegir_album) <= len(albumes_disponibles)):
                     print("Opcion no valida.")
-                    opcion_album = pedir_opcion()
+                    #volvemos a pedir la opcion
+                    opcion_elegir_album = pedir_opcion()
 
-                if opcion_album == '0':
+                #si elegimos 0, salimos al menu general.
+                if opcion_elegir_album == '0':
                     print('Saliendo al menu general...')
                     start3 = False
 
-                elif opcion_album == '1':
-                    #codigo: anadir nuevo album a la base de datos.
-                    print(f'Añadiendo nuevo album...')
+                #cuando obtenemos un numero valido (distinto de 0), cargamos el archivo con el album.
+                else:
+                    indice = int(opcion_elegir_album) - 1
+                    #seleccionamos el album.
+                    nombre_archivo = albumes_disponibles[indice]
+                    album_cargado = Album.seleccionar_album(nombre_archivo)
 
-                elif opcion_album == '2':
-                    #codigo: eliminar album de la base de datos.
-                    print(f'Eliminando album...')
+                    #si el album se ha cargado, empezamos un bucle.
+                    if album_cargado is not None:
+                        start_album = True
+                        while start_album:
 
-                elif opcion_album == '3':
-                    print('Buscando album en la base de datos...')
-                    #codigo: buscar album en la base de datos.
+                            #mostramos el menu.
+                            menu_album()
+                            #pedimos una opcion.
+                            opcion_album = pedir_opcion()
 
-                elif opcion_album == '4':
-                    print('Mostrando todos los albumes disponibles...')
-                    print()
-                    print(f'== ALBUMES DISPONIBLES ==')
-                    #codigo: recorrer la carpeta con albumes y mostrar los nombres.
+                            #validamos la opcion.
+                            while opcion_album not in ('0', '1', '2', '3'):
+                                print("Opcion no valida.")
+                                opcion_album = pedir_opcion()
+
+                            #si elegimos 0, salimos al listado de los albumes.
+                            if opcion_album == '0':
+                                print('Saliendo al listado de albumes disponibles...')
+                                start_album = False
+
+                            #mostramos la info del album.
+                            elif opcion_album == '1':
+                                album_cargado.mostrar_info_album()
+
+                            #mostramos el listado de las canciones del album.
+                            elif opcion_album == '2':
+                                album_cargado.mostrar_canciones_album()
+
+                            #eliminamos el album
+                            elif opcion_album == '3':
+                                album_cargado.eliminar_album()
+                                #volvemos al listado de los albumes.
+                                start_album = False
 
         # AQUI ACABA LA TERCERA OPCION (ALBUMES)
-
 
         #en el menu principal elegimos 4- el gestor de artistas.
         elif opcion_general == '4':
