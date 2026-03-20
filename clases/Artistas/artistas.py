@@ -1,6 +1,7 @@
 # Superclase Artista: Incluye cantantes individuales
+from abc import ABC, abstractmethod
 
-class Artista:
+class Artista(ABC):
     # Clase base para representar artistas o grupos musicales.
     def __init__(self, nombre, fecha_formacion, pais_origen, activo: bool,
                  genero=None, canciones_populares=None, componentes=None):
