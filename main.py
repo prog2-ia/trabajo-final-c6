@@ -7,6 +7,7 @@ from clases.Contenido.playlist import ListaReproduccion
 from clases.Artistas.cantantes import Cantantes
 from clases.Artistas.grupo import Grupos
 from clases.Artistas.orquesta import Orquestas
+from clases.Artistas.productor_musical import ProductorMusical
 
 # funciones auxiliares -----------------------------------------
 
@@ -49,6 +50,16 @@ def menu_album():
     print(f'2- Eliminar album')
     print(f'3- Buscar album')
     print(f'4- Mostrar todos albumes disponibles')
+    print(f'0- Salir al menu general')
+    print('======================')
+
+def menu_productor_musical():
+    print()
+    print('===== MENU ALBUM =====')
+    print(f'1- Añadir nuevo productor')
+    print(f'2- Eliminar productor ')
+    print(f'3- Buscar productor')
+    print(f'4- Mostrar todos productores guardados')
     print(f'0- Salir al menu general')
     print('======================')
 
@@ -259,4 +270,4 @@ def main():
     # AQUI ACABA LA OPCION ZERO (BUCLE GENERAL)
 
 #----------------------------------------------
-main()
+#main()

@@ -1,0 +1,20 @@
+[
+    {
+        "Nombre": "Mark Ronson",
+        "Fecha de formación": "1993",
+        "País de origen": "Reino Unido",
+        "Activo": true,
+        "Genero": [
+            "Funk",
+            "Pop"
+        ],
+        "Canciones populares": [
+            "Uptown Funk"
+        ],
+        "Componentes": [],
+        "Producciones": [
+            "Back to Black",
+            "Locked Out of Heaven"
+        ]
+    }
+]
