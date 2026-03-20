@@ -104,7 +104,7 @@ class Artista(ABC):
             self._componentes = valor
 
     # ---------------- MÉTODOS ----------------
-
+    @abstractmethod
     def mostrar_info(self):
         print(f'Nombre: {self.nombre}')
         if self.componentes:

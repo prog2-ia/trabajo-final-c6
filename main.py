@@ -259,4 +259,4 @@ def main():
     # AQUI ACABA LA OPCION ZERO (BUCLE GENERAL)
 
 #----------------------------------------------
-#main()
+main()
