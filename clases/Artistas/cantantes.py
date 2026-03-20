@@ -1,5 +1,6 @@
 from clases.Artistas.artistas import Artista
 
+#Clase Cantantes que hereda de Artistas
 class Cantantes(Artista):
     def __init__(self, nombre, fecha_formacion, pais_origen, tipo_voz,
                  activo: bool, genero=None, canciones_populares=None,
@@ -15,6 +16,7 @@ class Cantantes(Artista):
 
     # -------- PROPIEDADES --------
 
+    # Comprueba que el tipo_voz sea un string antes de asignarlo
     @property
     def tipo_voz(self):
         return self._tipo_voz
@@ -27,6 +29,7 @@ class Cantantes(Artista):
         else:
             self._tipo_voz = valor
 
+    # Comprueba que colaboraciones sea una lista antes de asignarlo
     @property
     def colaboraciones(self):
         return self._colaboraciones
@@ -39,6 +42,7 @@ class Cantantes(Artista):
         else:
             self._colaboraciones = valor
 
+    # Comprueba que instrumentos sea una lista antes de asignarlo
     @property
     def instrumentos(self):
         return self._instrumentos
@@ -53,8 +57,19 @@ class Cantantes(Artista):
 
     # -------- MÉTODOS --------
 
+    # Metodo para agregar colaboraciones
     def agregar_colaboracion(self, colaboracion):
         self._colaboraciones.append(colaboracion)
 
+    # Metodo para agregar instrumentos
     def agregar_instrumento(self, instrumento):
         self._instrumentos.append(instrumento)
+
+    # Metodo para mostrar informacion
+    def mostrar_info(self):
+        print('INFORMACIÓN CANTANTE')
+        super().mostrar_info()
+        print(f'Tipo de voz: {self.tipo_voz}')
+        print(f'Colaboraciones: {self.colaboraciones}')
+        print(f'Instrumentos: {self.instrumentos}')
+

@@ -1,19 +1,34 @@
-# clase de lista de reproduccion.
 import json
-from clases.Contenido.contenido import Contenido
-from clases.Contenido.canciones import Cancion
+from contenido import Contenido
 
+# clase de lista de reproduccion.
+
+# Clase ListaReproducion que hereda de Contenido
 class ListaReproduccion(Contenido):
     def __init__(self, titulo, fecha_lanzamiento, duracion, genero):
         super().__init__(titulo, fecha_lanzamiento, duracion, genero, artista="varios")
         self._lista = []
         self._cargada = False
-
         # Guardamos la playlist al crearla
         self.guardar_playlist()
 
-    # ---------------------------------------------------------
+    # ---------- PROPIEDADES ----------
+    #Comprobar que lista sea del tipo lista
+    @property
+    def lista(self):
+        return self._lista
 
+    @lista.setter
+    def lista(self, valor):
+        if not isinstance(valor, list):
+            print("La lista debe ser una lista de canciones.")
+            self._lista = []
+        else:
+            self._lista = valor
+
+
+    # ----------METODOS----------------
+    #Metodo para guardar playlist
     def guardar_playlist(self):
         ruta = f"archivos/playlists/{self.titulo}.json"
 
@@ -43,7 +58,7 @@ class ListaReproduccion(Contenido):
             datos = json.load(f)["canciones"]
 
         for c in datos:
-            cancion = Cancion(
+            cancion = 'Cancion'(
                 c["Titulo"],
                 c["Fecha de lanzamiento"],
                 c["Duracion"],
@@ -58,6 +73,7 @@ class ListaReproduccion(Contenido):
 
     # ---------------------------------------------------------
 
+    #Metodo para mostrar info
     def mostrar_info(self):
         print("==== PLAYLIST ====")
         super().mostrar_info()

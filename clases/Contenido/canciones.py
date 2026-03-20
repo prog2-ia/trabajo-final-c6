@@ -9,6 +9,8 @@ class Cancion(Contenido):
         self.discografia = discografia
 
     # -------------------- PROPIEDADES --------------------
+
+    # Comprueba que discografia sea de tipo str
     @property
     def discografia(self):
         return self._discografia
@@ -22,17 +24,22 @@ class Cancion(Contenido):
             self._discografia = valor
 
     # -------------------- MÉTODOS --------------------
+    #Metodo para mostrar la informacion
     def mostrar_info(self):
         print("==== CANCION ====")
         super().mostrar_info()
         print(f"Discografia: {self.discografia}")
 
+    #Metodo estatico para añadir cancion nueva al archivo json.
     @staticmethod
     def anadir_cancion(nueva_cancion, ruta_json="archivos/canciones_guardadas.json"):
 
+        #Archivo json donde estan las canciones
         with open(ruta_json, "r", encoding="utf-8") as f:
             canciones = json.load(f)
 
+
+        #Añade la cancion al archivo
         canciones.append({
             "Titulo": nueva_cancion.titulo,
             "Artista": nueva_cancion.artista,

@@ -39,22 +39,25 @@ class Orquestas(Artista):
             self._instrumentos = valor
 
     # -------- MÉTODOS --------
-
+    # Metodo para agregar miembro
     def agregar_miembro(self, nombre):
         if nombre not in self._componentes:
             self._componentes.append(nombre)
         else:
             print(f"El miembro {nombre} ya está en la orquesta.")
 
+    # Metodo para eliminar miembro
     def eliminar_miembro(self, nombre):
         if nombre in self._componentes:
             self._componentes.remove(nombre)
         else:
             print(f"El miembro {nombre} no se encuentra en la orquesta.")
 
+    # Metodo para contar componentes de la orquesta
     def contar_componentes(self):
         return len(self._componentes)
 
+    # Metodo para agregar instrumentos
     def agregar_instrumento(self, instrumento):
         if instrumento not in self._instrumentos:
             self._instrumentos.append(instrumento)

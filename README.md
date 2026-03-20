@@ -1,6 +1,7 @@
-## BIBLIOTECA MUSICAL
+# BIBLIOTECA MUSICAL
 
 ---
+### Kacper Piklowski y Tegra Vuvu
 
 ---
 La idea principal de este programa es ofrecer una gestion sencilla del contenido musical (canciones, playlists...), incluyendo posibilidad de guardar informacion (con archivos `.json`) sobre los _grupos/artistas_, y todo esto controlado por una funcion logica con bucles. 

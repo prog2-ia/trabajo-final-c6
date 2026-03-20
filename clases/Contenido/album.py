@@ -2,6 +2,7 @@
 from clases.Contenido.contenido import Contenido
 
 
+#Clase Album que hereda de contenido
 class Album(Contenido):
     def __init__(self, titulo, artista, anyo_lanzamiento, duracion, genero,
                  numero_canciones, tipo):
@@ -13,7 +14,7 @@ class Album(Contenido):
         self.tipo = tipo
 
     # -------- PROPIEDADES --------
-
+    # Comprueba que numero_cancion sea de tipo int y positivo
     @property
     def numero_canciones(self):
         return self._numero_canciones
@@ -26,6 +27,7 @@ class Album(Contenido):
         else:
             self._numero_canciones = valor
 
+    # Comprueba que tipo sea de tipo str
     @property
     def tipo(self):
         return self._tipo
@@ -40,6 +42,7 @@ class Album(Contenido):
 
     # -------- MÉTODOS --------
 
+    # Metodo para mostrar informacion
     def mostrar_info(self):
         print('==== ALBUM ====')
         super().mostrar_info()

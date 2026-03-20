@@ -15,6 +15,7 @@ class Grupos(Artista):
 
     # -------- PROPIEDADES --------
 
+    # Comprueba que lider sea un str antes de asignarlo
     @property
     def lider(self):
         return self._lider
@@ -28,6 +29,7 @@ class Grupos(Artista):
             self._lider = valor
 
     # -------- MÉTODOS --------
+
 
     def agregar_miembro(self, nombre):
         if nombre not in self._componentes:
@@ -43,3 +45,8 @@ class Grupos(Artista):
 
     def contar_componentes(self):
         return len(self._componentes)
+
+    def mostrar_info(self):
+        print('INFORMACIÓN GRUPO')
+        super().mostrar_info()
+        print(f'Lider: {self.lider}')

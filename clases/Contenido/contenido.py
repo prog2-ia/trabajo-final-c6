@@ -24,6 +24,7 @@ class Contenido:
 
     #--------------------PROPIEDADES --------------------
 
+    # Comprueba que titulo sea de tipo str
     @property
     def titulo(self):
         return self._titulo
@@ -35,6 +36,7 @@ class Contenido:
         else:
             self._titulo = valor
 
+    # Comprueba que artista sea de tipo str
     @property
     def artista(self):
         return self._artista
@@ -46,6 +48,7 @@ class Contenido:
         else:
             self._artista = valor
 
+    # Comprueba que fecha_lanzamiento sea de tipo str
     @property
     def fecha_lanzamiento(self):
         return self._fecha_lanzamiento
@@ -57,6 +60,7 @@ class Contenido:
         else:
             self._fecha_lanzamiento = valor
 
+    # Valida el formato de la duracion
     @property
     def duracion(self):
         return self._duracion
@@ -66,6 +70,7 @@ class Contenido:
         self._duracion = valor
         self.validar_duracion()
 
+    # Comprueba que el genero pertenezca al archivo json
     @property
     def genero(self):
         return self._genero
@@ -89,6 +94,7 @@ class Contenido:
 
     #-------------------- MÉTODOS ---------------------------
 
+    #Metodo para buscar la informacion
     def mostrar_info(self):
         print(f'Titulo: {self.titulo}')
         print(f'Artista: {self.artista}')
@@ -96,7 +102,7 @@ class Contenido:
         print(f'Duracion: {self.formatear_duracion()}')
         print(f'Genero(s): {self._genero}')
 
-    # Me_todo privado para formatear segundos
+    # Metodo privado para formatear segundos
     @staticmethod
     def _formatear_segundos(total):
         if total < 3600:
@@ -157,6 +163,7 @@ class Contenido:
     def formatear_duracion(self):
         return self._formatear_segundos(self._duracion)
 
+    #Metodo estatico para mostrar la duracion
     @staticmethod
     def mostrar_duracion(lista_contenidos):
         total_segundos = sum(con.duracion for con in lista_contenidos)
