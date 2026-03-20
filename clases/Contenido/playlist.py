@@ -1,5 +1,6 @@
 import json
-from contenido import Contenido
+from clases.Contenido.contenido import Contenido
+from clases.Contenido.canciones import Cancion
 
 # clase de lista de reproduccion.
 
@@ -58,7 +59,7 @@ class ListaReproduccion(Contenido):
             datos = json.load(f)["canciones"]
 
         for c in datos:
-            cancion = 'Cancion'(
+            cancion = Cancion(
                 c["Titulo"],
                 c["Fecha de lanzamiento"],
                 c["Duracion"],

@@ -55,7 +55,7 @@ def menu_album():
 
 def menu_productor_musical():
     print()
-    print('===== MENU ALBUM =====')
+    print('===== MENU PRODUCTOR =====')
     print(f'1- Añadir nuevo productor')
     print(f'2- Eliminar productor ')
     print(f'3- Buscar productor')
@@ -70,6 +70,7 @@ def menu():
     print(f'2- Menu playlists')
     print(f'3- Menu album')
     print(f'4- Menu artistas')
+    print(f'5- Menu productor musical')
     print(f'0- Salir')
     print('==========================================')
 
@@ -93,7 +94,7 @@ def main():
         #pedimos una opcion al usuario.
         opcion_general = pedir_opcion()
         #nos aseguramos de que la opcion es valida dentro de las posibles.
-        while opcion_general not in ('0', '1', '2', '3', '4'):
+        while opcion_general not in ('0', '1', '2', '3', '4','5'):
             print("Opcion no valida.")
             opcion_general = pedir_opcion()
 
@@ -267,7 +268,50 @@ def main():
                     #codigo: mostrar todos los artistas de la base de datos.
 
         # AQUI ACABA LA CUARTA OPCION (ARTISTAS)
+
+        #si elegimos 4, entramos en el menu de productor musical.
+        elif opcion_general == '5':
+            start5 = True
+            while start5:
+
+                #mostramos el menu
+                menu_productor_musical()
+
+                #pedimos una opcion
+                opcion_productor = pedir_opcion()
+                # nos aseguramos de que la opcion es valida dentro de las posibles.
+                while opcion_productor not in ('0', '1', '2', '3', '4', '5', '6'):
+                    print("Opcion no valida.")
+                    opcion_productor = pedir_opcion()
+
+                #analizamos las opciones:
+                #salimos del programa.
+                if opcion_productor == '0':
+                    print('Saliendo al menu general...')
+                    start5 = False
+
+                #anadimos nuevo productor a la base de datos.
+                elif opcion_productor == '1':
+                    #codigo: anadir nuevo productor.
+                    print('Añadiendo productor musical a la base de datos...')
+
+                #eliminamos productor de la base de datos.
+                elif opcion_productor == '2':
+                    #codigo: eliminar productor
+                    print('Eliminando productor de la base de datos...')
+
+                #opcion de buscar productor.
+                elif opcion_productor == '3':
+                    print('Buscando el productor en la base de datos...')
+                    #codigo: buscar productor
+
+                #mostramos productor.
+                elif opcion_productor == '4':
+                    print('Mostrando todos los productores...')
+                    #codigo: mostrar productor
+
+        #AQUI ACABA LA OPCION 5 (PRODUCTOR MUSICAL)
     # AQUI ACABA LA OPCION ZERO (BUCLE GENERAL)
 
 #----------------------------------------------
-#main()
+main()
