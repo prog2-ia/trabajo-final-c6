@@ -48,6 +48,8 @@ def menu_elegir_album():
     print()
     print('===== ALBUMES DISPONIBLES =====')
     archivos = Album.listar_albumes("archivos/albumes")
+    print('---------------------------')
+    print(f'{len(archivos)+1}- Crear nuevo album')
     print('0- Salir al menu general')
     print('======================')
     return archivos
@@ -231,8 +233,9 @@ def main():
                 opcion_elegir_album = pedir_opcion()
 
                 #validamos la opcion.
-                while not (opcion_elegir_album.isdigit() and 0 <= int(opcion_elegir_album) <= len(albumes_disponibles)):
+                while not (opcion_elegir_album.isdigit() and 0 <= int(opcion_elegir_album) <= len(albumes_disponibles) + 1):
                     print("Opcion no valida.")
+
                     #volvemos a pedir la opcion
                     opcion_elegir_album = pedir_opcion()
 
@@ -240,6 +243,10 @@ def main():
                 if opcion_elegir_album == '0':
                     print('Saliendo al menu general...')
                     start3 = False
+
+                #opcion de crear nuevo album desde el menu.
+                elif opcion_elegir_album == str(len(albumes_disponibles)+1):
+                    print('Creando nuevo album...')
 
                 #cuando obtenemos un numero valido (distinto de 0), cargamos el archivo con el album.
                 else:
