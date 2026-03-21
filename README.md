@@ -10,7 +10,7 @@ La idea principal de este programa es ofrecer una gestion sencilla del contenido
 
 \
 **El programa contiene:**
-1. **Archivo `main.py`**: contiene la parte fundamental del proyecto, es decir el menu controlado por los bucles y condicionales.
+1. **Archivo `main.py`**: contiene la parte fundamental del proyecto, es decir el menu controlado por los bucles y condicionales (se van anadiendo metodos creados previamente en las clases poco a poco).
 
 2. **Carpeta `Archivos`**: esta carpeta contiene todos los archivos que vamos a utilizar para montar el programa. Destacamos:
 - **Carpeta `albumes`**: contendra albumes que se van a crear\guardar. 
@@ -23,7 +23,7 @@ La idea principal de este programa es ofrecer una gestion sencilla del contenido
 - Del mismo modo tenemos las carpetas `Contenido` y que contienen las clases que nos serviran para gestinar el contenido musical (canciones, albumes...).
 
 ---
-A lo largo de la practica hemos intentado introducir todo lo que hemos visto en clases. La idea es manejar los archivos `.json` para guardar la informacion. A dia de hoy, hemos intentado implementar un poco de `.json`, pero por ahora nos hemos centrado mas en las clases y objetos vistas en clase. Hemos implementado una herencia multiple en el archivo `productor_musical.py`, y convertimos la clase `Artistas` en una clase abstracta.
+A lo largo de la practica hemos intentado introducir todo lo que hemos visto en clases. La idea es manejar los archivos `.json` para guardar la informacion. A dia de hoy, hemos intentado implementar un poco de `.json`, pero por ahora nos hemos centrado mas en las clases y objetos vistas en clase. **Hemos usado los comentarios a lo largo del codigo**, con lo cual suponemos que el codigo sea entendible.
 
 ---
 
