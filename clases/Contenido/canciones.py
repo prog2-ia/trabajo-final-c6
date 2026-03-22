@@ -56,7 +56,7 @@ class Cancion(Contenido):
             "Artista": nueva_cancion.artista.title(),
             "Fecha de lanzamiento": nueva_cancion.fecha_lanzamiento,
             "Duracion": nueva_cancion.formatear_duracion(),
-            "Genero": nueva_cancion.genero.title(),
+            "Genero": nueva_cancion.genero,
             "Discografia": nueva_cancion.discografia.title()
         })
 
@@ -202,7 +202,7 @@ class Cancion(Contenido):
         if not resultados:
             print("No se encontraron canciones que coincidan con los filtros aplicados.")
 
-        #si encontramos algun resultado, lo mostramos.
+        #si encontontramos la cancion, la mostramos.
         else:
             for cancion_encontrada in resultados:
                 print(f"{cancion_encontrada['Titulo']} — {cancion_encontrada['Artista']} - ({cancion_encontrada['Duracion']})")

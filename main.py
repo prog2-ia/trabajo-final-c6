@@ -58,6 +58,7 @@ def menu_elegir_album():
 
     #mostramos todos los artistas disponibles.
     for artista in artistas:
+        print()
         print(f"--- {artista.title().replace('_',' ')} ---")
         ruta_artista = f"{ruta_base}/{artista}"
 
@@ -69,7 +70,7 @@ def menu_elegir_album():
                 #almacenamos el album en la lista de albumes disponibles para cada aritsta.
                 albumes_disponibles.append(f"{artista}/{archivo}")
                 contador += 1
-
+    print()
     print(f"\n{contador}- Crear nuevo album")
     print("0- Salir al menú general")
     print("===========================")
@@ -166,7 +167,7 @@ def main():
                 elif opcion_canciones =='1':
                     # codigo: Anadir cancion a la base de datos
                     print()
-                    print('==== ANADIENDO CANCION ====')
+                    print('==== ANADIR CANCION ====')
                     cancion = Cancion(
                         titulo =  input('Introduce el titulo de la cancion: '),
                         artista = input('Introduce el autor de la cancion: '),
@@ -208,9 +209,9 @@ def main():
 
                         #si decimos que si:
                         if opcion_eliminar_cancion == "s":
-                            print(f"Eliminando la cancion {titulo}...")
+                            print(f"Eliminando la cancion {titulo.title()}...")
                             Cancion.eliminar_cancion(titulo, artista)
-                            print(f"Cancion '{titulo}' eliminada correctamente.")
+                            print(f"Cancion '{titulo.title()}' eliminada correctamente.")
                         #si ha sido un missclick
                         else:
                             print("La eliminacion se ha canceldado.")
@@ -406,12 +407,12 @@ def main():
                             #permitimos opcion de eliminar album
                             elif opcion_album == '3':
                                 #nos aseguramos de que el usuario de verdad quiere eliminar album.
-                                opcion_eliminar_album = input(f"Eliminar album '{album_cargado.titulo}'? (s/n): ").strip().lower()
+                                opcion_eliminar_album = input(f"Eliminar album '{album_cargado.titulo.title()}'? (s/n): ").strip().lower()
 
                                 #validamos la opcion del usuaior.
                                 while opcion_eliminar_album not in ('s', 'n'):
                                     print("Opcian no valida. Solo puedes poner (s/n).")
-                                    opcion_eliminar_album = input(f"Eliminar album '{album_cargado.titulo}'? (s/n): ").strip().lower()
+                                    opcion_eliminar_album = input(f"Eliminar album '{album_cargado.titulo.title()}'? (s/n): ").strip().lower()
 
                                 #el caso de que el usuario quiere eliminar el album.
                                 if opcion_eliminar_album == 's':
@@ -438,24 +439,27 @@ def main():
 
                                 #si no encontramos ninguna cancion ofrecemos la opcion de crearla y anadirla directamente al album:
                                 if cancion_album is None:
-                                    print(f"La cancion '{titulo}' - {artista} no existe.")
-                                    opcion_crear_cancion = input(f"Quieres crear la cancion '{titulo}' a la base de datos? (s/n): ").strip().lower()
+                                    print(f"La cancion '{titulo.title()}' - {artista.title()} no existe.")
+                                    opcion_crear_cancion = input(f"Quieres crear la cancion '{titulo.title()}' a la base de datos? (s/n): ").strip().lower()
 
                                     #validamos la opcion del usuario
                                     while opcion_crear_cancion not in ('s', 'n'):
                                         print("Opcion no valida.")
-                                        opcion_crear_cancion = input(f"Quieres crear la cancion '{titulo}' a la base de datos? (s/n): ").strip().lower()
+                                        opcion_crear_cancion = input(f"Quieres crear la cancion '{titulo.title()}' a la base de datos? (s/n): ").strip().lower()
 
                                     #si el usuario quiere crear la cancion a la base de datos, la creamos.
                                     if opcion_crear_cancion == 's':
+                                        print()
+                                        print(f'Introduce el titulo de la cancion: {titulo}')
+                                        print(f'Introduce el autor de la cancion: {artista}')
                                         nueva = Cancion(
-                                            titulo=input("Introduce el titulo de la cancion: "),
-                                            artista=input("Introduce el artista: "),
+                                            titulo=titulo,
+                                            artista=artista,
                                             fecha_lanzamiento=input("Introduce el año de lanzamiento: "),
                                             duracion=input("Introduce la duracion de la cancion: "),
                                             genero=[g.strip() for g in input("Introduce el/los genero/s de la cancion: ").split(",")],
                                             #la discografia sera el nombre del album directamente.
-                                            discografia=album_cargado.titulo.title()
+                                            discografia=album_cargado.titulo
                                         )
                                         #con el metodo de la clase cancion, anaidmos la cancion creada a la base de datos.
                                         Cancion.anadir_cancion(nueva)
@@ -469,7 +473,7 @@ def main():
                                         #si no la encontramos no pasa nada.
                                     #si el usuario no quiere crear la cancion a la base de datos.
                                     else:
-                                        print(f"La cancion '{titulo}' no se ha anadido al album '{album_cargado.titulo}'.")
+                                        print(f"La cancion '{titulo.title()}' no se ha anadido al album '{album_cargado.titulo.title()}'.")
                                 #si la cancion exisita antes en la base de datos, la anadimos directamente.
                                 else:
                                     album_cargado.anadir_cancion_existente(cancion_album)

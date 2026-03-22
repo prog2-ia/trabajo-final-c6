@@ -450,17 +450,6 @@
         "Discografia": "Viva la Vida"
     },
     {
-        "Titulo": "Silver Springs",
-        "Artista": "Fleetwood Mac",
-        "Fecha de lanzamiento": "1977",
-        "Duracion": "4:49",
-        "Genero": [
-            "Soft rock",
-            "Rock"
-        ],
-        "Discografia": "Rumors"
-    },
-    {
         "Titulo": "Livin' on a Prayer",
         "Artista": "Bon Jovi",
         "Fecha de lanzamiento": "1986",
@@ -1074,5 +1063,16 @@
             "glam rock"
         ],
         "Discografia": "Slippery When Wet"
+    },
+    {
+        "Titulo": "Love In An Elevator",
+        "Artista": "Aerosmith",
+        "Fecha de lanzamiento": "1989",
+        "Duracion": "5:41",
+        "Genero": [
+            "rock",
+            "hard rock"
+        ],
+        "Discografia": "Pump"
     }
 ]

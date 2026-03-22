@@ -59,7 +59,7 @@ class Album(Contenido):
 
         #si no encontramos albumes
         if not albumes:
-            print("No hay álbumes disponibles.")
+            print("No hay albumes disponibles.")
 
         #devolvemos los albumes que se han encontrado.
         return albumes
@@ -72,16 +72,18 @@ class Album(Contenido):
     @staticmethod
     def seleccionar_album(ruta_relativa, ruta="archivos/albumes"):
 
+        #calculamos la ruta completa para acceder al album.
         ruta_completa = ruta + "/" + ruta_relativa
         print(f"\nCargando album '{ruta_relativa}'...")
 
+        #abrimos el json con la ruta calculada.
         with open(ruta_completa, "r", encoding="utf-8") as f:
             canciones = json.load(f)
 
         #obtenemos el titulo del archivo a partir de la ruta calculada.
         archivo = ruta_relativa.split("/")[-1]
 
-        # Si el álbum está vacío -> NO ponemos datos falsos.
+        #Si el album esta vacio, dejamos los datos como desconocidos.
         if len(canciones) == 0:
 
             album = Album(
@@ -118,7 +120,7 @@ class Album(Contenido):
     #metodo para mostrar info del album.
     def mostrar_info_album(self):
         print("\n==== INFORMACION DEL ALBUM ====")
-        print(f"Titulo: {self.titulo}")
+        print(f"Titulo: {self.titulo.title()}")
         print(f"Artista: {self.artista}")
         print(f"Año de lanzamiento: {self.fecha_lanzamiento}")
         print(f"Genero(s): {self.genero}")
@@ -151,7 +153,7 @@ class Album(Contenido):
     def eliminar_album(self):
         #eliminamos el archivo json que queremos eliminar.
         os.remove(self.ruta_archivo)
-        print(f"Album '{self.titulo}' eliminado correctamente.")
+        print(f"Album '{self.titulo.title()}' eliminado correctamente.")
         #comprobamos si la carpeta esta vacia para eliminarla si se da el caso.
         self.eliminar_carpeta_artista()
 
@@ -181,7 +183,7 @@ class Album(Contenido):
             if len(archivos_visibles) == 0:
                 #eliminamos la carpeta del artista.
                 os.rmdir(carpeta_artista)
-                print(f"Carpeta de {carpeta_artista} eliminada por estar vacia.")
+                print(f"Carpeta de {carpeta_artista.title()} eliminada por estar vacia.")
 
     # ------------------------------------------------------------
 
@@ -201,7 +203,7 @@ class Album(Contenido):
 
         #comporbamos si el album ya existe para no meter duplicatos.
         if os.path.exists(ruta_completa):
-            print(f"El album '{nombre_archivo}' ya existe en la base de datos.")
+            print(f"El album '{nombre_archivo.title()}' ya existe en la base de datos.")
             #si existe, no devolvemos nada.
             return None
 
@@ -210,7 +212,7 @@ class Album(Contenido):
             json.dump([], f, ensure_ascii=False, indent=4)
 
         #mostramos por panalla que el album junto con la carpeta del artista se ha creado correctamente.
-        print(f"Album '{titulo}' creado correctamente como '{nombre_archivo}'.")
+        print(f"Album '{titulo.title()}' creado correctamente.")
         return nombre_archivo
 
 
@@ -228,7 +230,7 @@ class Album(Contenido):
         for c in self.canciones_album:
             if c["Titulo"].lower().strip() == titulo_nuevo and c["Artista"].lower().strip() == artista_nuevo:
                 print(
-                    f"La cancion '{cancion['Titulo']}' de '{cancion['Artista']}' ya esta en el album.")
+                    f"La cancion '{cancion['Titulo']}' de {cancion['Artista']} ya esta en el album.")
                 #si la cancion ya existe, no devolvemos nada.
                 return None
 
@@ -256,7 +258,8 @@ class Album(Contenido):
             json.dump(self.canciones_album, f, ensure_ascii=False, indent=4)
 
         #mostramos que la cancion se ha anadido con exito al album.
-        print(f"Cancion '{cancion['Titulo']}' anadida al album '{self.titulo}'.")
+        print()
+        print(f"Cancion '{cancion['Titulo']}' anadida al album '{self.titulo.title()}'.")
 
 
     # ------------------------------------------------------------
