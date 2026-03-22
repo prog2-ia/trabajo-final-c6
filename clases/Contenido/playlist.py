@@ -13,7 +13,10 @@ class ListaReproduccion(Contenido):
         # Guardamos la playlist al crearla
         self.guardar_playlist()
 
-    # ---------- PROPIEDADES ----------
+
+    # ------------------------------------------------------------
+
+
     #Comprobar que lista sea del tipo lista
     @property
     def lista(self):
@@ -28,7 +31,9 @@ class ListaReproduccion(Contenido):
             self._lista = valor
 
 
-    # ----------METODOS----------------
+    # ------------------------------------------------------------
+
+
     #Metodo para guardar playlist
     def guardar_playlist(self):
         ruta = f"archivos/playlists/{self.titulo}.json"
@@ -46,7 +51,10 @@ class ListaReproduccion(Contenido):
 
         print(f"Playlist '{self.titulo}' creada y guardada en {ruta}")
 
-    # ---------------------------------------------------------
+
+    # ------------------------------------------------------------
+
+
     # funcion que nos sirve para cargar canciones de un archivo json.
     def cargar_canciones(self, ruta=None):
         if ruta is None:
@@ -72,7 +80,9 @@ class ListaReproduccion(Contenido):
         self._cargada = True
         return self._lista
 
-    # ---------------------------------------------------------
+
+    # ------------------------------------------------------------
+
 
     #Metodo para mostrar info
     def mostrar_info(self):

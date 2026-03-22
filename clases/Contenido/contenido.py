@@ -1,13 +1,12 @@
 # Importamos json
 import json
 
-# Cargamos los géneros válidos desde el JSON
+# Cargamos los generos validos desde el json
 with open("archivos/generos_disponibles.json", "r", encoding="utf-8") as f:
     generos_validos = json.load(f)["generos"]
 
 
 class Contenido:
-
     def __init__(self, titulo, fecha_lanzamiento, duracion, genero, artista):
         # Atributos encapsulados
         self._titulo = titulo
@@ -22,7 +21,9 @@ class Contenido:
         self._genero = None
         self.genero = genero
 
-    #--------------------PROPIEDADES --------------------
+
+    # ------------------------------------------------------------
+
 
     # Comprueba que titulo sea de tipo str
     @property
@@ -36,6 +37,10 @@ class Contenido:
         else:
             self._titulo = valor
 
+
+    # ------------------------------------------------------------
+
+
     # Comprueba que artista sea de tipo str
     @property
     def artista(self):
@@ -43,10 +48,16 @@ class Contenido:
 
     @artista.setter
     def artista(self, valor):
-        if not isinstance(valor, str):
+        if valor is None:
+            self._artista = None
+        elif not isinstance(valor, str):
             print("El artista debe ser texto.")
         else:
             self._artista = valor
+
+
+    # ------------------------------------------------------------
+
 
     # Comprueba que fecha_lanzamiento sea de tipo str
     @property
@@ -55,10 +66,16 @@ class Contenido:
 
     @fecha_lanzamiento.setter
     def fecha_lanzamiento(self, valor):
-        if not isinstance(valor, str):
+        if valor is None:
+            self._fecha_lanzamiento = None
+        elif not isinstance(valor, str):
             print("La fecha de lanzamiento debe ser texto.")
         else:
             self._fecha_lanzamiento = valor
+
+
+    # ------------------------------------------------------------
+
 
     # Valida el formato de la duracion
     @property
@@ -70,6 +87,10 @@ class Contenido:
         self._duracion = valor
         self.validar_duracion()
 
+
+    # ------------------------------------------------------------
+
+
     # Comprueba que el genero pertenezca al archivo json
     @property
     def genero(self):
@@ -77,6 +98,10 @@ class Contenido:
 
     @genero.setter
     def genero(self, valor):
+        if valor is None or valor == []:
+            self._genero = []
+            return
+
         generos_normalizados = [g.lower() for g in generos_validos]
 
         if isinstance(valor, str):
@@ -92,7 +117,9 @@ class Contenido:
 
         self._genero = aceptados
 
-    #-------------------- MÉTODOS ---------------------------
+
+    # ------------------------------------------------------------
+
 
     #Metodo para buscar la informacion
     def mostrar_info(self):
@@ -101,6 +128,10 @@ class Contenido:
         print(f'Fecha de lanzamiento: {self.fecha_lanzamiento}')
         print(f'Duracion: {self.formatear_duracion()}')
         print(f'Genero(s): {self._genero}')
+
+
+    # ------------------------------------------------------------
+
 
     # Metodo privado para formatear segundos
     @staticmethod
@@ -121,6 +152,10 @@ class Contenido:
             seg = f"0{s}" if s < 10 else str(s)
 
             return f"{hor}:{minu}:{seg}"
+
+
+    # ------------------------------------------------------------
+
 
     # Validar duración: convierte mm:ss o hh:mm:ss a segundos
     def validar_duracion(self):
@@ -159,9 +194,17 @@ class Contenido:
         self._duracion = total
         return self._duracion
 
+
+    # ------------------------------------------------------------
+
+
     # Me_todo limpio sin duplicación de código
     def formatear_duracion(self):
         return self._formatear_segundos(self._duracion)
+
+
+    # ------------------------------------------------------------
+
 
     #Metodo estatico para mostrar la duracion
     @staticmethod
@@ -174,3 +217,6 @@ class Contenido:
 
         print("Duración total de la playlist:", resultado)
         return resultado
+
+
+    # ------------------------------------------------------------

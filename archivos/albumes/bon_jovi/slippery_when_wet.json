@@ -1,0 +1,35 @@
+[
+    {
+        "Titulo": "Livin' on a Prayer",
+        "Artista": "Bon Jovi",
+        "Fecha de lanzamiento": "1986",
+        "Duracion": "4:11",
+        "Genero": [
+            "Glam Metal",
+            "Hard Rock"
+        ],
+        "Discografia": "Slippery When Wet"
+    },
+    {
+        "Titulo": "You Give Love A Bad Name",
+        "Artista": "Bon Jovi",
+        "Fecha de lanzamiento": "1986",
+        "Duracion": "3:43",
+        "Genero": [
+            "rock",
+            "glam rock"
+        ],
+        "Discografia": "Slippery When Wet"
+    },
+    {
+        "Titulo": "Without Love",
+        "Artista": "Bon Jovi",
+        "Fecha de lanzamiento": "1986",
+        "Duracion": "3:31",
+        "Genero": [
+            "rock",
+            "glam rock"
+        ],
+        "Discografia": "Slippery When Wet"
+    }
+]

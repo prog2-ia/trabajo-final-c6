@@ -12,7 +12,10 @@ class Album(Contenido):
         # VALIDAMOS USANDO LOS SETTERS
         self.numero_canciones = numero_canciones
 
-    # -------- PROPIEDADES --------
+
+    ## ------------------------------------------------------------
+
+
     # Comprueba que numero_cancion sea de tipo int y positivo
     @property
     def numero_canciones(self):
@@ -20,75 +23,83 @@ class Album(Contenido):
 
     @numero_canciones.setter
     def numero_canciones(self, valor):
-        if not isinstance(valor, int) or valor < 1:
-            print("El número de canciones debe ser un entero positivo.")
-            self._numero_canciones = 0     # deja un valor seguro
-        else:
+        if valor is None:
+            self._numero_canciones = 0
+        elif isinstance(valor, int) and valor >= 0:
             self._numero_canciones = valor
+        else:
+            print("El numero de canciones debe ser un numero entero valido.")
+            self._numero_canciones = 0
 
-    # -------- MÉTODOS --------
+
+    # ------------------------------------------------------------
+
 
     #metodo que permite acceso a los albumes disponibles.
     #usamos la libreria os que nos permite manejo facil de las rutas.
     @staticmethod
     def listar_albumes(ruta="archivos/albumes"):
 
-        #comprobamos si la ruta (archivos/albumes) existe.
-        if os.path.exists(ruta):
-            #recorremos la carpeta y apuntamos todos los archivos json, que son nuestros albumes.
-            archivos = [album for album in os.listdir(ruta) if album.endswith(".json")]
-        else:
+        #comprobamos que la carpeta de albumes existe.
+        if not os.path.exists(ruta):
             print("La carpeta no existe.")
             return []
 
-        #si hay albumes en la lista (es decir, hemos encontrado en el paso anterior).
-        if archivos:
-            #mostramos todos enumerados.
-            for i, nombre in enumerate(archivos, start=1):
-                print(f"{i}- {nombre}")
-        else:
-            print("No hay albumes disponibles.")
+        #aqui guardamemos los albumes disponibles para cada artista.
+        albumes = []
 
-        #devolvemos los albumes disponibles.
-        return archivos
+        #calculamos las rutas para cada artista.
+        for artista in os.listdir(ruta):
+            ruta_artista = ruta + "/" + artista
+            if os.path.isdir(ruta_artista):
+                for archivo in os.listdir(ruta_artista):
+                    if archivo.endswith(".json"):
+                        print(f"{len(albumes) + 1}- {artista}/{archivo}")
+                        albumes.append(f"{artista}/{archivo}")
 
-#--------------------------------------------------------
+        #si no encontramos albumes
+        if not albumes:
+            print("No hay álbumes disponibles.")
+
+        #devolvemos los albumes que se han encontrado.
+        return albumes
+
+
+    # ------------------------------------------------------------
+
 
     #metodo que permite seleccionar un album de los disponibles
     @staticmethod
-    def seleccionar_album(nombre_archivo, ruta="archivos/albumes"):
+    def seleccionar_album(ruta_relativa, ruta="archivos/albumes"):
 
-        #calculamos la ruta a base de lo que ha elegido el usuario.
-        ruta_completa = ruta + "/" + nombre_archivo
-        print(f"\nCargando album '{nombre_archivo}'...")
+        ruta_completa = ruta + "/" + ruta_relativa
+        print(f"\nCargando album '{ruta_relativa}'...")
 
-        #cargamos el archivo json con la ruta correspondiente.
         with open(ruta_completa, "r", encoding="utf-8") as f:
             canciones = json.load(f)
 
-        #comprobamos si el album contiene canciones.
+        #obtenemos el titulo del archivo a partir de la ruta calculada.
+        archivo = ruta_relativa.split("/")[-1]
+
+        # Si el álbum está vacío -> NO ponemos datos falsos.
         if len(canciones) == 0:
-            print("El album esta vacío y no contiene ninguna cancion.")
 
-            #si no contiene nada, preguntamos si eliminamos el album.
-            opcion = input("Quieres eliminar el album vacio? (s/n): ").strip().lower()
+            album = Album(
+                titulo=archivo.replace(".json", "").replace("_", " ").title(),
+                artista=None,
+                fecha_lanzamiento=None,
+                duracion="0:00",
+                genero=[],
+                numero_canciones=None
+            )
 
-            #validamos la opcion.
-            while opcion not in ("s", "n"):
-                print("Opcion no valida. Solo puedes escribir 's' o 'n'.")
-                opcion = input("Quieres eliminar este album vacio? (s/n): ").strip().lower()
+            album.canciones_album = []
+            album.ruta_archivo = ruta_completa
+            return album
 
-            #eliminamos o no segun la eleccion.
-            if opcion == "s":
-                os.remove(ruta_completa)
-                print(f"Album '{nombre_archivo}' eliminado correctamente.")
-            else:
-                print("No se ha eliminado el album.")
-            return None
-
-        #creamos un objeto de clase album.
+        # Si el álbum tiene canciones -> llenar datos
         album = Album(
-            titulo=nombre_archivo.replace(".json", "").replace("_", " ").title(),
+            titulo=archivo.replace(".json", "").replace("_", " ").title(),
             artista=canciones[0]["Artista"],
             fecha_lanzamiento=canciones[0]["Fecha de lanzamiento"],
             duracion="0:00",
@@ -96,14 +107,13 @@ class Album(Contenido):
             numero_canciones=len(canciones)
         )
 
-        #guardamos las canciones para el album elegido
         album.canciones_album = canciones
-        #guardamos la ruta del archivo que hemos abierto.
         album.ruta_archivo = ruta_completa
-        #devolvemos el objeto para poder trabajar con el.
         return album
 
-    #------------------------------------------------
+
+    # ------------------------------------------------------------
+
 
     #metodo para mostrar info del album.
     def mostrar_info_album(self):
@@ -115,9 +125,17 @@ class Album(Contenido):
         print(f"Numero de canciones: {self.numero_canciones}")
         print()
 
+
+    # ------------------------------------------------------------
+
+
     #metodo para mostrar todas las canciones disponibles en el album
     def mostrar_canciones_album(self):
         print("\n==== LISTADO DE CANCIONES DEL ALBUM ====")
+        if self.numero_canciones == 0:
+            print('El album todavia no contiene canciones.\n')
+            return None
+
         for cancion in self.canciones_album:
             print(f"{cancion['Titulo']} — {cancion['Artista']} ({cancion['Duracion']})")
             print(f"Generos: {', '.join(cancion['Genero'])}")
@@ -125,7 +143,141 @@ class Album(Contenido):
             print("----------------------------------------")
             print()
 
+
+    # ------------------------------------------------------------
+
+
     #metodo que nos permite eliminar el album de la base de datos.
     def eliminar_album(self):
+        #eliminamos el archivo json que queremos eliminar.
         os.remove(self.ruta_archivo)
         print(f"Album '{self.titulo}' eliminado correctamente.")
+        #comprobamos si la carpeta esta vacia para eliminarla si se da el caso.
+        self.eliminar_carpeta_artista()
+
+
+    # ------------------------------------------------------------
+
+
+    #este metodo nos permite eliminar la carpeta del artista si no hay ninguin album dentro.
+    def eliminar_carpeta_artista(self):
+
+        #guardamos la ruta completa del archivo
+        ruta_archivo = self.ruta_archivo
+
+        # Extraemos la carpeta del artista.
+        #divide el stringo empezando por la derecha usando como separador /, accediendo a la posicion 0, que es la carpeta del artista.
+        carpeta_artista = ruta_archivo.rsplit("/", 1)[0]
+
+        #Comprobamos si la carpeta realmente existe el las rutas.
+        if os.path.exists(carpeta_artista):
+
+            #si existe, miramos si hay algun archivo (album) dentro.
+            archivos = os.listdir(carpeta_artista)
+            #EN CASO DE QUE HAYA ALGUN ARCHIVO NO VISIBLE, ESTOS NO SE TENDRAN EN CUENTA.
+            archivos_visibles = [f for f in archivos if not f.startswith(".")]
+
+            #si no hay archivos en la carpeta.
+            if len(archivos_visibles) == 0:
+                #eliminamos la carpeta del artista.
+                os.rmdir(carpeta_artista)
+                print(f"Carpeta de {carpeta_artista} eliminada por estar vacia.")
+
+    # ------------------------------------------------------------
+
+
+
+    #este metodo nos permitira crear la carpeta del artista nuevo que no existe en la base de datos al crear un album suyo.
+    @staticmethod
+    def crear_album(titulo,artista, ruta="archivos/albumes"):
+
+        #obtenemos la ruta de la carpeta de artistas utilizando el metodo de crear la carpeta del artista.
+        ruta_artista = Album.crear_carpeta_artista(artista, ruta)
+
+        #normalizamos el nombre del archivo que vamos a guardar.
+        nombre_archivo = titulo.strip().lower().replace(" ", "_") + ".json"
+        #calculamos la ruta a este archivo.
+        ruta_completa = ruta_artista + "/" + nombre_archivo
+
+        #comporbamos si el album ya existe para no meter duplicatos.
+        if os.path.exists(ruta_completa):
+            print(f"El album '{nombre_archivo}' ya existe en la base de datos.")
+            #si existe, no devolvemos nada.
+            return None
+
+        #si no existe, creamos un json vacio.
+        with open(ruta_completa, "w", encoding="utf-8") as f:
+            json.dump([], f, ensure_ascii=False, indent=4)
+
+        #mostramos por panalla que el album junto con la carpeta del artista se ha creado correctamente.
+        print(f"Album '{titulo}' creado correctamente como '{nombre_archivo}'.")
+        return nombre_archivo
+
+
+    # ------------------------------------------------------------
+
+
+    #metodo nos permite anadir canciones al album.
+    def anadir_cancion_existente(self, cancion):
+
+        # normalizamos la entrada que introduce el usuario
+        titulo_nuevo = cancion["Titulo"].lower().strip()
+        artista_nuevo = cancion["Artista"].lower().strip()
+
+        # comporbamos si la cancion ya existe en el album para que no haya duplicatos.
+        for c in self.canciones_album:
+            if c["Titulo"].lower().strip() == titulo_nuevo and c["Artista"].lower().strip() == artista_nuevo:
+                print(
+                    f"La cancion '{cancion['Titulo']}' de '{cancion['Artista']}' ya esta en el album.")
+                #si la cancion ya existe, no devolvemos nada.
+                return None
+
+        #si la cancion no existe en el album, la anadimos.
+        #la discografia de la cancion anadida por logica va a ser el nombre del album.
+        cancion["Discografia"] = self.titulo
+
+        #anadimos la cancion a la lista de canciones del album.
+        self.canciones_album.append(cancion)
+
+        #esta parte nos permite actualizar la informacion del album si no habia ninguna cancion antes.
+        if self.numero_canciones == 0:
+            #asignamos como artista del album el artista de la cancion que hemos anadido.
+            self.artista = cancion["Artista"]
+            #lo mismo con la fecha.
+            self.fecha_lanzamiento = cancion["Fecha de lanzamiento"]
+            #y generos.
+            self.genero = cancion["Genero"]
+
+        #como hemos anadido una cancion, tenemos que actualizar el numero de canciones del album.
+        self.numero_canciones = len(self.canciones_album)
+
+        #Guardamos los cambios en el archivo json correspondiene del album sobre el cual hemos estado trabajando.
+        with open(self.ruta_archivo, "w", encoding="utf-8") as f:
+            json.dump(self.canciones_album, f, ensure_ascii=False, indent=4)
+
+        #mostramos que la cancion se ha anadido con exito al album.
+        print(f"Cancion '{cancion['Titulo']}' anadida al album '{self.titulo}'.")
+
+
+    # ------------------------------------------------------------
+
+
+    #este metodo nos permite mejor organizacion de albumes y artistas.
+    @staticmethod
+    def crear_carpeta_artista(artista, ruta_base="archivos/albumes"):
+
+        #calculamos la ruta de la carpeta que queremos crear.
+        carpeta = artista.lower().replace(" ", "_")
+        ruta_artista = ruta_base + "/" + carpeta
+
+        #si la ruta no existe, la guardamos
+        if not os.path.exists(ruta_artista):
+            os.makedirs(ruta_artista)
+
+        #devolvemos la ruta.
+        return ruta_artista
+
+
+    # ------------------------------------------------------------
+
+
