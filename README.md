@@ -20,7 +20,7 @@ La idea principal de este programa es ofrecer una gestion sencilla del contenido
 
 3. **Carpeta `clases`**: esta carpeta contiene el contenido importante que aprendemos en esta asignatura. Dividimos las clases en varias carpetas:
 - `Atristas`: contiene un archivo principal `artistas` y otros archivos que **heredan** de la clase principal. Es una **clase abstracta** 
-- Del mismo modo tenemos las carpetas `Contenido` y que contienen las clases que nos serviran para gestinar el contenido musical (canciones, albumes...).
+- Del mismo modo tenemos la carpeta `Contenido` que contiene las clases que nos serviran para gestinar el contenido musical (canciones, albumes...).
 
 ---
 A lo largo de la practica hemos intentado introducir todo lo que hemos visto en clases. La idea es manejar los archivos `.json` para guardar la informacion. A dia de hoy, hemos intentado implementar un poco de `.json`, pero por ahora nos hemos centrado mas en las clases y objetos vistas en clase. **Hemos usado los comentarios a lo largo del codigo**, con lo cual suponemos que el codigo sea entendible.
