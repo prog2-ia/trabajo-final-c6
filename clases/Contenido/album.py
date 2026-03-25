@@ -229,8 +229,7 @@ class Album(Contenido):
         # comporbamos si la cancion ya existe en el album para que no haya duplicatos.
         for c in self.canciones_album:
             if c["Titulo"].lower().strip() == titulo_nuevo and c["Artista"].lower().strip() == artista_nuevo:
-                print(
-                    f"La cancion '{cancion['Titulo']}' de {cancion['Artista']} ya esta en el album.")
+                print(f"La cancion '{cancion['Titulo']}' de {cancion['Artista']} ya esta en el album.")
                 #si la cancion ya existe, no devolvemos nada.
                 return None
 
