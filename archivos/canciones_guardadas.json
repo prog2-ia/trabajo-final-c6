@@ -521,16 +521,6 @@
         "Discografia": "A Night at the Opera"
     },
     {
-        "Titulo": "Paranoid",
-        "Artista": "Black Sabbath",
-        "Fecha de lanzamiento": "1970",
-        "Duracion": "2:48",
-        "Genero": [
-            "Heavy Metal"
-        ],
-        "Discografia": "Paranoid"
-    },
-    {
         "Titulo": "Born to Run",
         "Artista": "Bruce Springsteen",
         "Fecha de lanzamiento": "1975",
@@ -1074,5 +1064,113 @@
             "hard rock"
         ],
         "Discografia": "Pump"
+    },
+    {
+        "Titulo": "What It Takes",
+        "Artista": "Aerosmith",
+        "Fecha de lanzamiento": "1990",
+        "Duracion": "5:13",
+        "Genero": [
+            "Rock",
+            "hard rock"
+        ],
+        "Discografia": "Pump"
+    },
+    {
+        "Titulo": "Crazy",
+        "Artista": "Aerosmith",
+        "Fecha de lanzamiento": "1993",
+        "Duracion": "4:22",
+        "Genero": [
+            "Rock"
+        ],
+        "Discografia": "Get A Grip"
+    },
+    {
+        "Titulo": "Looks That Kill",
+        "Artista": "Motley Crue",
+        "Fecha de lanzamiento": "1985",
+        "Duracion": "3:51",
+        "Genero": [
+            "glam metal",
+            "glam rock"
+        ],
+        "Discografia": "Shout At The Devil"
+    },
+    {
+        "Titulo": "Captain Crash And The Beauty Queen From Mars",
+        "Artista": "Bon Jovi feat. Richie Sambora",
+        "Fecha de lanzamiento": "2001",
+        "Duracion": "4:31",
+        "Genero": [
+            "rock",
+            "hard rock"
+        ],
+        "Discografia": "Crush"
+    },
+    {
+        "Titulo": "Streets Of Minneapolis",
+        "Artista": "Bruce Springsteen feat. E Street Band",
+        "Fecha de lanzamiento": "2026",
+        "Duracion": "4:31",
+        "Genero": [
+            "soft rock",
+            "rock"
+        ],
+        "Discografia": "Streets Of Minneapolis"
+    },
+    {
+        "Titulo": "Dude (Looks Like A Lady)",
+        "Artista": "Aerosmith",
+        "Fecha de lanzamiento": "1987",
+        "Duracion": "4:23",
+        "Genero": [
+            "rock",
+            "hard rock"
+        ],
+        "Discografia": "Permament Vacation"
+    },
+    {
+        "Titulo": "Too Late For Love",
+        "Artista": "Def Leppard",
+        "Fecha de lanzamiento": "1983",
+        "Duracion": "3:30",
+        "Genero": [
+            "rock",
+            "glam rock"
+        ],
+        "Discografia": "Pyromania"
+    },
+    {
+        "Titulo": "Flashdance... What A Feeling",
+        "Artista": "Irene Cara",
+        "Fecha de lanzamiento": "1983",
+        "Duracion": "3:20",
+        "Genero": [
+            "pop"
+        ],
+        "Discografia": "What A Feelin'"
+    },
+    {
+        "Titulo": "All She Wrote",
+        "Artista": "Firehouse",
+        "Fecha de lanzamiento": "1990",
+        "Duracion": "4:28",
+        "Genero": [
+            "glam rock",
+            "glam metal"
+        ],
+        "Discografia": "Firehouse"
+    },
+    {
+        "Titulo": "Gods Of Rock N Roll",
+        "Artista": "Ozzy Osbourne feat. Billy Morrison",
+        "Fecha de lanzamiento": "2025",
+        "Duracion": "5:16",
+        "Genero": [
+            "rock",
+            "hard rock"
+        ],
+        "Discografia": "Gods Of Rock N Roll"
     }
 ]

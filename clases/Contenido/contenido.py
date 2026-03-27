@@ -7,7 +7,7 @@ with open("archivos/generos_disponibles.json", "r", encoding="utf-8") as f:
 
 
 class Contenido:
-    def __init__(self, titulo, fecha_lanzamiento, duracion, genero, artista):
+    def __init__(self, titulo, fecha_lanzamiento, duracion, genero, artista, feat=None):
         # Atributos encapsulados
         self._titulo = titulo
         self._artista = artista
@@ -20,6 +20,29 @@ class Contenido:
         # Género se valida mediante property
         self._genero = None
         self.genero = genero
+
+
+        self.feat = feat or []
+
+
+    # ------------------------------------------------------------
+
+
+    @property
+    def feat(self):
+        return self._feat
+
+    @feat.setter
+    def feat(self, valor):
+        if valor is None or valor == "":
+            self._feat = []
+        elif isinstance(valor, str):
+            self._feat = [valor.strip()]
+        elif isinstance(valor, list):
+            self._feat = [v.strip() for v in valor]
+        else:
+            print("Feat. debe ser texto o lista.")
+            self._feat = []
 
 
     # ------------------------------------------------------------
@@ -124,7 +147,7 @@ class Contenido:
     #Metodo para buscar la informacion
     def mostrar_info(self):
         print(f'Titulo: {self.titulo}')
-        print(f'Artista: {self.artista}')
+        print(f'Artista: {self.artista_completo()}')
         print(f'Fecha de lanzamiento: {self.fecha_lanzamiento}')
         print(f'Duracion: {self.formatear_duracion()}')
         print(f'Genero(s): {self._genero}')
@@ -220,3 +243,52 @@ class Contenido:
 
 
     # ------------------------------------------------------------
+
+
+    #esta funcion sirve para calcular el artista completo de la cancion (para mostrarlos)
+    def artista_completo(self):
+
+        #si no hay feat, enotnces devolvemos el artista simplemetne.
+        if not self.feat:
+            return self.artista.title()
+
+        #si hay feat, calculamos los invitados.
+        invitados = ", ".join(a.title() for a in self.feat)
+        #devolvemos el artista completo ej: Aerosmith feat. Slash, Duff McKagan.
+        return f"{self.artista.title()} feat. {invitados}"
+
+
+    # ------------------------------------------------------------
+
+
+    #como mostramos los artistas con feat. esta funcion nos servira para separar el artista principal del resto.
+    @staticmethod
+    def separar_artista_feat(artista: str):
+
+        #Nos aseguramos de que el artista viene dado como una cadena de texto.
+        if not isinstance(artista, str):
+            #si no, devolvemos por defecto versiones vacias.
+            return "", []
+
+        #obtenemos y normalizamos el texto de artista que recibimos
+        artista_normalizado = artista.strip().lower()
+
+        #calculamos el indice donde se encuentra la palabra feat.
+        posicion = artista_normalizado.find("feat.")
+        #si no aparece feat:
+        if posicion == -1:
+            #devolvemos solo el artista, pues no hay colaboracion.
+            return artista_normalizado, []
+
+        #en caso de que haya feat.
+            #obtenemos el artista principal
+        artista_principal = artista_normalizado[:posicion].strip()
+        #normalizamos el artista principal para poder devolverlo guapo y limpio.
+        artista_principal = artista_principal.rstrip("-").rstrip(",").strip()
+
+            #controlamos la parte despues del feat (las colaboraciones)
+        feats_normalizados = artista_normalizado[posicion + len("feat."):].strip()
+        feats = [f.strip() for f in feats_normalizados.split(",") if f.strip()]
+
+        #devolvemos el artista principal, y los feats si los hay.
+        return artista_principal, feats

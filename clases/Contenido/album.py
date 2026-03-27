@@ -72,23 +72,25 @@ class Album(Contenido):
     @staticmethod
     def seleccionar_album(ruta_relativa, ruta="archivos/albumes"):
 
-        #calculamos la ruta completa para acceder al album.
+        # calculamos la ruta completa para acceder al album.
         ruta_completa = ruta + "/" + ruta_relativa
         print(f"\nCargando album '{ruta_relativa}'...")
 
-        #abrimos el json con la ruta calculada.
+        # abrimos el json con la ruta calculada.
         with open(ruta_completa, "r", encoding="utf-8") as f:
             canciones = json.load(f)
 
-        #obtenemos el titulo del archivo a partir de la ruta calculada.
+        # obtenemos el titulo del archivo a partir de la ruta calculada.
         archivo = ruta_relativa.split("/")[-1]
 
-        #Si el album esta vacio, dejamos los datos como desconocidos.
+        # Si el album esta vacio, dejamos los datos como desconocidos.
         if len(canciones) == 0:
+            artista_carpeta = ruta_relativa.split("/")[0]
+            artista_detectado = artista_carpeta.replace("_", " ").title()
 
             album = Album(
                 titulo=archivo.replace(".json", "").replace("_", " ").title(),
-                artista=None,
+                artista=artista_detectado,
                 fecha_lanzamiento=None,
                 duracion="0:00",
                 genero=[],
@@ -99,10 +101,13 @@ class Album(Contenido):
             album.ruta_archivo = ruta_completa
             return album
 
-        # Si el álbum tiene canciones -> llenar datos
+        # si el album tiene canciones, entonces podemos llenar datos del album.
+        artista_completo = canciones[0]["Artista"]
+        artista_principal, _ = Contenido.separar_artista_feat(artista_completo)
+
         album = Album(
             titulo=archivo.replace(".json", "").replace("_", " ").title(),
-            artista=canciones[0]["Artista"],
+            artista=artista_principal,
             fecha_lanzamiento=canciones[0]["Fecha de lanzamiento"],
             duracion="0:00",
             genero=canciones[0]["Genero"],
@@ -119,11 +124,7 @@ class Album(Contenido):
 
     #metodo para mostrar info del album.
     def mostrar_info_album(self):
-        print("\n==== INFORMACION DEL ALBUM ====")
-        print(f"Titulo: {self.titulo.title()}")
-        print(f"Artista: {self.artista}")
-        print(f"Año de lanzamiento: {self.fecha_lanzamiento}")
-        print(f"Genero(s): {self.genero}")
+        super().mostrar_info()
         print(f"Numero de canciones: {self.numero_canciones}")
         print()
 
@@ -139,9 +140,9 @@ class Album(Contenido):
             return None
 
         for cancion in self.canciones_album:
-            print(f"{cancion['Titulo']} — {cancion['Artista']} ({cancion['Duracion']})")
-            print(f"Generos: {', '.join(cancion['Genero'])}")
-            print(f"Discografia: {cancion['Discografia']}")
+            print(f"{cancion['Titulo'].title()} — {cancion['Artista'].title()} ({cancion['Duracion']})")
+            print(f"Generos: {', '.join(g.title() for g in cancion['Genero'])}")
+            print(f"Discografia: {cancion['Discografia'].title()}")
             print("----------------------------------------")
             print()
 
@@ -242,11 +243,12 @@ class Album(Contenido):
 
         #esta parte nos permite actualizar la informacion del album si no habia ninguna cancion antes.
         if self.numero_canciones == 0:
-            #asignamos como artista del album el artista de la cancion que hemos anadido.
-            self.artista = cancion["Artista"]
-            #lo mismo con la fecha.
+            # Asignamos como artista del album el artista principal de la cancion.
+            artista_principal, _ = Contenido.separar_artista_feat(cancion["Artista"])
+            self.artista = artista_principal
+            # Lo mismo con la fecha.
             self.fecha_lanzamiento = cancion["Fecha de lanzamiento"]
-            #y generos.
+            # Y generos.
             self.genero = cancion["Genero"]
 
         #como hemos anadido una cancion, tenemos que actualizar el numero de canciones del album.
@@ -257,7 +259,6 @@ class Album(Contenido):
             json.dump(self.canciones_album, f, ensure_ascii=False, indent=4)
 
         #mostramos que la cancion se ha anadido con exito al album.
-        print()
         print(f"Cancion '{cancion['Titulo']}' anadida al album '{self.titulo.title()}'.")
 
 
@@ -283,3 +284,42 @@ class Album(Contenido):
     # ------------------------------------------------------------
 
 
+    # este metodo nos permitira eliminar una cancion del album en el que estemos.
+    def eliminar_cancion_album(self, titulo, artista):
+
+        # normalizamos los datos introducidos
+        titulo = titulo.lower().strip()
+        artista = artista.lower().strip()
+
+        # calculamos cuantas canciones hay antes para confirmar eliminacion
+        canciones_antes = len(self.canciones_album)
+        canciones_filtradas = []
+
+        # recorremos las canciones del album para buscar la cancion a eliminar
+        for cancion in self.canciones_album:
+            titulo_cancion = cancion["Titulo"].lower().strip()
+            artista_completo_cancion = cancion["Artista"]
+
+            # obtenemos el artista principal de la cancion
+            artista_principal_cancion, _ = Contenido.separar_artista_feat(artista_completo_cancion)
+
+            # si no coincide, la mantenemos
+            if not (titulo_cancion == titulo and artista_principal_cancion.lower().strip() == artista):
+                canciones_filtradas.append(cancion)
+
+        # actualizamos la lista de canciones del album
+        self.canciones_album = canciones_filtradas
+
+        # actualizamos el numero de canciones del album
+        self.numero_canciones = len(self.canciones_album)
+
+        # guardamos cambios en el archivo json del album
+        with open(self.ruta_archivo, "w", encoding="utf-8") as f:
+            json.dump(self.canciones_album, f, ensure_ascii=False, indent=4)
+
+        # mostramos el resultado de la operacion
+        if len(self.canciones_album) == canciones_antes:
+            print(f"La cancion '{titulo.title()}' de {artista.title()} no existe en el album.")
+        else:
+            print(
+                f"Cancion '{titulo.title()}' de {artista.title()} eliminada correctamente del album '{self.titulo.title()}'.")

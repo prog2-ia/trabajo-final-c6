@@ -83,7 +83,8 @@ def menu_album():
     print(f'2- Mostrar el listado de canciones')
     print(f'3- Eliminar album')
     print(f'4- Anadir cancion al album')
-    print(f'0- salir al menu de los albumes')
+    print(f'5- Eliminar cancion del album')
+    print(f'0- Salir al menu de los albumes')
     print('======================')
 
 def menu_productor_musical():
@@ -164,20 +165,31 @@ def main():
 
                 # ------------------------------------------------------------
 
-                elif opcion_canciones =='1':
-                    # codigo: Anadir cancion a la base de datos
+                elif opcion_canciones == '1':
                     print()
                     print('==== ANADIR CANCION ====')
+                    titulo = input('Introduce el titulo de la cancion: ').strip()
+                    artista = input('Introduce el autor de la cancion: ').strip()
+                    feat_input = input("Introduce los artistas invitados (feat.), Enter si no hay: ").strip()
+                    feat = [a.strip() for a in feat_input.split(",")] if feat_input else []
+                    fecha_lanzamiento = input('Introduce el año de lanzamiento de la cancion: ').strip()
+                    duracion = input('Introduce la duracion de la cancion: ').strip()
+                    genero = [g.strip() for g in input('Introduce el genero(s) de la cancion: ').split(',')]
+                    discografia = input('Introduce la discografia de la cancion: ').strip()
+
+                    #creamos un objeto de la clase cancion para agregarlo a la base de datos.
                     cancion = Cancion(
-                        titulo =  input('Introduce el titulo de la cancion: '),
-                        artista = input('Introduce el autor de la cancion: '),
-                        fecha_lanzamiento = input('Introduce el año de lanzamiento de la cancion: '),
-                        duracion = input('Introduce la duracion de la cancion: '),
-                        genero=[g.strip() for g in input('Introduce el genero(s) de la cancion: ').split(',')],
-                        discografia= input('Introduce la discografia de la cancion: ')
+                        titulo=titulo,
+                        artista=artista,
+                        fecha_lanzamiento=fecha_lanzamiento,
+                        duracion=duracion,
+                        genero=genero,
+                        discografia=discografia,
+                        feat=feat
                     )
-                    #utilizamos el metodo de guardar canciones de la clase cancion.
-                    Cancion.anadir_cancion(cancion,'archivos/canciones_guardadas.json')
+
+                    Cancion.anadir_cancion(cancion, 'archivos/canciones_guardadas.json')
+                    print(f"La cancion '{titulo}' de {artista} se ha guardado correctamente.")
 
                 # ------------------------------------------------------------
 
@@ -378,7 +390,7 @@ def main():
                             opcion_album = pedir_opcion()
 
                             #validamos la eleccion del usuario.
-                            while opcion_album not in ('0', '1', '2', '3', '4'):
+                            while opcion_album not in ('0', '1', '2', '3', '4','5'):
                                 print("Opcion no valida.")
                                 #volvemos a pedir la opcion hasta que sea valida.
                                 opcion_album = pedir_opcion()
@@ -430,53 +442,91 @@ def main():
                             elif opcion_album == '4':
                                 print("\n=== ANADIR CANCION AL ALBUM ===")
 
-                                #pedimos al usuario los datos de la cancion que quiere anadir.
+                                # pedimos al usuario los datos de la cancion que quiere anadir.
+                                # El artista ya se concoe porque vamos a guardar en su carpeta, con lo cual no hace falta introducir el artista de nuevo.
+                                artista = album_cargado.artista
+                                print(f'Artista: {artista}')
                                 titulo = input("Introduce el titulo de la cancion: ").strip()
-                                artista = input("Introduce el artista: ").strip()
 
-                                #buscamos la cancion que queremos anadir al album en la base de datos de las canciones.
+                                # buscamos la cancion que queremos anadir al album en la base de datos de las canciones.
                                 cancion_album = Cancion.buscar_cancion(titulo, artista)
 
-                                #si no encontramos ninguna cancion ofrecemos la opcion de crearla y anadirla directamente al album:
+                                # si no encontramos ninguna cancion ofrecemos la opcion de crearla y anadirla directamente al album:
                                 if cancion_album is None:
                                     print(f"La cancion '{titulo.title()}' - {artista.title()} no existe.")
-                                    opcion_crear_cancion = input(f"Quieres crear la cancion '{titulo.title()}' a la base de datos? (s/n): ").strip().lower()
+                                    opcion_crear_cancion = input(
+                                        f"Quieres crear la cancion '{titulo.title()}' a la base de datos? (s/n): ").strip().lower()
 
-                                    #validamos la opcion del usuario
+                                    # validamos la opcion del usuario
                                     while opcion_crear_cancion not in ('s', 'n'):
                                         print("Opcion no valida.")
-                                        opcion_crear_cancion = input(f"Quieres crear la cancion '{titulo.title()}' a la base de datos? (s/n): ").strip().lower()
+                                        opcion_crear_cancion = input(
+                                            f"Quieres crear la cancion '{titulo.title()}' a la base de datos? (s/n): ").strip().lower()
 
-                                    #si el usuario quiere crear la cancion a la base de datos, la creamos.
+                                    # si el usuario quiere crear la cancion a la base de datos, la creamos.
                                     if opcion_crear_cancion == 's':
                                         print()
+                                        print(f'Artista de la cancion: {artista}')
                                         print(f'Introduce el titulo de la cancion: {titulo}')
-                                        print(f'Introduce el autor de la cancion: {artista}')
+                                        feat_input = input(
+                                            "Introduce los artistas invitados (feat.), Enter si no hay: ").strip()
+
                                         nueva = Cancion(
                                             titulo=titulo,
-                                            artista=artista,
                                             fecha_lanzamiento=input("Introduce el año de lanzamiento: "),
                                             duracion=input("Introduce la duracion de la cancion: "),
-                                            genero=[g.strip() for g in input("Introduce el/los genero/s de la cancion: ").split(",")],
-                                            #la discografia sera el nombre del album directamente.
-                                            discografia=album_cargado.titulo
+                                            genero=[g.strip() for g in
+                                                    input("Introduce los generos de la cancion (separado por comas): ").split(",")],
+                                            artista=artista,
+                                            discografia=album_cargado.titulo,
+                                            feat=[a.strip() for a in feat_input.split(",")] if feat_input else []
                                         )
-                                        #con el metodo de la clase cancion, anaidmos la cancion creada a la base de datos.
+                                        # con el metodo de la clase cancion, anaidmos la cancion creada a la base de datos.
                                         Cancion.anadir_cancion(nueva)
-                                        #volvemos a buscar la cancion que queremos anadir en la base de datos.
+                                        print()
+                                        print(f"La cancion '{titulo}' de {artista} se ha guardado correctamente.")
+                                        # volvemos a buscar la cancion que queremos anadir en la base de datos.
                                         cancion_album = Cancion.buscar_cancion(nueva.titulo, nueva.artista)
 
-                                        #si la encontramos, la anadimos.
+                                        # si la encontramos, la anadimos.
                                         if cancion_album:
                                             album_cargado.anadir_cancion_existente(cancion_album)
 
-                                        #si no la encontramos no pasa nada.
-                                    #si el usuario no quiere crear la cancion a la base de datos.
+                                        # si no la encontramos no pasa nada.
+                                    # si el usuario no quiere crear la cancion a la base de datos.
                                     else:
-                                        print(f"La cancion '{titulo.title()}' no se ha anadido al album '{album_cargado.titulo.title()}'.")
-                                #si la cancion exisita antes en la base de datos, la anadimos directamente.
+                                        print( f"La cancion '{titulo.title()}' no se ha anadido al album '{album_cargado.titulo.title()}'.")
+                                # si la cancion exisita antes en la base de datos, la anadimos directamente.
                                 else:
                                     album_cargado.anadir_cancion_existente(cancion_album)
+
+                            # ------------------------------------------------------------
+
+                            #elegimos la opcion de eliminar una cancion del album.
+                            elif opcion_album == '5':
+
+                                #pedimos al usuario los datos para eliminar la cancion del album.
+                                titulo = input("Introduce el titulo de la cancion a borrar: ").strip()
+                                artista = album_cargado.artista
+
+                                # nos aseguramos de que no ha sido missclisk
+                                opcion_eliminar_cancion_album = input(f"Eliminar la cancion '{titulo.title()}' de {artista.title()}? (s/n): ").strip().lower()
+
+                                # validamos la peticion
+                                while opcion_eliminar_cancion_album not in ("s", "n"):
+                                    print("Opcion no valida. Solo puedes poner (s/n).")
+                                    opcion_eliminar_cancion_album = input(f"Eliminar la cancion '{titulo.title()}' de {artista.title()}? (s/n): ").strip().lower()
+
+                                # si decimos que si:
+                                if opcion_eliminar_cancion_album == "s":
+                                    print(f"Eliminando la cancion {titulo.title()}...")
+                                    album_cargado.eliminar_cancion_album(titulo,artista)
+                                # si ha sido un missclick
+                                else:
+                                    print("La eliminacion se ha canceldado.")
+
+
+
 
         # AQUI ACABA LA TERCERA OPCION (ALBUMES) ------------------------------------------------------------
 

@@ -4,8 +4,8 @@ from clases.Contenido.contenido import Contenido
 # Clase Cancion
 class Cancion(Contenido):
     # Clase Canción: hereda de Contenido.
-    def __init__(self, titulo, fecha_lanzamiento, duracion, genero, artista, discografia):
-        super().__init__(titulo, fecha_lanzamiento, duracion, genero, artista)
+    def __init__(self, titulo, fecha_lanzamiento, duracion, genero, artista, discografia, feat=None):
+        super().__init__(titulo, fecha_lanzamiento, duracion, genero, artista,feat)
         self.discografia = discografia
 
 
@@ -33,62 +33,76 @@ class Cancion(Contenido):
     @staticmethod
     def anadir_cancion(nueva_cancion, ruta_json="archivos/canciones_guardadas.json"):
 
-        #cargamos el archivo json para poder buscar si no hay duplicato.
+        # Cargamos el archivo json
         with open(ruta_json, "r", encoding="utf-8") as f:
             canciones = json.load(f)
 
-        #normalizamos el titulo y el artista para poder buscar.
+        # Normalizamos para buscar duplicados
         titulo_nuevo = nueva_cancion.titulo.lower().strip()
-        artista_nuevo = nueva_cancion.artista.lower().strip()
+        artista_principal_nuevo = nueva_cancion.artista.lower().strip()
 
-        #buscamos si la cancion ya existe en la base de datos.
+        # recorremos el archivo buscando duplicatos.
         for cancion in canciones:
-            if cancion["Titulo"].lower().strip() == titulo_nuevo and cancion["Artista"].lower().strip() == artista_nuevo:
-                print(
-                    f"La cancion '{nueva_cancion.titulo.title()}' de {nueva_cancion.artista.title()} ya existe en la base de datos.")
-                #salimos al menu sin anaidr nada para no tener duplicatos.
+            titulo_guardado = cancion["Titulo"].lower().strip()
+            artista_guardado_completo = cancion["Artista"]
+            artista_principal_guardado, _ = Contenido.separar_artista_feat(artista_guardado_completo)
+
+            if (titulo_guardado == titulo_nuevo and
+                    artista_principal_guardado.lower().strip() == artista_principal_nuevo):
+                print(f"La cancion '{nueva_cancion.titulo.title()}' de {nueva_cancion.artista_completo()} ya existe en la base de datos.")
                 return None
 
-        #Si no hay cancion en la base de datos, podemos anadirla.
-            #pedimos datos al usuario.
+        # Si no hay duplicatos, anadimos la cancion.
         canciones.append({
             "Titulo": nueva_cancion.titulo.title(),
-            "Artista": nueva_cancion.artista.title(),
+            #aqui usamos la funcion de artista completo para mostrar en formato con feats: Aerosmith feat. Slash.
+            "Artista": nueva_cancion.artista_completo(),
             "Fecha de lanzamiento": nueva_cancion.fecha_lanzamiento,
             "Duracion": nueva_cancion.formatear_duracion(),
             "Genero": nueva_cancion.genero,
             "Discografia": nueva_cancion.discografia.title()
         })
 
-        #abrimos el archivo json en modo escritura para guardar la cancion.
+        #abrimos el archivo json en modo escritura y lo guardamos.
         with open(ruta_json, "w", encoding="utf-8") as f:
             json.dump(canciones, f, ensure_ascii=False, indent=4)
-
-        print(f"Cancion '{nueva_cancion.titulo.title()}' anadida correctamente a la base de datos.")
-
 
     # ------------------------------------------------------------
 
 
     #metodo para eliminar canciones de la base de datos.
     @staticmethod
-    def eliminar_cancion(titulo,artista,ruta_json="archivos/canciones_guardadas.json"):
+    def eliminar_cancion(titulo, artista, ruta_json="archivos/canciones_guardadas.json"):
 
-        # Archivo json donde estan las canciones
+        #cargamos el archivo json.
         with open(ruta_json, "r", encoding="utf-8") as f:
             canciones = json.load(f)
 
-        #recorremos el archivo json buscando el titulo y artista para borrar.
+        #normalizamos los datos introducidos.
+        titulo = titulo.lower().strip()
+        artista = artista.lower().strip()
+
+        #calculamos la cantidad de canciones para confirmar que se ha equivocado.
         canciones_antes = len(canciones)
-        canciones = [cancion for cancion in canciones if not (cancion["Titulo"].lower() == titulo.lower() and cancion["Artista"].lower() == artista.lower())]
+        canciones_filtradas = []
 
-        #abrimos el archivo json en modo escritura para eliminar la cancion de la base de datos.
+        #recorremos el archivo buscando la cancion a eliminar.
+        for cancion in canciones:
+            titulo_cancion = cancion["Titulo"].lower().strip()
+            artista_completo_cancion = cancion["Artista"]
+
+            #obtenemos el artista principal de la cancion, feats no nos importan.
+            artista_principal_cancion, _ = Contenido.separar_artista_feat(artista_completo_cancion)
+
+            #si coincide, procedemos a guardar en la lista para eliminar y elimiar.
+            if not (titulo_cancion == titulo and artista_principal_cancion.lower().strip() == artista):
+                canciones_filtradas.append(cancion)
+
         with open(ruta_json, "w", encoding="utf-8") as f:
-            json.dump(canciones, f, ensure_ascii=False, indent=4)
+            json.dump(canciones_filtradas, f, ensure_ascii=False, indent=4)
 
-        #calculamos cuantas canciones hay y cuandas habia para mostrar info de que se ha eliminado correctamente.
-        if len(canciones) == canciones_antes:
-            print(f"La cancion '{titulo}' no existe en la base de datos.")
+        if len(canciones_filtradas) == canciones_antes:
+            print(f"La cancion '{titulo}' de {artista} no existe en la base de datos.")
         else:
             print(f"Cancion '{titulo}' de {artista} eliminada correctamente.")
 
@@ -218,23 +232,33 @@ class Cancion(Contenido):
     @staticmethod
     def buscar_cancion(titulo, artista, ruta_json="archivos/canciones_guardadas.json"):
 
-        #abrimos el archivo json en modo lectura para buscar cancion.
+        #abrimos archivo json para recorrer canciones.
         with open(ruta_json, "r", encoding="utf-8") as f:
             canciones = json.load(f)
 
-        #guardamos el titulo y el artista de la cancion que ha introducido el usuario.
+        #normalizamos los datos introducidos por el usuario.
         titulo = titulo.lower().strip()
         artista = artista.lower().strip()
 
-        #recorremos el archivo json en busqueda de la cancion con los parametros indicados.
+        #recorremos el archivo en busqueda de las canciones.
         for cancion in canciones:
-            if cancion["Titulo"].lower() == titulo and cancion["Artista"].lower() == artista:
-                #si la encontramos, la devolvemos.
+            titulo_guardado = cancion["Titulo"].lower().strip()
+            artista_completo_guardado = cancion["Artista"]
+
+            #separamos el artista principal de los invitados. usamos _ porque la funcion de separar devuelve lista de los invitados que no nos interesa en este caso.
+            artista_principal, _ = Contenido.separar_artista_feat(artista_completo_guardado)
+
+            #si encontramos la cancion cuyo titulo y artista principal encaja con lo introducido, lo devolvemos.
+            if titulo_guardado == titulo and artista_principal.lower().strip() == artista:
                 return cancion
-        #si no, no devolvemos nada.
+
+        #si no, nada.
         return None
 
     # ------------------------------------------------------------
+
+
+
 
 
 

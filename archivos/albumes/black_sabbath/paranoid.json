@@ -1,0 +1,22 @@
+[
+    {
+        "Titulo": "Paranoid",
+        "Artista": "Black Sabbath",
+        "Fecha de lanzamiento": "1970",
+        "Duracion": "2:48",
+        "Genero": [
+            "Heavy Metal"
+        ],
+        "Discografia": "Paranoid"
+    },
+    {
+        "Titulo": "Iron Man",
+        "Artista": "Black Sabbath",
+        "Fecha de lanzamiento": "1970",
+        "Duracion": "5:55",
+        "Genero": [
+            "Heavy Metal"
+        ],
+        "Discografia": "Paranoid"
+    }
+]
