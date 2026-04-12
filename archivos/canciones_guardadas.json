@@ -1172,5 +1172,26 @@
             "hard rock"
         ],
         "Discografia": "Gods Of Rock N Roll"
+    },
+    {
+        "Titulo": "56",
+        "Artista": "Firehouse",
+        "Fecha de lanzamiento": "1585",
+        "Duracion": "0:00",
+        "Genero": [
+            "pop"
+        ],
+        "Discografia": "Firehouse"
+    },
+    {
+        "Titulo": "Czerwony Jak Cegla",
+        "Artista": "Dzem",
+        "Fecha de lanzamiento": "1985",
+        "Duracion": "5:13",
+        "Genero": [
+            "Rock",
+            "blues"
+        ],
+        "Discografia": "Cegla"
     }
 ]
