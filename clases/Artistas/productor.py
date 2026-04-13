@@ -19,3 +19,6 @@ class Productor:
     #metodo que permite agregar producciones.
     def agregar_producciones(self,produccion):
         self.producciones.append(produccion)
+
+    def __iadd__(self, other):
+        self.producciones.append(other)

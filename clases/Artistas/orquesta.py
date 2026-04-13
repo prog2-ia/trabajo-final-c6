@@ -45,6 +45,8 @@ class Orquestas(Artista):
             self._componentes.append(nombre)
         else:
             print(f"El miembro {nombre} ya está en la orquesta.")
+    def __iadd__(self, other):
+        self._componentes.append(other)
 
     # Metodo para eliminar miembro
     def eliminar_miembro(self, nombre):
@@ -52,6 +54,11 @@ class Orquestas(Artista):
             self._componentes.remove(nombre)
         else:
             print(f"El miembro {nombre} no se encuentra en la orquesta.")
+    def __isub__(self, other):
+        if other not in self._componentes:
+            print(f"{other} no se encuentra en el grupo.")
+        else:
+            self._componentes.remove(other)
 
     # Metodo para contar componentes de la orquesta
     def contar_componentes(self):

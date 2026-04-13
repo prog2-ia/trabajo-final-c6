@@ -30,18 +30,27 @@ class Grupos(Artista):
 
     # -------- MÉTODOS --------
 
-
+    #Agregar miembros
     def agregar_miembro(self, nombre):
         if nombre not in self._componentes:
             self._componentes.append(nombre)
         else:
             print(f"{nombre} ya está en el grupo.")
 
+    def __iadd__(self, other):
+        self._componentes.append(other)
+
+    #Eliminar miembro
     def eliminar_miembro(self, nombre):
         if nombre in self._componentes:
             self._componentes.remove(nombre)
         else:
             print(f"{nombre} no se encuentra en el grupo.")
+    def __isub__(self, other):
+        if other not in self._componentes:
+            print(f"{other} no se encuentra en el grupo.")
+        else:
+            self._componentes.remove(other)
 
     def contar_componentes(self):
         return len(self._componentes)
