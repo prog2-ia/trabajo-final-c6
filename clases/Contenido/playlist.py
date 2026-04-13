@@ -80,6 +80,42 @@ class ListaReproduccion(Contenido):
         self._cargada = True
         return self._lista
 
+    #Agregar canción a la playlist
+    def __iadd__(self, cancion):
+        """
+        Sobrecarga del operador += para añadir una canción a la playlist.
+        """
+        if not isinstance(cancion, Cancion):
+            print("Solo se pueden añadir objetos de tipo Cancion.")
+
+        # Cargar canciones si aún no están cargadas
+        if not self._cargada:
+            self.cargar_canciones()
+
+        # Añadir a la lista interna
+        self._lista.append(cancion)
+
+        # Guardar en el archivo JSON
+        ruta = f"archivos/playlists/{self.titulo}.json"
+
+        with open(ruta, "r", encoding="utf-8") as f:
+            datos = json.load(f)
+
+        datos["canciones"].append({
+            "Titulo": cancion.titulo,
+            "Fecha de lanzamiento": cancion.fecha_lanzamiento,
+            "Duracion": cancion.duracion,
+            "Genero": cancion.genero,
+            "Artista": cancion.artista,
+            "Discografia": cancion.discografia
+        })
+
+        with open(ruta, "w", encoding="utf-8") as f:
+            json.dump(datos, f, ensure_ascii=False, indent=4)
+
+        print(f"Canción '{cancion.titulo}' añadida a la playlist '{self.titulo}'.")
+
+        return self
 
     # ------------------------------------------------------------
 
