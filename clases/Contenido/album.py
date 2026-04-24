@@ -5,7 +5,7 @@ import os
 
 #Clase Album que hereda de contenido
 class Album(Contenido):
-    def __init__(self, titulo, artista, fecha_lanzamiento, duracion, genero,
+    def __init__(self, titulo:str , artista: str, fecha_lanzamiento, duracion, genero,
                  numero_canciones):
         super().__init__(titulo, fecha_lanzamiento, duracion, genero, artista)
 
