@@ -1,4 +1,5 @@
 import json
+import os
 from clases.Contenido.contenido import Contenido
 from clases.Contenido.canciones import Cancion
 
@@ -35,22 +36,30 @@ class ListaReproduccion(Contenido):
 
 
     #Metodo para guardar playlist
-    @staticmethod
-    def guardar_playlist(titulo,fecha_lanzamiento,duracion, genero ):
-        ruta = f"archivos/playlists/{titulo.lower().strip()}.json"
+    def guardar_playlist(self):
 
-        # Estructura del archivo
-        datos = {
-            "titulo": titulo,
-            "fecha_lanzamiento": fecha_lanzamiento,
-            "genero": genero,
-            "canciones": []   # inicialmente vacio
+        # la ruta del archivo vendra a partir de su nombre.
+        nombre_archivo = self.titulo.lower().strip().replace(" ", "_")
+        ruta = f"archivos/playlists/{nombre_archivo}.json"
+
+        # si la ruta ya existe, no la tocamos.
+        if os.path.exists(ruta):
+            return
+
+        playlist = {
+            "titulo": self.titulo,
+            "fecha_lanzamiento": self.fecha_lanzamiento,
+            "duracion": '0:00',
+            "genero": [],
+            "artista": [],
+            "canciones": {}
         }
 
         with open(ruta, "w", encoding="utf-8") as f:
-            json.dump(datos, f, ensure_ascii=False, indent=4)
+            json.dump(playlist, f, ensure_ascii=False, indent=4)
 
-        print(f"Playlist '{titulo}' creada y guardada en {ruta}")
+        print("Creando una playlist...")
+        print(f"Playlist '{self.titulo}' creada y guardada en {ruta}")
 
 
     # ------------------------------------------------------------
