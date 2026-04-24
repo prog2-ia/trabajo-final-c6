@@ -293,6 +293,7 @@ def main():
                     #codigo: crear playlist vacia (crear un archivo .json)
                     titulo = input('Introduce el nombre de la playlist: ')
                     fecha_lanzamiento = input('Introduce el año de lanzamiento: ')
+                    #duracion y genero por defecto vienen vacios.
                     playlist = ListaReproduccion(titulo,fecha_lanzamiento,duracion='0:00', genero=[])
                     playlist.guardar_playlist()
 
