@@ -1193,5 +1193,27 @@
             "blues"
         ],
         "Discografia": "Cegla"
+    },
+    {
+        "Titulo": "Heal The World",
+        "Artista": "Michael Jackson feat. N",
+        "Fecha de lanzamiento": "1991",
+        "Duracion": "6:25",
+        "Genero": [
+            "rock",
+            "pop"
+        ],
+        "Discografia": "The Best Of Michael Jackson"
+    },
+    {
+        "Titulo": "Earth Song",
+        "Artista": "Michael Jackson",
+        "Fecha de lanzamiento": "1995",
+        "Duracion": "6:45",
+        "Genero": [
+            "rock",
+            "pop"
+        ],
+        "Discografia": "History"
     }
 ]

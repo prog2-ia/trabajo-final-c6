@@ -146,6 +146,7 @@ class Contenido:
 
     #Metodo para buscar la informacion
     def mostrar_info(self):
+        print()
         print(f'Titulo: {self.titulo}')
         print(f'Artista: {self.artista_completo()}')
         print(f'Fecha de lanzamiento: {self.fecha_lanzamiento}')
@@ -162,7 +163,7 @@ class Contenido:
             f"Duración: {self.duracion}\n"
             f"Lanzado : {self.fecha_lanzamiento}"
         )
-    def __repl__(self):
+    def __repr__(self):
         return (
             f'{type(self)}'
             f"Título : {self.titulo}\n"
