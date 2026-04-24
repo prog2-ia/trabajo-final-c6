@@ -7,7 +7,7 @@ with open("archivos/generos_disponibles.json", "r", encoding="utf-8") as f:
 
 
 class Contenido:
-    def __init__(self, titulo, fecha_lanzamiento, duracion, genero, artista, feat=None):
+    def __init__(self, titulo:str, fecha_lanzamiento:str, duracion:str, genero:str, artista:str, feat=None):
         # Atributos encapsulados
         self._titulo = titulo
         self._artista = artista
@@ -152,13 +152,34 @@ class Contenido:
         print(f'Duracion: {self.formatear_duracion()}')
         print(f'Genero(s): {self._genero}')
 
+    def __str__(self):
+        return (
+            f'INFORMACION CONTENIDO'
+            f"Título : {self.titulo}\n"
+            f"Artista : {self.artista}\n"
+            f"Feat    : {self.feat if self.feat else 'ninguno'}\n"
+            f"Género  : {self.genero}\n"
+            f"Duración: {self.duracion}\n"
+            f"Lanzado : {self.fecha_lanzamiento}"
+        )
+    def __repl__(self):
+        return (
+            f'{type(self)}'
+            f"Título : {self.titulo}\n"
+            f"Artista : {self.artista}\n"
+            f"Feat    : {self.feat if self.feat else 'ninguno'}\n"
+            f"Género  : {self.genero}\n"
+            f"Duración: {self.duracion}\n"
+            f"Lanzado : {self.fecha_lanzamiento}"
+        )
+
 
     # ------------------------------------------------------------
 
 
     # Metodo privado para formatear segundos
     @staticmethod
-    def _formatear_segundos(total):
+    def _formatear_segundos(total) -> str:
         if total < 3600:
             m = total // 60
             s = total % 60
@@ -181,7 +202,7 @@ class Contenido:
 
 
     # Validar duración: convierte mm:ss o hh:mm:ss a segundos
-    def validar_duracion(self):
+    def validar_duracion(self) -> int:
         if not isinstance(self._duracion, str):
             self._duracion = 0
             return self._duracion
@@ -222,7 +243,7 @@ class Contenido:
 
 
     # Me_todo limpio sin duplicación de código
-    def formatear_duracion(self):
+    def formatear_duracion(self) ->str:
         return self._formatear_segundos(self._duracion)
 
 
@@ -231,7 +252,7 @@ class Contenido:
 
     #Metodo estatico para mostrar la duracion
     @staticmethod
-    def mostrar_duracion(lista_contenidos):
+    def mostrar_duracion(lista_contenidos) -> str:
         total_segundos = sum(con.duracion for con in lista_contenidos)
 
         # Creamos objeto temporal solo para formatear

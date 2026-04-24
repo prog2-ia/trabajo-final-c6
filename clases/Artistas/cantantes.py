@@ -2,7 +2,7 @@ from clases.Artistas.artistas import Artista
 
 #Clase Cantantes que hereda de Artistas
 class Cantantes(Artista):
-    def __init__(self, nombre, fecha_formacion, pais_origen, tipo_voz,
+    def __init__(self, nombre:str, fecha_formacion:str, pais_origen:str, tipo_voz:str,
                  activo: bool, genero=None, canciones_populares=None,
                  componentes=None, colaboraciones=None, instrumentos=None):
 
@@ -61,9 +61,16 @@ class Cantantes(Artista):
     def agregar_colaboracion(self, colaboracion):
         self._colaboraciones.append(colaboracion)
 
+    def __iaddcolaboracion(self, colaboracion):
+        self.colaboraciones.append(colaboracion)
+
+
     # Metodo para agregar instrumentos
     def agregar_instrumento(self, instrumento):
         self._instrumentos.append(instrumento)
+
+    def __iaddinstrumento(self, instrumento):
+        self.instrumentos.append(instrumento)
 
     # Metodo para mostrar informacion
     def mostrar_info(self):
@@ -72,4 +79,24 @@ class Cantantes(Artista):
         print(f'Tipo de voz: {self.tipo_voz}')
         print(f'Colaboraciones: {self.colaboraciones}')
         print(f'Instrumentos: {self.instrumentos}')
+
+
+    def __str__(self):
+        return (
+            f"INFORMACIÓN CANTANTE\n"
+            f"{super().__str__()}\n"
+            f"Tipo de voz: {self.tipo_voz}\n"
+            f"Colaboraciones: {self.colaboraciones}\n"
+            f"Instrumentos: {self.instrumentos}"
+        )
+
+    def __repr__(self):
+        return (
+            f"{self.__class__.__name__}\n"            
+            f"{super().__str__()}\n"
+            f"Tipo de voz: {self.tipo_voz}\n"
+            f"Colaboraciones: {self.colaboraciones}\n"
+            f"Instrumentos: {self.instrumentos}"
+        )
+
 

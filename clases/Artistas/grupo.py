@@ -3,7 +3,7 @@ from clases.Artistas.artistas import Artista
 # Subclase de Artista que representa un grupo musical.
 class Grupos(Artista):
 
-    def __init__(self, nombre, fecha_formacion, pais_origen, lider,
+    def __init__(self, nombre:str, fecha_formacion:str, pais_origen:str, lider:str,
                  activo: bool, genero=None, canciones_populares=None,
                  componentes=None):
 
@@ -52,10 +52,26 @@ class Grupos(Artista):
         else:
             self._componentes.remove(other)
 
-    def contar_componentes(self):
+    def contar_componentes(self) -> int:
         return len(self._componentes)
 
     def mostrar_info(self):
         print('INFORMACIÓN GRUPO')
         super().mostrar_info()
         print(f'Lider: {self.lider}')
+
+    def __str__(self):
+         return (
+            f"INFORMACIÓN GRUPO\n"
+            f"{super().__str__()}\n"
+            f"Lider: {self.lider}"
+        )
+
+    def __repr__(self):
+        return (
+            f"{self.__class__.__name__}\n"            
+            f"{super().__str__()}\n"
+            f"Lider: {self.lider}"
+
+        )
+
