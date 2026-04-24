@@ -1,4 +1,5 @@
 import json
+import os
 from clases.Contenido.contenido import Contenido
 from clases.Contenido.canciones import Cancion
 
@@ -7,7 +8,7 @@ from clases.Contenido.canciones import Cancion
 # Clase ListaReproducion que hereda de Contenido
 class ListaReproduccion(Contenido):
     def __init__(self, titulo, fecha_lanzamiento, duracion, genero):
-        super().__init__(titulo, fecha_lanzamiento, duracion, genero, artista="varios")
+        super().__init__(titulo, fecha_lanzamiento, duracion, genero, artista=[])
         self._lista = []
         self._cargada = False
         # Guardamos la playlist al crearla
@@ -35,22 +36,30 @@ class ListaReproduccion(Contenido):
 
 
     #Metodo para guardar playlist
-    @staticmethod
-    def guardar_playlist(titulo,fecha_lanzamiento,duracion, genero ):
-        ruta = f"archivos/playlists/{titulo.lower().strip()}.json"
+    def guardar_playlist(self):
 
-        # Estructura del archivo
-        datos = {
-            "titulo": titulo,
-            "fecha_lanzamiento": fecha_lanzamiento,
-            "genero": genero,
-            "canciones": []   # inicialmente vacio
+        #la ruta del archivo vendra a partir de su nombre.
+        nombre_archivo = self.titulo.lower().strip().replace(" ", "_")
+        ruta = f"archivos/playlists/{nombre_archivo}.json"
+
+        #si la ruta ya existe, no la tocamos.
+        if os.path.exists(ruta):
+            return
+
+        playlist = {
+            "titulo": self.titulo,
+            "fecha_lanzamiento": self.fecha_lanzamiento,
+            "duracion": self.duracion,
+            "genero": self.genero,
+            "artista": self.artista,
+            "canciones": {}
         }
 
         with open(ruta, "w", encoding="utf-8") as f:
-            json.dump(datos, f, ensure_ascii=False, indent=4)
+            json.dump(playlist, f, ensure_ascii=False, indent=4)
 
-        print(f"Playlist '{titulo}' creada y guardada en {ruta}")
+        print("Creando una playlist...")
+        print(f"Playlist '{self.titulo}' creada y guardada en {ruta}")
 
 
     # ------------------------------------------------------------
@@ -78,8 +87,13 @@ class ListaReproduccion(Contenido):
             )
             self._lista.append(cancion)
 
+        #devolvemos la lista con las canciones cargadas.
         self._cargada = True
         return self._lista
+
+
+    # ------------------------------------------------------------
+
 
     #Agregar canción a la playlist
     def __iadd__(self, cancion):
@@ -114,12 +128,14 @@ class ListaReproduccion(Contenido):
         with open(ruta, "w", encoding="utf-8") as f:
             json.dump(datos, f, ensure_ascii=False, indent=4)
 
-        print(f"Canción '{cancion.titulo}' añadida a la playlist '{self.titulo}'.")
+        print(f"Cancion '{cancion.titulo}' añadida a la playlist '{self.titulo}'.")
 
         return self
 
     # ------------------------------------------------------------
 
+
+    # ------------------------------------------------------------
 
     #Metodo para mostrar info
     def mostrar_info(self):
