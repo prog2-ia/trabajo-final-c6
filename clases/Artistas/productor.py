@@ -1,6 +1,6 @@
 #clase de productor.
 class Productor:
-    def __init__(self,producciones):
+    def __init__(self,producciones:list):
         self.producciones = producciones or []
 
     #usamos getter y setter para validar que el dato que pasamos es una lista.
@@ -22,3 +22,9 @@ class Productor:
 
     def __iadd__(self, other):
         self.producciones.append(other)
+
+    def __str__(self):
+        return f'Producciones: {self.producciones}'
+
+    def __repr__(self):
+        return f'{type(self)} | Producciones: {self.producciones}'

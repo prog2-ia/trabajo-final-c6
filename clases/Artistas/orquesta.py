@@ -1,7 +1,7 @@
 from clases.Artistas.artistas import Artista
 
 class Orquestas(Artista):
-    def __init__(self, nombre, fecha_formacion, pais_origen, director,
+    def __init__(self, nombre:str, fecha_formacion:str, pais_origen:str, director:str,
                  activo: bool, instrumentos=None, genero=None,
                  canciones_populares=None, componentes=None):
 
@@ -61,7 +61,7 @@ class Orquestas(Artista):
             self._componentes.remove(other)
 
     # Metodo para contar componentes de la orquesta
-    def contar_componentes(self):
+    def contar_componentes(self) -> int:
         return len(self._componentes)
 
     # Metodo para agregar instrumentos
@@ -70,3 +70,32 @@ class Orquestas(Artista):
             self._instrumentos.append(instrumento)
         else:
             print(f"El instrumento {instrumento} ya está registrado en la orquesta.")
+
+    def __iaddinstrumento__(self, instrumento):
+        self._instrumentos.append(instrumento)
+
+
+    # Metodo para mostrar informacion
+    def mostrar_info(self):
+        print('INFORMACIÓN CANTANTE')
+        super().mostrar_info()
+        print(f'Director: {self.director}')
+        print(f'Instrumentos: {self.instrumentos}')
+
+
+
+    def __str__(self):
+        return (
+            f"INFORMACIÓN ORQUESTA\n"
+            f"{super().__str__()}\n"
+            f"Director: {self.director}\n"
+            f"Instrumentos: {self.instrumentos}"
+        )
+
+    def __repr__(self):
+        return (
+            f"{self.__class__.__name__}\n"            
+            f"{super().__str__()}\n"
+            f"Director: {self.director}\n"
+            f"Instrumentos: {self.instrumentos}"
+        )
