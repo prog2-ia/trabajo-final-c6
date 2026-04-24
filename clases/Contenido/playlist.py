@@ -35,21 +35,22 @@ class ListaReproduccion(Contenido):
 
 
     #Metodo para guardar playlist
-    def guardar_playlist(self):
-        ruta = f"archivos/playlists/{self.titulo}.json"
+    @staticmethod
+    def guardar_playlist(titulo,fecha_lanzamiento,duracion, genero ):
+        ruta = f"archivos/playlists/{titulo.lower().strip()}.json"
 
         # Estructura del archivo
         datos = {
-            "titulo": self.titulo,
-            "fecha_lanzamiento": self.fecha_lanzamiento,
-            "genero": self.genero,
+            "titulo": titulo,
+            "fecha_lanzamiento": fecha_lanzamiento,
+            "genero": genero,
             "canciones": []   # inicialmente vacio
         }
 
         with open(ruta, "w", encoding="utf-8") as f:
             json.dump(datos, f, ensure_ascii=False, indent=4)
 
-        print(f"Playlist '{self.titulo}' creada y guardada en {ruta}")
+        print(f"Playlist '{titulo}' creada y guardada en {ruta}")
 
 
     # ------------------------------------------------------------
