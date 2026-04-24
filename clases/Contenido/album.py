@@ -133,7 +133,7 @@ class Album(Contenido):
 
 
     #metodo para mostrar todas las canciones disponibles en el album
-    def mostrar_canciones_album(self):
+    def mostrar_canciones_album(self) -> str:
         print("\n==== LISTADO DE CANCIONES DEL ALBUM ====")
         if self.numero_canciones == 0:
             print('El album todavia no contiene canciones.\n')
@@ -158,12 +158,46 @@ class Album(Contenido):
         #comprobamos si la carpeta esta vacia para eliminarla si se da el caso.
         self.eliminar_carpeta_artista()
 
+    def __isubalbum__(self):
+        #eliminamos el archivo json que queremos eliminar.
+        os.remove(self.ruta_archivo)
+        print(f"Album '{self.titulo.title()}' eliminado correctamente.")
+        #comprobamos si la carpeta esta vacia para eliminarla si se da el caso.
+        self.eliminar_carpeta_artista()
+
+
+
+
+
 
     # ------------------------------------------------------------
 
 
     #este metodo nos permite eliminar la carpeta del artista si no hay ninguin album dentro.
     def eliminar_carpeta_artista(self):
+
+        #guardamos la ruta completa del archivo
+        ruta_archivo = self.ruta_archivo
+
+        # Extraemos la carpeta del artista.
+        #divide el stringo empezando por la derecha usando como separador /, accediendo a la posicion 0, que es la carpeta del artista.
+        carpeta_artista = ruta_archivo.rsplit("/", 1)[0]
+
+        #Comprobamos si la carpeta realmente existe el las rutas.
+        if os.path.exists(carpeta_artista):
+
+            #si existe, miramos si hay algun archivo (album) dentro.
+            archivos = os.listdir(carpeta_artista)
+            #EN CASO DE QUE HAYA ALGUN ARCHIVO NO VISIBLE, ESTOS NO SE TENDRAN EN CUENTA.
+            archivos_visibles = [f for f in archivos if not f.startswith(".")]
+
+            #si no hay archivos en la carpeta.
+            if len(archivos_visibles) == 0:
+                #eliminamos la carpeta del artista.
+                os.rmdir(carpeta_artista)
+                print(f"Carpeta de {carpeta_artista.title()} eliminada por estar vacia.")
+
+    def isubcarpeta__(self):
 
         #guardamos la ruta completa del archivo
         ruta_archivo = self.ruta_archivo
@@ -262,12 +296,65 @@ class Album(Contenido):
         print(f"Cancion '{cancion['Titulo']}' anadida al album '{self.titulo.title()}'.")
 
 
+    def __iaddcancion__(self, cancion):
+
+        # normalizamos la entrada que introduce el usuario
+        titulo_nuevo = cancion["Titulo"].lower().strip()
+        artista_nuevo = cancion["Artista"].lower().strip()
+
+        # comporbamos si la cancion ya existe en el album para que no haya duplicatos.
+        for c in self.canciones_album:
+            if c["Titulo"].lower().strip() == titulo_nuevo and c["Artista"].lower().strip() == artista_nuevo:
+                print(f"La cancion '{cancion['Titulo']}' de {cancion['Artista']} ya esta en el album.")
+                #si la cancion ya existe, no devolvemos nada.
+                return None
+
+        #si la cancion no existe en el album, la anadimos.
+        #la discografia de la cancion anadida por logica va a ser el nombre del album.
+        cancion["Discografia"] = self.titulo
+
+        #anadimos la cancion a la lista de canciones del album.
+        self.canciones_album.append(cancion)
+
+        #esta parte nos permite actualizar la informacion del album si no habia ninguna cancion antes.
+        if self.numero_canciones == 0:
+            # Asignamos como artista del album el artista principal de la cancion.
+            artista_principal, _ = Contenido.separar_artista_feat(cancion["Artista"])
+            self.artista = artista_principal
+            # Lo mismo con la fecha.
+            self.fecha_lanzamiento = cancion["Fecha de lanzamiento"]
+            # Y generos.
+            self.genero = cancion["Genero"]
+
+        #como hemos anadido una cancion, tenemos que actualizar el numero de canciones del album.
+        self.numero_canciones = len(self.canciones_album)
+
+        #Guardamos los cambios en el archivo json correspondiene del album sobre el cual hemos estado trabajando.
+        with open(self.ruta_archivo, "w", encoding="utf-8") as f:
+            json.dump(self.canciones_album, f, ensure_ascii=False, indent=4)
+
+        #mostramos que la cancion se ha anadido con exito al album.
+        print(f"Cancion '{cancion['Titulo']}' anadida al album '{self.titulo.title()}'.")
+
     # ------------------------------------------------------------
 
 
     #este metodo nos permite mejor organizacion de albumes y artistas.
     @staticmethod
     def crear_carpeta_artista(artista, ruta_base="archivos/albumes"):
+
+        #calculamos la ruta de la carpeta que queremos crear.
+        carpeta = artista.lower().replace(" ", "_")
+        ruta_artista = ruta_base + "/" + carpeta
+
+        #si la ruta no existe, la guardamos
+        if not os.path.exists(ruta_artista):
+            os.makedirs(ruta_artista)
+
+        #devolvemos la ruta.
+        return ruta_artista
+
+    def __iaddcarpeta__(artista, ruta_base="archivos/albumes"):
 
         #calculamos la ruta de la carpeta que queremos crear.
         carpeta = artista.lower().replace(" ", "_")
@@ -323,5 +410,46 @@ class Album(Contenido):
         else:
             print(
                 f"Cancion '{titulo.title()}' de {artista.title()} eliminada correctamente del album '{self.titulo.title()}'.")
+
+
+    def __isubcancion__(self, titulo, artista):
+
+        # normalizamos los datos introducidos
+        titulo = titulo.lower().strip()
+        artista = artista.lower().strip()
+
+        # calculamos cuantas canciones hay antes para confirmar eliminacion
+        canciones_antes = len(self.canciones_album)
+        canciones_filtradas = []
+
+        # recorremos las canciones del album para buscar la cancion a eliminar
+        for cancion in self.canciones_album:
+            titulo_cancion = cancion["Titulo"].lower().strip()
+            artista_completo_cancion = cancion["Artista"]
+
+            # obtenemos el artista principal de la cancion
+            artista_principal_cancion, _ = Contenido.separar_artista_feat(artista_completo_cancion)
+
+            # si no coincide, la mantenemos
+            if not (titulo_cancion == titulo and artista_principal_cancion.lower().strip() == artista):
+                canciones_filtradas.append(cancion)
+
+        # actualizamos la lista de canciones del album
+        self.canciones_album = canciones_filtradas
+
+        # actualizamos el numero de canciones del album
+        self.numero_canciones = len(self.canciones_album)
+
+        # guardamos cambios en el archivo json del album
+        with open(self.ruta_archivo, "w", encoding="utf-8") as f:
+            json.dump(self.canciones_album, f, ensure_ascii=False, indent=4)
+
+        # mostramos el resultado de la operacion
+        if len(self.canciones_album) == canciones_antes:
+            print(f"La cancion '{titulo.title()}' de {artista.title()} no existe en el album.")
+        else:
+            print(
+                f"Cancion '{titulo.title()}' de {artista.title()} eliminada correctamente del album '{self.titulo.title()}'.")
+
 
 
