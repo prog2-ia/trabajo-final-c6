@@ -1,57 +1,35 @@
-{
-    "titulo": "The Best Of Michael Jackson",
-    "fecha_lanzamiento": "2026",
-    "duracion": 0,
-    "genero": [
-        "Rock",
-        "pop",
-        "Soft rock",
-        "rock"
-    ],
-    "canciones": [
-        {
-            "Titulo": "Heal The World",
-            "Artista": "Michael Jackson",
-            "Fecha de lanzamiento": "1991",
-            "Duracion": "6:25",
-            "Genero": [
-                "rock",
-                "pop"
-            ],
-            "Discografia": "The Best Of Michael Jackson"
-        },
-        {
-            "Titulo": "Earth Song",
-            "Artista": "Michael Jackson",
-            "Fecha de lanzamiento": "1995",
-            "Duracion": "6:45",
-            "Genero": [
-                "rock",
-                "pop"
-            ],
-            "Discografia": "History"
-        },
-        {
-            "Titulo": "Silver Springs",
-            "Artista": "Fleetwood Mac",
-            "Fecha de lanzamiento": "1977",
-            "Duracion": "4:49",
-            "Genero": [
-                "Soft rock",
-                "Rock"
-            ],
-            "Discografia": "Rumors"
-        },
-        {
-            "Titulo": "Czerwony Jak Cegla",
-            "Artista": "Dzem",
-            "Fecha de lanzamiento": "1985",
-            "Duracion": "5:13",
-            "Genero": [
-                "Rock",
-                "blues"
-            ],
-            "Discografia": "Cegla"
-        }
-    ]
-}
+[
+    {
+        "Titulo": "Heal The World",
+        "Artista": "Michael Jackson",
+        "Fecha de lanzamiento": "1991",
+        "Duracion": "6:25",
+        "Genero": [
+            "rock",
+            "pop"
+        ],
+        "Discografia": "The Best Of Michael Jackson"
+    },
+    {
+        "Titulo": "Earth Song",
+        "Artista": "Michael Jackson",
+        "Fecha de lanzamiento": "1995",
+        "Duracion": "6:45",
+        "Genero": [
+            "rock",
+            "pop"
+        ],
+        "Discografia": "History"
+    },
+    {
+        "Titulo": "Silver Springs",
+        "Artista": "Fleetwood Mac",
+        "Fecha de lanzamiento": "1977",
+        "Duracion": "4:49",
+        "Genero": [
+            "Soft rock",
+            "Rock"
+        ],
+        "Discografia": "Rumors"
+    }
+]

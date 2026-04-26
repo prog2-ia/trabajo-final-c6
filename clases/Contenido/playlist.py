@@ -84,7 +84,7 @@ class ListaReproduccion(Contenido):
 
         #abrimos el json para recorrer las canciones.
         with open(ruta, "r", encoding="utf-8") as f:
-            canciones = json.load(f)["canciones"]
+            canciones = json.load(f)
 
         #recorremos las canciones de las canciones guardadas en json.
         for cancion in canciones:
@@ -204,7 +204,7 @@ class ListaReproduccion(Contenido):
         titulo = ruta_relativa.replace(".json", "").replace("_", " ").title()
 
         #obtenemos la lista de las canciones, si no hay, ponemos una lista vacia por defecto.
-        canciones = playlist.get("canciones", [])
+        canciones = playlist
 
         #creamos un conjunto para guardar los generos y evistar los duplicatos.
         generos = set()
@@ -223,8 +223,8 @@ class ListaReproduccion(Contenido):
 
         play = ListaReproduccion(
             titulo=titulo,
-            fecha_lanzamiento=playlist.get("fecha_lanzamiento"),
-            duracion=playlist.get("duracion", "0:00"),
+            fecha_lanzamiento=None,
+            duracion="0:00",
             genero=list(generos),
             artista=list(artistas)
         )
@@ -245,3 +245,4 @@ class ListaReproduccion(Contenido):
 
 
     # ------------------------------------------------------------
+
