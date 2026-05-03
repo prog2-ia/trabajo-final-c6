@@ -5,6 +5,7 @@ from clases.Contenido.canciones import Cancion
 from clases.Contenido.album import Album
 from clases.Contenido.contenido import Contenido
 from clases.Contenido.playlist import ListaReproduccion
+from datetime import date
 
 #importamos clases que heredan del Artista:
 from clases.Artistas.cantantes import Cantantes
@@ -13,129 +14,127 @@ from clases.Artistas.orquesta import Orquestas
 from clases.Artistas.productor_musical import ProductorMusical
 
 # ------------------------------------------------------------
-#funciones auxiliares del main.
+# funciones auxiliares del main.
 
 def menu_canciones():
-    print('\n===== MENU CANCIONES =====')
-    print(f'1- Añadir cancion')
-    print(f'2- Eliminar cancion')
-    print(f'3- Mostrar todas canciones disponibles')
-    print(f'4- Filtrar canciones')
-    print(f'5- Buscar cancion')
-    print(f'0- Salir al menu general')
-    print('======================')
+    print("\n========== MENU CANCIONES ==========")
+    print("(1) Añadir cancion")
+    print("(2) Eliminar cancion")
+    print("(3) Mostrar todas las canciones")
+    print("(4) Filtrar canciones")
+    print("(5) Buscar cancion")
+    print("(0) Volver al menu general")
+    print("===================================")
+
 
 def menu_elegir_playlist():
-    print("\n===== PLAYLISTS DISPONIBLES =====")
+    print("\n========== PLAYLISTS DISPONIBLES ==========\n")
 
-    #la ruta base para todas las carpetas de artistas, todas estan en esta carpeta
     ruta_base = "archivos/playlists"
-
-    #aqui guardaremos todos los albumes para cada aritsta.
-    playlists_disponibles= []
+    playlists_disponibles = []
     contador = 1
 
-    #buscamos los archivos con la ruta calculada.
     for archivo in os.listdir(ruta_base):
         if archivo.endswith(".json"):
-            print(f"{contador}- {archivo.replace('.json','').replace('_',' ').title()}")
-
-            #almacenamos el album en la lista de albumes disponibles para cada aritsta.
-            playlists_disponibles.append(f"{archivo}")
+            print(f"({contador}) {archivo.replace('.json','').replace('_',' ').title()}")
+            playlists_disponibles.append(archivo)
             contador += 1
 
-    print()
-    print(f"\n{contador}- Crear nueva playlist")
-    print(f'{contador+1}- Buscar playlist')
-    print("0- Salir al menu general")
-    print("===========================")
+    print("\n------------------------------------------")
+    print(f"({contador}) Crear nueva playlist")
+    print("(0) Salir al menu general")
+    print("==========================================")
 
     return playlists_disponibles, contador
 
+
 def menu_playlists():
-    print('\n===== MENU PLAYLISTS =====')
-    print(f'1- Mostrar informacion')
-    print(f'2- Anadir cancion a la playlist')
-    print(f'3- Eliminar cancion de la  playlist')
-    print(f'4- Eliminar playlist')
-    print(f'0- Salir al menu general')
-    print('======================')
+    print("\n========== MENU PLAYLIST ==========")
+    print("(1) Mostrar informacion")
+    print("(2) Añadir cancion a la playlist")
+    print("(3) Eliminar cancion de la playlist")
+    print("(4) Eliminar playlist")
+    print("(0) Volver")
+    print("==================================")
+
 
 def menu_artista():
-    print('\n===== MENU ARTISTA =====')
-    print(f'1- Añadir artista')
-    print(f'2- Eliminar artista')
-    print(f'3- Buscar artista')
-    print(f'4- Mostrar todos artistas registrados')
-    print(f'0- Salir al menu general')
-    print('======================')
+    print("\n========== MENU ARTISTA ==========")
+    print("(1) Añadir artista")
+    print("(2) Eliminar artista")
+    print("(3) Buscar artista")
+    print("(4) Mostrar todos los artistas")
+    print("(0) Volver al menu general")
+    print("=================================")
+
 
 def menu_elegir_album():
-    print("\n===== ALBUMES POR ARTISTA =====")
+    print("\n========== ALBUMES POR ARTISTA ==========\n")
 
-    #la ruta base para todas las carpetas de artistas, todas estan en esta carpeta
     ruta_base = "archivos/albumes"
-    artistas = [artista_encontrado for artista_encontrado in os.listdir(ruta_base) if os.path.isdir(f"{ruta_base}/{artista_encontrado}")]
+    artistas = [
+        artista for artista in os.listdir(ruta_base)
+        if os.path.isdir(f"{ruta_base}/{artista}")
+    ]
 
-    #aqui guardaremos todos los albumes para cada aritsta.
-    albumes_disponibles= []
+    albumes_disponibles = []
     contador = 1
 
-    #mostramos todos los artistas disponibles.
     for artista in artistas:
-        print()
-        print(f"--- {artista.title().replace('_',' ')} ---")
-        ruta_artista = f"{ruta_base}/{artista}"
+        print(artista.replace("_", " ").title())
+        print("----------------------------------------")
 
-        #buscamos los archivos con la ruta calculada.
+        ruta_artista = f"{ruta_base}/{artista}"
         for archivo in os.listdir(ruta_artista):
             if archivo.endswith(".json"):
-                print(f"{contador}- {archivo.replace('.json','').replace('_',' ').title()}")
-
-                #almacenamos el album en la lista de albumes disponibles para cada aritsta.
+                print(f"({contador}) {archivo.replace('.json','').replace('_',' ').title()}")
                 albumes_disponibles.append(f"{artista}/{archivo}")
                 contador += 1
-    print()
-    print(f"\n{contador}- Crear nuevo album")
-    #opcional: buscar album.
-    print("0- Salir al menú general")
-    print("===========================")
+
+        print()
+
+    print("----------------------------------------")
+    print(f"({contador}) Crear nuevo album")
+    print("(0) Salir al menu general")
+    print("========================================")
+
     return albumes_disponibles, contador
 
+
 def menu_album():
-    print('\n===== MENU ALBUM =====')
-    print(f'1- Mostrar informacion')
-    print(f'2- Mostrar el listado de canciones')
-    print(f'3- Eliminar album')
-    print(f'4- Anadir cancion al album')
-    print(f'5- Eliminar cancion del album')
-    print(f'0- Salir al menu de los albumes')
-    print('======================')
+    print("\n========== MENU ALBUM ==========")
+    print("(1) Mostrar informacion")
+    print("(2) Mostrar canciones del album")
+    print("(3) Eliminar album")
+    print("(4) Añadir cancion al album")
+    print("(5) Eliminar cancion del album")
+    print("(0) Volver")
+    print("================================")
+
 
 def menu_productor_musical():
-    print('\n===== MENU PRODUCTOR =====')
-    print(f'1- Añadir nuevo productor')
-    print(f'2- Eliminar productor ')
-    print(f'3- Buscar productor')
-    print(f'4- Mostrar todos productores guardados')
-    print(f'0- Salir al menu general')
-    print('======================')
+    print("\n========== MENU PRODUCTOR ==========")
+    print("(1) Añadir nuevo productor")
+    print("(2) Eliminar productor")
+    print("(3) Buscar productor")
+    print("(4) Mostrar todos los productores")
+    print("(0) Volver al menu general")
+    print("==================================")
+
 
 def menu():
-    print()
-    print(f'=========== BIBLIOTECA MUSICAL ===========')
-    print(f'1- Menu canciones')
-    print(f'2- Menu playlists')
-    print(f'3- Menu album')
-    print(f'4- Menu artistas')
-    print(f'5- Menu productor musical')
-    print(f'0- Salir')
-    print('==========================================')
+    print("\n========== BIBLIOTECA MUSICAL ==========")
+    print("(1) Menu canciones")
+    print("(2) Menu playlists")
+    print("(3) Menu albumes")
+    print("(4) Menu artistas")
+    print("(5) Menu productor musical")
+    print("(0) Salir")
+    print("=======================================")
+
 
 def pedir_opcion():
-    print()
-    opcion = input('Elige una opcion: ').strip()
-    return opcion
+    return input("Elige una opcion: ").strip()
 
 
 
@@ -312,7 +311,7 @@ def main():
                 # ------------------------------------------------------------
 
                 if opcion_elegir_playlist == 0:
-                    print('Saliendo al menu general...')
+                    print('Saliendo al menu de las playlists...')
                     start2 = False
 
                 # ------------------------------------------------------------
@@ -320,10 +319,12 @@ def main():
                 elif opcion_elegir_playlist == contador_playlist:
                     #codigo: crear playlist vacia (crear un archivo .json)
                     titulo = input('Introduce el nombre de la playlist: ')
-                    fecha_lanzamiento = input('Introduce el año de lanzamiento: ')
+                    fecha_lanzamiento = date.today().year
                     #duracion y genero por defecto vienen vacios.
                     playlist = ListaReproduccion(titulo,fecha_lanzamiento,duracion='0:00', genero=[])
                     playlist.guardar_playlist()
+
+                    playlist.ruta_archivo = f"archivos/playlists/{titulo.lower().replace(' ', '_')}.json"
 
                 # ------------------------------------------------------------
 
@@ -424,11 +425,11 @@ def main():
                                         print()
                                         print(f"La cancion '{titulo_playlist}' de {artista_playlist} se ha guardado correctamente.")
                                         # volvemos a buscar la cancion que queremos anadir en la base de datos.
-                                        cancion_album = Cancion.buscar_cancion(nueva_playlist.titulo, nueva_playlist.artista)
+                                        cancion_playlist = Cancion.buscar_cancion(nueva_playlist.titulo, nueva_playlist.artista)
 
                                         # si la encontramos, la anadimos.
-                                        if cancion_album:
-                                            playlist_cargada.anadir_cancion_existente(cancion_album)
+                                        if cancion_playlist:
+                                            playlist_cargada.anadir_cancion_existente(cancion_playlist)
 
                                         # si no la encontramos no pasa nada.
                                     # si el usuario no quiere crear la cancion a la base de datos.
@@ -436,8 +437,20 @@ def main():
                                         print(
                                             f"La cancion '{titulo_playlist.title()}' no se ha anadido al album '{playlist_cargada.titulo.title()}'.")
                                 # si la cancion exisita antes en la base de datos, la anadimos directamente.
+
                                 else:
-                                    playlist_cargada.anadir_cancion_existente(cancion_playlist)
+                                    # convertimos dict a objeto Cancion
+                                    cancion_obj = Cancion(
+                                        cancion_playlist["Titulo"],
+                                        cancion_playlist["Fecha de lanzamiento"],
+                                        cancion_playlist["Duracion"],
+                                        cancion_playlist["Genero"],
+                                        cancion_playlist["Artista"],
+                                        cancion_playlist["Discografia"]
+                                    )
+
+                                    playlist_cargada.anadir_cancion_existente(cancion_obj)
+
 
 
                             # ------------------------------------------------------------
@@ -445,6 +458,28 @@ def main():
                             #funcion de eliminar cancion de la playlist.
                             elif opcion_playlist == '3':
                                 #codigo: eliminar cancion de la playlist.
+
+                                #pedimos los datos de la cancion al usuario.
+                                titulo_cancion = input('Introduce el titulo de la cancion a eliminar: ')
+                                artista_cancion = input('Introduce el artista de la cancion a eliminar: ')
+
+                                opcion_eliminar_cancion_playlist = input(
+                                    f"Eliminar la cancion '{titulo_cancion.title()}' de {artista_cancion.title()}? (s/n): ").strip().lower()
+
+                                # validamos la peticion
+                                while opcion_eliminar_cancion_playlist not in ("s", "n"):
+                                    print("Opcion no valida. Solo puedes poner (s/n).")
+                                    opcion_eliminar_cancion_playlist = input(
+                                        f"Eliminar la cancion '{titulo_cancion.title()}' de {artista_cancion.title()}? (s/n): ").strip().lower()
+
+                                # si decimos que si:
+                                if opcion_eliminar_cancion_playlist == "s":
+                                    print(f"Eliminando la cancion {titulo_cancion.title()}...")
+                                    playlist_cargada.eliminar_cancion_playlist(titulo_cancion, artista_cancion)
+                                # si ha sido un missclick
+                                else:
+                                    print("La eliminacion se ha canceldado.")
+
                                 print(f'Eliminando la cancion de la playlist...')
 
                             # ------------------------------------------------------------
@@ -452,6 +487,22 @@ def main():
                             #opcion de eliminar la playlist de la lista.
                             elif opcion_playlist == '4':
                                 #codigo: eliminar la playlist.
+                                # nos aseguramos de que el usuario de verdad quiere eliminar album.
+                                opcion_eliminar_playlist = input(f"Eliminar playlist '{playlist_cargada.titulo.title()}'? (s/n): ").strip().lower()
+
+                                # validamos la opcion del usuaior.
+                                while opcion_eliminar_playlist not in ('s', 'n'):
+                                    print("Opcian no valida. Solo puedes poner (s/n).")
+                                    opcion_eliminar_playlist = input(
+                                        f"Eliminar playlist '{playlist_cargada.titulo.title()}'? (s/n): ").strip().lower()
+
+                                # el caso de que el usuario quiere eliminar el album.
+                                if opcion_eliminar_playlist == 's':
+                                    # eliminamos el album.
+                                    ListaReproduccion.eliminar_playlist(playlist_cargada.titulo)
+                                    # volvemos al menu de los albumes
+                                    print('Saliendo al menu de las playlists...')
+                                    start_playlist = False
                                 print(f'Eliminando la playlist...')
 
 
