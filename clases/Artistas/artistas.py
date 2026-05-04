@@ -1,7 +1,12 @@
 # Superclase Artista: Incluye cantantes individuales
 from abc import ABC, abstractmethod
 
+#Errores relacionados con la clase Artista.
+class ArtistaError(Exception):
+    pass
+
 class Artista(ABC):
+
     # Clase base para representar artistas o grupos musicales.
     def __init__(self, nombre, fecha_formacion, pais_origen, activo: bool,
                  genero=None, canciones_populares=None, componentes=None):
@@ -27,10 +32,9 @@ class Artista(ABC):
     @nombre.setter
     def nombre(self, valor):
         if not isinstance(valor, str):
-            print("El nombre debe ser texto.")
-            self._nombre = "desconocido"
-        else:
-            self._nombre = valor
+            raise ArtistaError("El nombre debe ser texto.")
+        self._nombre = "desconocido"
+
 
     # Comprueba que la fecha_formacion sea un string antes de asignarlo
     @property
@@ -40,10 +44,8 @@ class Artista(ABC):
     @fecha_formacion.setter
     def fecha_formacion(self, valor):
         if not isinstance(valor, str):
-            print("La fecha de formación debe ser texto (str).")
-            self._fecha_formacion = "desconocida"
-        else:
-            self._fecha_formacion = valor
+            raise ArtistaError("La fecha de formación debe ser texto (str).")
+        self._fecha_formacion = "desconocida"
 
     # Comprueba que el pais_origen sea un string antes de asignarlo
     @property
@@ -53,10 +55,8 @@ class Artista(ABC):
     @pais_origen.setter
     def pais_origen(self, valor):
         if not isinstance(valor, str):
-            print("El país de origen debe ser texto.")
-            self._pais_origen = "desconocido"
-        else:
-            self._pais_origen = valor
+            raise ArtistaError("El país de origen debe ser texto.")
+        self._pais_origen = "desconocido"
 
     # Comprueba que activo sea un valor booleano antes de asignarlo
     @property
@@ -66,10 +66,8 @@ class Artista(ABC):
     @activo.setter
     def activo(self, valor):
         if not isinstance(valor, bool):
-            print("El atributo 'activo' debe ser booleano (True/False).")
-            self._activo = False
-        else:
-            self._activo = valor
+            raise ArtistaError("El atributo 'activo' debe ser booleano (True/False).")
+        self._activo = valor
 
     # Comprueba que el genero sea una lista antes de asignarlo
     @property
@@ -79,10 +77,8 @@ class Artista(ABC):
     @genero.setter
     def genero(self, valor):
         if not isinstance(valor, list):
-            print("El género debe ser una lista de strings.")
-            self._genero = []
-        else:
-            self._genero = valor
+            raise ArtistaError("El género debe ser una lista de strings.")
+        self._genero = valor
 
     # Comprueba que canciones_populares sea una lista antes de asignarlo
     @property
@@ -92,10 +88,8 @@ class Artista(ABC):
     @canciones_populares.setter
     def canciones_populares(self, valor):
         if not isinstance(valor, list):
-            print("Las canciones populares deben ser una lista.")
-            self._canciones_populares = []
-        else:
-            self._canciones_populares = valor
+            raise ArtistaError("Las canciones populares deben ser una lista.")
+        self._canciones_populares = valor
 
     # Comprueba que componentes sea una lista antes de asignarlo
     @property
@@ -105,10 +99,8 @@ class Artista(ABC):
     @componentes.setter
     def componentes(self, valor):
         if not isinstance(valor, list):
-            print("Los componentes deben ser una lista.")
-            self._componentes = []
-        else:
-            self._componentes = valor
+            raise ArtistaError("Los componentes deben ser una lista.")
+        self._componentes = valor
 
     # ---------------- MÉTODOS ----------------
 

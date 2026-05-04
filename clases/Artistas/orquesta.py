@@ -1,4 +1,6 @@
-from clases.Artistas.artistas import Artista
+from clases.Artistas.artistas import Artista, ArtistaError
+
+#Importamos ArtistaError
 
 class Orquestas(Artista):
     def __init__(self, nombre:str, fecha_formacion:str, pais_origen:str, director:str,
@@ -21,10 +23,8 @@ class Orquestas(Artista):
     @director.setter
     def director(self, valor):
         if not isinstance(valor, str):
-            print("El director debe ser texto.")
-            self._director = "desconocido"
-        else:
-            self._director = valor
+            raise ArtistaError("El director debe ser texto.")
+        self._director = valor
 
     @property
     def instrumentos(self):
@@ -33,46 +33,42 @@ class Orquestas(Artista):
     @instrumentos.setter
     def instrumentos(self, valor):
         if not isinstance(valor, list):
-            print("Los instrumentos deben ser una lista.")
-            self._instrumentos = []
-        else:
-            self._instrumentos = valor
+            raise ArtistaError ("Los instrumentos deben ser una lista.")
+        self._instrumentos = valor
 
     # -------- MÉTODOS --------
     # Metodo para agregar miembro
     def agregar_miembro(self, nombre):
-        if nombre not in self._componentes:
-            self._componentes.append(nombre)
-        else:
-            print(f"El miembro {nombre} ya está en la orquesta.")
-    def __iadd__(self, other):
-        self._componentes.append(other)
+        if not isinstance(nombre, str):
+            raise ArtistaError("El nombre del miembro debe ser un string.")
+
+        if nombre in self._componentes:
+            raise ArtistaError(f"El miembro {nombre} ya está en la orquesta.")
+
+        self._componentes.append(nombre)
 
     # Metodo para eliminar miembro
     def eliminar_miembro(self, nombre):
-        if nombre in self._componentes:
-            self._componentes.remove(nombre)
-        else:
-            print(f"El miembro {nombre} no se encuentra en la orquesta.")
-    def __isub__(self, other):
-        if other not in self._componentes:
-            print(f"{other} no se encuentra en el grupo.")
-        else:
-            self._componentes.remove(other)
+        if not isinstance(nombre, str):
+            raise ArtistaError("El nombre del miembro debe ser un string.")
+
+        if nombre not in self._componentes:
+            raise ArtistaError(f"El miembro {nombre} no se encuentra en la orquesta.")
+
+        self._componentes.remove(nombre)
 
     # Metodo para contar componentes de la orquesta
-    def contar_componentes(self) -> int:
+    def __len__(self) -> int:
         return len(self._componentes)
 
     # Metodo para agregar instrumentos
     def agregar_instrumento(self, instrumento):
-        if instrumento not in self._instrumentos:
-            self._instrumentos.append(instrumento)
-        else:
-            print(f"El instrumento {instrumento} ya está registrado en la orquesta.")
+        if not isinstance(instrumento, str):
+            raise ArtistaError("El instrumento debe ser un string.")
 
-    def __iaddinstrumento__(self, instrumento):
-        self._instrumentos.append(instrumento)
+        if instrumento in self._instrumentos:
+            raise ArtistaError(f"El instrumento {instrumento} ya está registrado en la orquesta.")
+
 
 
     # Metodo para mostrar informacion

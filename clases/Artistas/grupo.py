@@ -1,4 +1,6 @@
-from clases.Artistas.artistas import Artista
+from clases.Artistas.artistas import Artista, ArtistaError
+
+#Importamos ArtistaError
 
 # Subclase de Artista que representa un grupo musical.
 class Grupos(Artista):
@@ -23,36 +25,35 @@ class Grupos(Artista):
     @lider.setter
     def lider(self, valor):
         if not isinstance(valor, str):
-            print("El líder debe ser texto.")
-            self._lider = "desconocido"   # Valor seguro
-        else:
-            self._lider = valor
+            raise ArtistaError("El líder debe ser texto.")
+        self._lider = "desconocido"   # Valor seguro
+
 
     # -------- MÉTODOS --------
 
     #Agregar miembros
     def agregar_miembro(self, nombre):
-        if nombre not in self._componentes:
-            self._componentes.append(nombre)
-        else:
-            print(f"{nombre} ya está en el grupo.")
+        if not isinstance(nombre, str):
+            raise ArtistaError("El nombre del miembro debe ser un string.")
 
-    def __iadd__(self, other):
-        self._componentes.append(other)
+        if nombre in self._componentes:
+            raise ArtistaError(f"{nombre} ya está en el grupo.")
+
+        self._componentes.append(nombre)
+
 
     #Eliminar miembro
     def eliminar_miembro(self, nombre):
-        if nombre in self._componentes:
-            self._componentes.remove(nombre)
-        else:
-            print(f"{nombre} no se encuentra en el grupo.")
-    def __isub__(self, other):
-        if other not in self._componentes:
-            print(f"{other} no se encuentra en el grupo.")
-        else:
-            self._componentes.remove(other)
+        if not isinstance(nombre, str):
+            raise ArtistaError("El nombre del miembro debe ser un string.")
 
-    def contar_componentes(self) -> int:
+        if nombre not in self._componentes:
+            raise ArtistaError(f"{nombre} no se encuentra en el grupo.")
+
+        self._componentes.remove(nombre)
+
+    #Contar componentes del grupo
+    def __len__(self) -> int:
         return len(self._componentes)
 
     def mostrar_info(self):

@@ -10,18 +10,16 @@ class Productor:
 
     @producciones.setter
     def producciones(self,valor):
-        if not  isinstance(valor,list):
-            print('Las producciones deben estar contenidas en una lista.')
-            self._producciones = []
-        else:
-            self._producciones = valor
+        if not isinstance(valor, list):
+            raise TypeError("Las producciones deben estar contenidas en una lista.")
+        self._producciones = valor
 
     #metodo que permite agregar producciones.
     def agregar_producciones(self,produccion):
-        self.producciones.append(produccion)
+        if not isinstance(produccion, str):
+            raise TypeError("Cada producción debe ser un string.")
+        self._producciones.append(produccion)
 
-    def __iadd__(self, other):
-        self.producciones.append(other)
 
     def __str__(self):
         return f'Producciones: {self.producciones}'
