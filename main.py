@@ -761,7 +761,7 @@ def main():
                 # ------------------------------------------------------------
 
         # AQUI ACABA LA CUARTA OPCION (ARTISTAS) ------------------------------------------------------------
-
+        #test (borrar)
 
         #si elegimos 4, entramos en el menu de productor musical.
         elif opcion_general == '5':
