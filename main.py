@@ -27,6 +27,7 @@ def menu_canciones():
     print("===================================")
 
 
+
 def menu_elegir_playlist():
     print("\n========== PLAYLISTS DISPONIBLES ==========\n")
 
