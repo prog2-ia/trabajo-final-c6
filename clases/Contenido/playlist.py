@@ -26,10 +26,8 @@ class ListaReproduccion(Contenido):
     @lista.setter
     def lista(self, valor):
         if not isinstance(valor, list):
-            print("La lista debe ser una lista de canciones.")
-            self._lista = []
-        else:
-            self._lista = valor
+            raise TypeError("La lista debe ser una lista de canciones.")
+        self._lista = valor
 
 
     # ------------------------------------------------------------
@@ -55,11 +53,16 @@ class ListaReproduccion(Contenido):
             "canciones": {}
         }
 
-        with open(ruta, "w", encoding="utf-8") as f:
-            json.dump(playlist, f, ensure_ascii=False, indent=4)
+        #Probamos a abrir el archivo JSON
+        try:
+            with open(ruta, "w", encoding="utf-8") as f:
+                json.dump(playlist, f, ensure_ascii=False, indent=4)
 
-        print("Creando una playlist...")
-        print(f"Playlist '{self.titulo}' creada y guardada en {ruta}")
+        #Error del sistema operativo (OSError): Ocurre cuando no se puedo realizar la operación solicitada
+        except OSError:
+            raise OSError(f"No se pudo crear la playlist en {ruta}")
+        finally:
+            print(f"Playlist '{self.titulo}' creada en {ruta}")
 
 
     # ------------------------------------------------------------
@@ -73,44 +76,35 @@ class ListaReproduccion(Contenido):
         if self._cargada:
             return self._lista
 
-        with open(ruta, "r", encoding="utf-8") as f:
-            datos = json.load(f)["canciones"]
 
-        for c in datos:
-            cancion = Cancion(
-                c["Titulo"],
-                c["Fecha de lanzamiento"],
-                c["Duracion"],
-                c["Genero"],
-                c["Artista"],
-                c["Discografia"]
-            )
-            self._lista.append(cancion)
+        try:
+            with open(ruta, "r", encoding="utf-8") as f:
+                datos = json.load(f)
 
-        self._cargada = True
-        return self._lista
+            canciones = datos.get("canciones", [])
+            if not isinstance(canciones, list):
+                raise ValueError("El campo 'canciones' debe ser una lista.")
 
-    #Agregar canción a la playlist
-    def __iadd__(self, ruta=None):
-        if ruta is None:
-            ruta = f"archivos/playlists/{self.titulo}.json"
+            for c in canciones:
+                try:
+                    cancion = Cancion(
+                        c["Titulo"],
+                        c["Fecha de lanzamiento"],
+                        c["Duracion"],
+                        c["Genero"],
+                        c["Artista"],
+                        c["Discografia"]
+                    )
+                except KeyError as e:
+                    raise KeyError(f"Falta la clave {e} en una canción del JSON.")
 
-        if self._cargada:
-            return self._lista
+                self._lista.append(cancion)
 
-        with open(ruta, "r", encoding="utf-8") as f:
-            datos = json.load(f)["canciones"]
+        except FileNotFoundError:
+            raise FileNotFoundError(f"No se encontró el archivo: {ruta}")
 
-        for c in datos:
-            cancion = Cancion(
-                c["Titulo"],
-                c["Fecha de lanzamiento"],
-                c["Duracion"],
-                c["Genero"],
-                c["Artista"],
-                c["Discografia"]
-            )
-            self._lista.append(cancion)
+        except json.JSONDecodeError:
+            raise ValueError("El archivo JSON está corrupto o mal formado.")
 
         self._cargada = True
         return self._lista
