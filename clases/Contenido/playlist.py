@@ -137,6 +137,23 @@ class ListaReproduccion(Contenido):
 
     # ------------------------------------------------------------
 
+    #Metodo estático para eliminar playlist
+    @staticmethod
+    def eliminar_playlist(nombre, ruta="archivos/playlists"):
+        nombre_archivo = nombre.lower().replace(" ", "_") + ".json"
+        ruta_completa = os.path.join(ruta, nombre_archivo)
+
+        try:
+            os.remove(ruta_completa)
+        except FileNotFoundError:
+            raise FileNotFoundError(f"La playlist '{nombre}' no existe.")
+
+        #Error operativo del sistema
+        except OSError:
+            raise OSError("No se pudo eliminar la playlist.")
+
+        print(f"Playlist '{nombre.title()}' eliminada correctamente.")
+
 
     #Metodo para mostrar info
     def mostrar_info(self):
