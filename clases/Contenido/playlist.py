@@ -102,6 +102,101 @@ class ListaReproduccion(Contenido):
         if self._cargada:
             return self._lista
 
+        # limpiamos la lista antes de cargar
+        self._lista.clear()
+
+        # abrimos el json para recorrer las canciones
+        with open(ruta, "r", encoding="utf-8") as f:
+            contenido = f.read().strip()
+
+            # si el archivo esta vacio, asumimos playlist vacia
+            if not contenido:
+                canciones = []
+            else:
+                canciones = json.loads(contenido)
+
+        # creamos objetos Cancion a partir del json
+        for c in canciones:
+            if not isinstance(c, dict):
+                continue
+
+            self._lista.append(
+                Cancion(
+                    c["Titulo"],
+                    c["Fecha de lanzamiento"],
+                    c["Duracion"],
+                    c["Genero"],
+                    c["Artista"],
+                    c["Discografia"]
+                )
+            )
+
+        # marcamos la lista como cargada
+        self._cargada = True
+        return self._lista
+
+
+    # ------------------------------------------------------------
+
+
+    # metodo que nos permitira anadir canciones a la playlist
+    # acepta un objeto Cancion o un diccionario
+    def anadir_cancion_existente(self, cancion):
+
+        # si llega un diccionario, lo convertimos a objeto Cancion
+        if isinstance(cancion, dict):
+            cancion = Cancion(
+                cancion["Titulo"],
+                cancion["Fecha de lanzamiento"],
+                cancion["Duracion"],
+                cancion["Genero"],
+                cancion["Artista"],
+                cancion["Discografia"]
+            )
+
+        # comprobamos si la cancion ya esta en la playlist
+        for c in self._lista:
+            if c == cancion:
+                print(f"La cancion '{cancion.titulo}' ya esta en la playlist.")
+                return False
+
+        # añadimos la cancion a la lista interna
+        self._lista.append(cancion)
+        self._cargada = False
+
+        # guardamos la playlist usando to_dict
+        with open(self.ruta_archivo, "w", encoding="utf-8") as f:
+            json.dump(
+                [c.to_dict() for c in self._lista],
+                f,
+                ensure_ascii=False,
+                indent=4
+            )
+
+        print(f"Cancion '{cancion.titulo}' añadida a la playlist '{self.titulo}'.")
+        return True
+
+
+    # ------------------------------------------------------------
+
+
+    # Metodo para mostrar info
+    def mostrar_info(self):
+        super().mostrar_info()
+
+        # cargamos canciones si es necesario
+        if not self._cargada:
+            self.cargar_canciones()
+
+        # mostramos el listado de canciones
+        print("Lista de canciones:")
+        if not self._lista:
+            print("- (vacia)")
+        else:
+            for c in self._lista:
+                print(f"- {c.titulo} — {c.artista} ({c.formatear_duracion()})")
+        print()
+
 
         try:
             with open(ruta, "r", encoding="utf-8") as f:
@@ -161,6 +256,39 @@ class ListaReproduccion(Contenido):
             else:
                 nuevas.append(c)
 
+        for c in canciones:
+            if not isinstance(c, dict):
+                continue
+
+            for gen in c.get("Genero", []):
+                generos.add(gen)
+
+            artista = c.get("Artista")
+            if artista:
+                principal, _ = Contenido.separar_artista_feat(artista)
+                artistas.add(principal)
+
+        play = ListaReproduccion(
+            titulo=titulo,
+            fecha_lanzamiento=date.today().year,
+            duracion="0:00",
+            genero=list(generos),
+            artista=list(artistas)
+        )
+
+        # reconstruimos la lista interna como objetos Cancion
+        play._lista = [
+            Cancion(
+                c["Titulo"],
+                c["Fecha de lanzamiento"],
+                c["Duracion"],
+                c["Genero"],
+                c["Artista"],
+                c["Discografia"]
+            )
+            for c in canciones
+            if isinstance(c, dict)
+        ]
         if not encontrada:
             raise ValueError(f"La canción '{titulo.title()}' de {artista.title()} no está en la playlist.")
 
