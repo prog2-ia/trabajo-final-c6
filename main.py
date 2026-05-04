@@ -202,19 +202,22 @@ def main():
                     discografia = input('Introduce la discografia de la cancion: ').strip()
 
                     #creamos un objeto de la clase cancion para agregarlo a la base de datos.
-                    cancion = Cancion(
-                        titulo=titulo,
-                        artista=artista,
-                        fecha_lanzamiento=fecha_lanzamiento,
-                        duracion=duracion,
-                        genero=genero,
-                        discografia=discografia,
-                        feat=feat
-                    )
+                    try:
+                        cancion = Cancion(
+                            titulo=titulo,
+                            artista=artista,
+                            fecha_lanzamiento=fecha_lanzamiento,
+                            duracion=duracion,
+                            genero=genero,
+                            discografia=discografia,
+                            feat=feat
+                        )
 
-                    Cancion.anadir_cancion(cancion, 'archivos/canciones_guardadas.json')
-                    print(f"La cancion '{titulo}' de {artista} se ha guardado correctamente.")
+                        Cancion.anadir_cancion(cancion, 'archivos/canciones_guardadas.json')
+                        print(f"La cancion '{titulo}' de {artista} se ha guardado correctamente.")
 
+                    except Exception as e:
+                        print(f"Error al añadir la canción: {e}")
                 # ------------------------------------------------------------
 
                 #eliminamos canciones de la base de datos.
@@ -227,8 +230,12 @@ def main():
                     print("Buscando la cancion...")
 
                     #buscamos la cancion en la base de datos de las canciones segun el titulo y el artista.
-                    cancion_encontrada = Cancion.buscar_cancion(titulo, artista)
-
+                    try:
+                        cancion_encontrada = Cancion.buscar_cancion(titulo, artista)
+                    #Lanzamos una excepción si no la encontramos, pero continuamos
+                    except Exception as e:
+                        print(f"Error al buscar la canción: {e}")
+                        continue
                     #si no la encontramos:
                     if cancion_encontrada is None:
                         print(f"La cancion '{titulo.title()}' de {artista.title()} no existe en la base de datos.")
@@ -245,12 +252,11 @@ def main():
 
                         #si decimos que si:
                         if opcion_eliminar_cancion == "s":
-                            print(f"Eliminando la cancion {titulo.title()}...")
-                            Cancion.eliminar_cancion(titulo, artista)
-                            print(f"Cancion '{titulo.title()}' eliminada correctamente.")
-                        #si ha sido un missclick
-                        else:
-                            print("La eliminacion se ha canceldado.")
+                            try:
+                                Cancion.eliminar_cancion(titulo, artista)
+                                print(f"Cancion '{titulo.title()}' eliminada correctamente.")
+                            except Exception as e:
+                                print(f"Error al eliminar la canción: {e}")
 
                 # ------------------------------------------------------------
 
@@ -260,15 +266,20 @@ def main():
                     print()
                     print(f'== LISTADO DE CANCIONES DISPONIBLES ==')
                     #mostramos el listado de todas las canciones en la base de datos.
-                    Cancion.mostrar_canciones()
-
+                    try:
+                        Cancion.mostrar_canciones()
+                    except Exception as e:
+                        print(f"Error al mostrar canciones: {e}")
                 # ------------------------------------------------------------
 
                 #filtramos las canciones segun gustos.
-                elif opcion_canciones =='4':
+                elif opcion_canciones == '4':
                     print('Filtrando las canciones...')
-                    #codigo: buscar artista en la base de datos.
-                    Cancion.filtrar_canciones()
+                    try:
+                        Cancion.filtrar_canciones()
+                    except Exception as e:
+                        print(f"Error al filtrar canciones: {e}")
+
 
                 # ------------------------------------------------------------
 
@@ -284,9 +295,14 @@ def main():
                     print(f'== CANCION ENCONTRADA ==')
 
                     #busacmos la cancion encontrada en la base de datos.
-                    cancion_encontrada = Cancion.buscar_cancion(titulo,artista)
-                    #mostramos info de la cancion encontarada.
-                    Cancion.mostrar_cancion(cancion_encontrada)
+                    try:
+                        cancion_encontrada = Cancion.buscar_cancion(titulo, artista)
+                        if cancion_encontrada:
+                            Cancion.mostrar_cancion(cancion_encontrada)
+                        else:
+                            print("No se encontró la canción.")
+                    except Exception as e:
+                        print(f"Error al buscar la canción: {e}")
 
         #AQUI ACABA LA PRIMERA OPCION (CANCIONES) ------------------------------------------------------------
 
@@ -340,7 +356,11 @@ def main():
                     # del archivo con las rutas sacado de la funcion de elegir menu y elegimos el que nos muestra la eleccion del usuario.
                     ruta_playlist = playlists_disponibles[indice_playlist]
                     # usamos el metodo de seleccionar album pasandole la ruta del album que queremos cargar.
-                    playlist_cargada = ListaReproduccion.seleccionar_playlist(ruta_playlist)
+                    try:
+                        playlist_cargada = ListaReproduccion.seleccionar_playlist(ruta_playlist)
+                    except Exception as e:
+                        print(f"Error al cargar la playlist: {e}")
+                        continue
 
                     if playlist_cargada:
                         start_playlist = True
