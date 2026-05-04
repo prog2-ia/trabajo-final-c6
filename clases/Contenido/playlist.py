@@ -67,6 +67,32 @@ class ListaReproduccion(Contenido):
 
     # ------------------------------------------------------------
 
+    # Metodo estático para seleccionar una playlist
+    @staticmethod
+    def seleccionar_playlist(nombre_archivo, ruta="archivos/playlists"):
+        ruta_completa = os.path.join(ruta, nombre_archivo)
+
+        try:
+            with open(ruta_completa, "r", encoding="utf-8") as f:
+                datos = json.load(f)
+        except FileNotFoundError:
+            raise FileNotFoundError(f"No se encontró la playlist: {ruta_completa}")
+        except json.JSONDecodeError:
+            raise ValueError("El archivo JSON de la playlist está corrupto o mal formado.")
+
+        playlist = ListaReproduccion(
+            titulo=datos["titulo"],
+            fecha_lanzamiento=datos["fecha_lanzamiento"],
+            duracion=datos["duracion"],
+            genero=datos["genero"]
+        )
+
+        playlist._lista = []  # lista vacía
+        playlist._cargada = False
+        playlist.ruta_archivo = ruta_completa
+
+        return playlist
+
 
     # funcion que nos sirve para cargar canciones de un archivo json.
     def cargar_canciones(self, ruta=None):
