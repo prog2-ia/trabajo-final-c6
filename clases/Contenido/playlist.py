@@ -135,6 +135,43 @@ class ListaReproduccion(Contenido):
         self._cargada = True
         return self._lista
 
+    #Metodo para eliminar canciones de la playlist
+    def eliminar_cancion_playlist(self, titulo, artista):
+        titulo = titulo.lower().strip()
+        artista = artista.lower().strip()
+
+        try:
+            with open(self.ruta_archivo, "r", encoding="utf-8") as f:
+                datos = json.load(f)
+        except FileNotFoundError:
+            raise FileNotFoundError("No se encontró el archivo de la playlist.")
+        except json.JSONDecodeError:
+            raise ValueError("El archivo JSON de la playlist está corrupto.")
+
+        canciones = datos.get("canciones", [])
+        nuevas = []
+        encontrada = False
+
+        for c in canciones:
+            titulo_c = c["Titulo"].lower().strip()
+            artista_principal, _ = Contenido.separar_artista_feat(c["Artista"])
+
+            if titulo_c == titulo and artista_principal.lower().strip() == artista:
+                encontrada = True
+            else:
+                nuevas.append(c)
+
+        if not encontrada:
+            raise ValueError(f"La canción '{titulo.title()}' de {artista.title()} no está en la playlist.")
+
+        datos["canciones"] = nuevas
+
+        with open(self.ruta_archivo, "w", encoding="utf-8") as f:
+            json.dump(datos, f, ensure_ascii=False, indent=4)
+
+        print(f"Canción '{titulo.title()}' eliminada correctamente de la playlist '{self.titulo.title()}'.")
+
+
     # ------------------------------------------------------------
 
     #Metodo estático para eliminar playlist
