@@ -1196,7 +1196,7 @@
     },
     {
         "Titulo": "Heal The World",
-        "Artista": "Michael Jackson",
+        "Artista": "Michael Jackson feat. N",
         "Fecha de lanzamiento": "1991",
         "Duracion": "6:25",
         "Genero": [
@@ -1215,26 +1215,5 @@
             "pop"
         ],
         "Discografia": "History"
-    },
-    {
-        "Titulo": "Beat It",
-        "Artista": "Michael Jackson",
-        "Fecha de lanzamiento": "1983",
-        "Duracion": "4:13",
-        "Genero": [
-            "Rock",
-            "pop"
-        ],
-        "Discografia": "Thriller"
-    },
-    {
-        "Titulo": "Thriller",
-        "Artista": "Michael Jackson",
-        "Fecha de lanzamiento": "1982",
-        "Duracion": "6:00",
-        "Genero": [
-            "pop"
-        ],
-        "Discografia": "Thriller"
     }
 ]
