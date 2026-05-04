@@ -28,8 +28,7 @@ class Album(Contenido):
         elif isinstance(valor, int) and valor >= 0:
             self._numero_canciones = valor
         else:
-            print("El numero de canciones debe ser un numero entero valido.")
-            self._numero_canciones = 0
+            raise TypeError("El numero de canciones debe ser un numero entero valido.")
 
 
     # ------------------------------------------------------------
@@ -42,8 +41,8 @@ class Album(Contenido):
 
         #comprobamos que la carpeta de albumes existe.
         if not os.path.exists(ruta):
-            print("La carpeta no existe.")
-            return []
+            #Error debido a que no se ha encontrado el archivo
+            raise FileNotFoundError("La carpeta no existe.")
 
         #aqui guardamemos los albumes disponibles para cada artista.
         albumes = []
@@ -77,8 +76,13 @@ class Album(Contenido):
         print(f"\nCargando album '{ruta_relativa}'...")
 
         # abrimos el json con la ruta calculada.
-        with open(ruta_completa, "r", encoding="utf-8") as f:
-            albumes = json.load(f)
+        try:
+            with open(ruta_completa, "r", encoding="utf-8") as f:
+                albumes = json.load(f)
+        except FileNotFoundError:
+            raise FileNotFoundError(f"No se encontró el archivo: {ruta_completa}")
+        except json.JSONDecodeError:
+            raise ValueError("El archivo JSON está corrupto o mal formado.")
 
         # obtenemos el titulo del archivo a partir de la ruta calculada.
         archivo = ruta_relativa.split("/")[-1]
@@ -153,47 +157,20 @@ class Album(Contenido):
     #metodo que nos permite eliminar el album de la base de datos.
     def eliminar_album(self):
         #eliminamos el archivo json que queremos eliminar.
-        os.remove(self.ruta_archivo)
-        print(f"Album '{self.titulo.title()}' eliminado correctamente.")
-        #comprobamos si la carpeta esta vacia para eliminarla si se da el caso.
-        self.eliminar_carpeta_artista()
+        try:
+            os.remove(self.ruta_archivo)
+        except FileNotFoundError:
+            raise FileNotFoundError("El archivo del álbum no existe.")
+        except OSError:
+            raise OSError("No se pudo eliminar el archivo del álbum.")
 
-    def __isubalbum__(self):
-        #eliminamos el archivo json que queremos eliminar.
-        os.remove(self.ruta_archivo)
-        print(f"Album '{self.titulo.title()}' eliminado correctamente.")
-        #comprobamos si la carpeta esta vacia para eliminarla si se da el caso.
         self.eliminar_carpeta_artista()
-
 
     # ------------------------------------------------------------
 
 
     #este metodo nos permite eliminar la carpeta del artista si no hay ninguin album dentro.
     def eliminar_carpeta_artista(self):
-
-        #guardamos la ruta completa del archivo
-        ruta_archivo = self.ruta_archivo
-
-        # Extraemos la carpeta del artista.
-        #divide el stringo empezando por la derecha usando como separador /, accediendo a la posicion 0, que es la carpeta del artista.
-        carpeta_artista = ruta_archivo.rsplit("/", 1)[0]
-
-        #Comprobamos si la carpeta realmente existe el las rutas.
-        if os.path.exists(carpeta_artista):
-
-            #si existe, miramos si hay algun archivo (album) dentro.
-            archivos = os.listdir(carpeta_artista)
-            #EN CASO DE QUE HAYA ALGUN ARCHIVO NO VISIBLE, ESTOS NO SE TENDRAN EN CUENTA.
-            archivos_visibles = [f for f in archivos if not f.startswith(".")]
-
-            #si no hay archivos en la carpeta.
-            if len(archivos_visibles) == 0:
-                #eliminamos la carpeta del artista.
-                os.rmdir(carpeta_artista)
-                print(f"Carpeta de {carpeta_artista.title()} eliminada por estar vacia.")
-
-    def isubcarpeta__(self):
 
         #guardamos la ruta completa del archivo
         ruta_archivo = self.ruta_archivo
@@ -234,9 +211,8 @@ class Album(Contenido):
 
         #comporbamos si el album ya existe para no meter duplicatos.
         if os.path.exists(ruta_completa):
-            print(f"El album '{nombre_archivo.title()}' ya existe en la base de datos.")
-            #si existe, no devolvemos nada.
-            return None
+            raise FileExistsError(f"El album '{nombre_archivo.title()}' ya existe en la base de datos.")
+
 
         #si no existe, creamos un json vacio.
         with open(ruta_completa, "w", encoding="utf-8") as f:
@@ -350,19 +326,6 @@ class Album(Contenido):
         #devolvemos la ruta.
         return ruta_artista
 
-    def __iaddcarpeta__(artista, ruta_base="archivos/albumes"):
-
-        #calculamos la ruta de la carpeta que queremos crear.
-        carpeta = artista.lower().replace(" ", "_")
-        ruta_artista = ruta_base + "/" + carpeta
-
-        #si la ruta no existe, la guardamos
-        if not os.path.exists(ruta_artista):
-            os.makedirs(ruta_artista)
-
-        #devolvemos la ruta.
-        return ruta_artista
-
 
     # ------------------------------------------------------------
 
@@ -406,46 +369,5 @@ class Album(Contenido):
         else:
             print(
                 f"Cancion '{titulo.title()}' de {artista.title()} eliminada correctamente del album '{self.titulo.title()}'.")
-
-
-    def __isubcancion__(self, titulo, artista):
-
-        # normalizamos los datos introducidos
-        titulo = titulo.lower().strip()
-        artista = artista.lower().strip()
-
-        # calculamos cuantas canciones hay antes para confirmar eliminacion
-        canciones_antes = len(self.canciones_album)
-        canciones_filtradas = []
-
-        # recorremos las canciones del album para buscar la cancion a eliminar
-        for cancion in self.canciones_album:
-            titulo_cancion = cancion["Titulo"].lower().strip()
-            artista_completo_cancion = cancion["Artista"]
-
-            # obtenemos el artista principal de la cancion
-            artista_principal_cancion, _ = Contenido.separar_artista_feat(artista_completo_cancion)
-
-            # si no coincide, la mantenemos
-            if not (titulo_cancion == titulo and artista_principal_cancion.lower().strip() == artista):
-                canciones_filtradas.append(cancion)
-
-        # actualizamos la lista de canciones del album
-        self.canciones_album = canciones_filtradas
-
-        # actualizamos el numero de canciones del album
-        self.numero_canciones = len(self.canciones_album)
-
-        # guardamos cambios en el archivo json del album
-        with open(self.ruta_archivo, "w", encoding="utf-8") as f:
-            json.dump(self.canciones_album, f, ensure_ascii=False, indent=4)
-
-        # mostramos el resultado de la operacion
-        if len(self.canciones_album) == canciones_antes:
-            print(f"La cancion '{titulo.title()}' de {artista.title()} no existe en el album.")
-        else:
-            print(
-                f"Cancion '{titulo.title()}' de {artista.title()} eliminada correctamente del album '{self.titulo.title()}'.")
-
 
 

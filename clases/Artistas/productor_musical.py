@@ -1,4 +1,4 @@
-from clases.Artistas.artistas import Artista
+from clases.Artistas.artistas import Artista, ArtistaError
 from clases.Artistas.productor import Productor
 import json
 
@@ -12,54 +12,37 @@ class ProductorMusical(Artista,Productor):
 
     # metodo donde abrimos json y guardamos el productor.
     @staticmethod
-    def guardar_productor(productor,ruta='archivos/productores_guardados.json'):
-        with open(ruta, "r", encoding="utf-8") as f:
-            productores = json.load(f)
+    def guardar_productor(productor, ruta='archivos/productores_guardados.json'):
+        if not isinstance(productor, ProductorMusical):
+            raise TypeError("Solo se pueden guardar objetos ProductorMusical.")
 
-        #anadimos productores al archivo json.
-        productores.append({
-            "Nombre": productor.nombre,
-            "Fecha de formación": productor.fecha_formacion,
-            "País de origen": productor.pais_origen,
-            "Activo": productor.activo,
-            "Genero": productor.genero,
-            "Canciones populares": productor.canciones_populares,
-            "Componentes": productor.componentes,
-            "Producciones": productor.producciones
-        })
+        try:
+            with open(ruta, "r", encoding="utf-8") as f:
+                productores = json.load(f)
 
-        #escribimos en el archivo json.
-        with open(ruta, "w", encoding="utf-8") as f:
-            json.dump(productores, f, ensure_ascii=False, indent=4)
+        except FileNotFoundError:
+            raise FileNotFoundError(f"No se encontró el archivo: {ruta}")
 
-        #mostramos el mensaje de que se ha guardado correctamente.
-        print(f"Productor musical '{productor.nombre}' guardado correctamente.")
+        except json.JSONDecodeError:
+            raise ArtistaError("El archivo JSON está corrupto o mal formado.")
 
+        else:
+            productores.append({
+                "Nombre": productor.nombre,
+                "Fecha de formación": productor.fecha_formacion,
+                "País de origen": productor.pais_origen,
+                "Activo": productor.activo,
+                "Genero": productor.genero,
+                "Canciones populares": productor.canciones_populares,
+                "Componentes": productor.componentes,
+                "Producciones": productor.producciones
+            })
 
-    #Metodo matemático para guardar productor
+            with open(ruta, "w", encoding="utf-8") as f:
+                json.dump(productores, f, ensure_ascii=False, indent=4)
 
-    def __iadd__(self, productor,ruta='archivos/productores_guardados.json'):
-        with open(ruta, "r", encoding="utf-8") as f:
-            productores = json.load(f)
-
-        #anadimos productores al archivo json.
-        productores.append({
-            "Nombre": productor.nombre,
-            "Fecha de formación": productor.fecha_formacion,
-            "País de origen": productor.pais_origen,
-            "Activo": productor.activo,
-            "Genero": productor.genero,
-            "Canciones populares": productor.canciones_populares,
-            "Componentes": productor.componentes,
-            "Producciones": productor.producciones
-        })
-
-        #escribimos en el archivo json.
-        with open(ruta, "w", encoding="utf-8") as f:
-            json.dump(productores, f, ensure_ascii=False, indent=4)
-
-
-
+        finally:
+            print(f"Intento de guardar productor musical '{productor.nombre}' finalizado.")
 #-----------------------------------------------
 
     #creamos un metodo para mostrar info sobre el productor musical.
