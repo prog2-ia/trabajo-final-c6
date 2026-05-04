@@ -75,10 +75,19 @@ class ListaReproduccion(Contenido):
 
         # abrimos el json para recorrer las canciones
         with open(ruta, "r", encoding="utf-8") as f:
-            canciones = json.load(f)
+            contenido = f.read().strip()
+
+            # si el archivo esta vacio, asumimos playlist vacia
+            if not contenido:
+                canciones = []
+            else:
+                canciones = json.loads(contenido)
 
         # creamos objetos Cancion a partir del json
         for c in canciones:
+            if not isinstance(c, dict):
+                continue
+
             self._lista.append(
                 Cancion(
                     c["Titulo"],
@@ -201,6 +210,9 @@ class ListaReproduccion(Contenido):
         artistas = set()
 
         for c in canciones:
+            if not isinstance(c, dict):
+                continue
+
             for gen in c.get("Genero", []):
                 generos.add(gen)
 
@@ -228,6 +240,7 @@ class ListaReproduccion(Contenido):
                 c["Discografia"]
             )
             for c in canciones
+            if isinstance(c, dict)
         ]
 
         play.ruta_archivo = ruta_completa

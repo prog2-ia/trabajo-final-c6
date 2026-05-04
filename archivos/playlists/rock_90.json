@@ -1,8 +1,13 @@
-{
-    "titulo": "rock 90",
-    "fecha_lanzamiento": "2026",
-    "duracion": "0:00",
-    "genero": [],
-    "artista": [],
-    "canciones": []
-}
+[
+    {
+        "Titulo": "Silver Springs",
+        "Artista": "Fleetwood Mac",
+        "Fecha de lanzamiento": "1977",
+        "Duracion": "4:49",
+        "Genero": [
+            "Soft rock",
+            "Rock"
+        ],
+        "Discografia": "Rumors"
+    }
+]

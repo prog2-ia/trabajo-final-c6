@@ -27,7 +27,6 @@ def menu_canciones():
     print("===================================")
 
 
-
 def menu_elegir_playlist():
     print("\n========== PLAYLISTS DISPONIBLES ==========\n")
 
@@ -203,22 +202,19 @@ def main():
                     discografia = input('Introduce la discografia de la cancion: ').strip()
 
                     #creamos un objeto de la clase cancion para agregarlo a la base de datos.
-                    try:
-                        cancion = Cancion(
-                            titulo=titulo,
-                            artista=artista,
-                            fecha_lanzamiento=fecha_lanzamiento,
-                            duracion=duracion,
-                            genero=genero,
-                            discografia=discografia,
-                            feat=feat
-                        )
+                    cancion = Cancion(
+                        titulo=titulo,
+                        artista=artista,
+                        fecha_lanzamiento=fecha_lanzamiento,
+                        duracion=duracion,
+                        genero=genero,
+                        discografia=discografia,
+                        feat=feat
+                    )
 
-                        Cancion.anadir_cancion(cancion, 'archivos/canciones_guardadas.json')
-                        print(f"La cancion '{titulo}' de {artista} se ha guardado correctamente.")
+                    Cancion.anadir_cancion(cancion, 'archivos/canciones_guardadas.json')
+                    print(f"La cancion '{titulo}' de {artista} se ha guardado correctamente.")
 
-                    except Exception as e:
-                        print(f"Error al añadir la canción: {e}")
                 # ------------------------------------------------------------
 
                 #eliminamos canciones de la base de datos.
@@ -231,12 +227,8 @@ def main():
                     print("Buscando la cancion...")
 
                     #buscamos la cancion en la base de datos de las canciones segun el titulo y el artista.
-                    try:
-                        cancion_encontrada = Cancion.buscar_cancion(titulo, artista)
-                    #Lanzamos una excepción si no la encontramos, pero continuamos
-                    except Exception as e:
-                        print(f"Error al buscar la canción: {e}")
-                        continue
+                    cancion_encontrada = Cancion.buscar_cancion(titulo, artista)
+
                     #si no la encontramos:
                     if cancion_encontrada is None:
                         print(f"La cancion '{titulo.title()}' de {artista.title()} no existe en la base de datos.")
@@ -253,11 +245,12 @@ def main():
 
                         #si decimos que si:
                         if opcion_eliminar_cancion == "s":
-                            try:
-                                Cancion.eliminar_cancion(titulo, artista)
-                                print(f"Cancion '{titulo.title()}' eliminada correctamente.")
-                            except Exception as e:
-                                print(f"Error al eliminar la canción: {e}")
+                            print(f"Eliminando la cancion {titulo.title()}...")
+                            Cancion.eliminar_cancion(titulo, artista)
+                            print(f"Cancion '{titulo.title()}' eliminada correctamente.")
+                        #si ha sido un missclick
+                        else:
+                            print("La eliminacion se ha canceldado.")
 
                 # ------------------------------------------------------------
 
@@ -267,20 +260,15 @@ def main():
                     print()
                     print(f'== LISTADO DE CANCIONES DISPONIBLES ==')
                     #mostramos el listado de todas las canciones en la base de datos.
-                    try:
-                        Cancion.mostrar_canciones()
-                    except Exception as e:
-                        print(f"Error al mostrar canciones: {e}")
+                    Cancion.mostrar_canciones()
+
                 # ------------------------------------------------------------
 
                 #filtramos las canciones segun gustos.
-                elif opcion_canciones == '4':
+                elif opcion_canciones =='4':
                     print('Filtrando las canciones...')
-                    try:
-                        Cancion.filtrar_canciones()
-                    except Exception as e:
-                        print(f"Error al filtrar canciones: {e}")
-
+                    #codigo: buscar artista en la base de datos.
+                    Cancion.filtrar_canciones()
 
                 # ------------------------------------------------------------
 
@@ -296,14 +284,9 @@ def main():
                     print(f'== CANCION ENCONTRADA ==')
 
                     #busacmos la cancion encontrada en la base de datos.
-                    try:
-                        cancion_encontrada = Cancion.buscar_cancion(titulo, artista)
-                        if cancion_encontrada:
-                            Cancion.mostrar_cancion(cancion_encontrada)
-                        else:
-                            print("No se encontró la canción.")
-                    except Exception as e:
-                        print(f"Error al buscar la canción: {e}")
+                    cancion_encontrada = Cancion.buscar_cancion(titulo,artista)
+                    #mostramos info de la cancion encontarada.
+                    Cancion.mostrar_cancion(cancion_encontrada)
 
         #AQUI ACABA LA PRIMERA OPCION (CANCIONES) ------------------------------------------------------------
 
@@ -357,11 +340,7 @@ def main():
                     # del archivo con las rutas sacado de la funcion de elegir menu y elegimos el que nos muestra la eleccion del usuario.
                     ruta_playlist = playlists_disponibles[indice_playlist]
                     # usamos el metodo de seleccionar album pasandole la ruta del album que queremos cargar.
-                    try:
-                        playlist_cargada = ListaReproduccion.seleccionar_playlist(ruta_playlist)
-                    except Exception as e:
-                        print(f"Error al cargar la playlist: {e}")
-                        continue
+                    playlist_cargada = ListaReproduccion.seleccionar_playlist(ruta_playlist)
 
                     if playlist_cargada:
                         start_playlist = True
@@ -470,11 +449,7 @@ def main():
                                         cancion_playlist["Discografia"]
                                     )
 
-                                    try:
-                                        playlist_cargada.anadir_cancion_existente(cancion_obj)
-                                    except Exception as e:
-                                        print(f"Error al añadir canción a la playlist: {e}")
-
+                                    playlist_cargada.anadir_cancion_existente(cancion_obj)
 
 
 
@@ -500,13 +475,12 @@ def main():
                                 # si decimos que si:
                                 if opcion_eliminar_cancion_playlist == "s":
                                     print(f"Eliminando la cancion {titulo_cancion.title()}...")
-                                    try:
-                                        playlist_cargada.eliminar_cancion_playlist(titulo_cancion, artista_cancion)
-                                    except Exception as e:
-                                        print(f"Error al eliminar canción de la playlist: {e}")
-
+                                    playlist_cargada.eliminar_cancion_playlist(titulo_cancion, artista_cancion)
+                                # si ha sido un missclick
                                 else:
-                                    print(f'Eliminando la cancion de la playlist...')
+                                    print("La eliminacion se ha canceldado.")
+
+                                print(f'Eliminando la cancion de la playlist...')
 
                             # ------------------------------------------------------------
 
@@ -572,12 +546,7 @@ def main():
                     artista = input("Introduce el artista: ").strip().lower()
 
                     #creamos el album mediante el metodo creado en la clase album.
-                    try:
-                        Album.crear_album(titulo, artista)
-                    except FileExistsError as e:
-                        print(e)
-                    except Exception as e:
-                        print(f"Error al crear álbum: {e}")
+                    Album.crear_album(titulo, artista)
 
                 # ------------------------------------------------------------
 
@@ -588,11 +557,7 @@ def main():
                     #del archivo con las rutas sacado de la funcion de elegir menu y elegimos el que nos muestra la eleccion del usuario.
                     ruta_relativa = albumes_disponibles[indice]
                     #usamos el metodo de seleccionar album pasandole la ruta del album que queremos cargar.
-                    try:
-                        album_cargado = Album.seleccionar_album(ruta_relativa)
-                    except Exception as e:
-                        print(f"Error al cargar álbum: {e}")
-                        continue
+                    album_cargado = Album.seleccionar_album(ruta_relativa)
 
                     #si se ha cargado el album correctamente:
                     if album_cargado:
@@ -736,21 +701,18 @@ def main():
                                 # si decimos que si:
                                 if opcion_eliminar_cancion_album == "s":
                                     print(f"Eliminando la cancion {titulo.title()}...")
-
-                                    try:
-                                        album_cargado.eliminar_cancion_album(titulo, artista)
-                                    except Exception as e:
-                                        print(f"Error al eliminar canción del álbum: {e}")
-
+                                    album_cargado.eliminar_cancion_album(titulo,artista)
+                                # si ha sido un missclick
                                 else:
-                                    print("La eliminacion se ha cancelado.")
+                                    print("La eliminacion se ha canceldado.")
+
 
 
 
         # AQUI ACABA LA TERCERA OPCION (ALBUMES) ------------------------------------------------------------
 
 
-        #en el menu principal elegimos 4- el gestor de  artistas.
+        #en el menu principal elegimos 4- el gestor de artistas.
         elif opcion_general == '4':
             start4 = True
             while start4:

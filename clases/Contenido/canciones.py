@@ -20,8 +20,10 @@ class Cancion(Contenido):
     @discografia.setter
     def discografia(self, valor):
         if not isinstance(valor, str):
-            raise TypeError("La discografía debe ser texto.")
-        self._discografia = valor
+            print("La discografía debe ser texto.")
+            self._discografia = "desconocida"
+        else:
+            self._discografia = valor
 
 
     # ------------------------------------------------------------
@@ -32,13 +34,8 @@ class Cancion(Contenido):
     def anadir_cancion(nueva_cancion, ruta_json="archivos/canciones_guardadas.json"):
 
         # Cargamos el archivo json
-        try:
-            with open(ruta_json, "r", encoding="utf-8") as f:
-                canciones = json.load(f)
-        except FileNotFoundError:
-            raise FileNotFoundError(f"No se encontró el archivo: {ruta_json}")
-        except json.JSONDecodeError:
-            raise ValueError("El archivo JSON está corrupto o mal formado.")
+        with open(ruta_json, "r", encoding="utf-8") as f:
+            canciones = json.load(f)
 
         # Normalizamos para buscar duplicados
         titulo_nuevo = nueva_cancion.titulo.lower().strip()
@@ -52,71 +49,16 @@ class Cancion(Contenido):
 
             if (titulo_guardado == titulo_nuevo and
                     artista_principal_guardado.lower().strip() == artista_principal_nuevo):
-                raise ValueError(f"La cancion '{nueva_cancion.titulo.title()}' de {nueva_cancion.artista_completo()} ya existe en la base de datos.")
+                print(f"La cancion '{nueva_cancion.titulo.title()}' de {nueva_cancion.artista_completo()} ya existe en la base de datos.")
+                return None
 
         # Si no hay duplicatos, anadimos la cancion.
-        canciones.append({
-            "Titulo": nueva_cancion.titulo.title(),
-            #aqui usamos la funcion de artista completo para mostrar en formato con feats: Aerosmith feat. Slash.
-            "Artista": nueva_cancion.artista_completo(),
-            "Fecha de lanzamiento": nueva_cancion.fecha_lanzamiento,
-            "Duracion": nueva_cancion.formatear_duracion(),
-            "Genero": nueva_cancion.genero,
-            "Discografia": nueva_cancion.discografia.title()
-        })
+        canciones.append(nueva_cancion.to_dict())
 
         #abrimos el archivo json en modo escritura y lo guardamos.
         with open(ruta_json, "w", encoding="utf-8") as f:
             json.dump(canciones, f, ensure_ascii=False, indent=4)
 
-
-    def __iadd__(self, nueva_cancion):
-        """
-        Sobrecarga del operador += para añadir una canción a la base de datos JSON.
-        """
-
-        ruta_json = "archivos/canciones_guardadas.json"
-
-        # Cargamos el archivo json
-        with open(ruta_json, "r", encoding="utf-8") as f:
-            canciones = json.load(f)
-
-        # Normalizamos para buscar duplicados
-        titulo_nuevo = nueva_cancion.titulo.lower().strip()
-        artista_principal_nuevo = nueva_cancion.artista.lower().strip()
-
-        # Recorremos el archivo buscando duplicados
-        for cancion in canciones:
-            titulo_guardado = cancion["Titulo"].lower().strip()
-            artista_guardado_completo = cancion["Artista"]
-            artista_principal_guardado, _ = Contenido.separar_artista_feat(artista_guardado_completo)
-
-            if (titulo_guardado == titulo_nuevo and
-                    artista_principal_guardado.lower().strip() == artista_principal_nuevo):
-
-                print(
-                    f"La canción '{nueva_cancion.titulo.title()}' "
-                    f"de {nueva_cancion.artista_completo()} ya existe en la base de datos."
-                )
-                return self
-
-        # Si no hay duplicados, añadimos la canción
-        canciones.append({
-            "Titulo": nueva_cancion.titulo.title(),
-            "Artista": nueva_cancion.artista_completo(),
-            "Fecha de lanzamiento": nueva_cancion.fecha_lanzamiento,
-            "Duracion": nueva_cancion.formatear_duracion(),
-            "Genero": nueva_cancion.genero,
-            "Discografia": nueva_cancion.discografia.title()
-        })
-
-        # Guardamos el archivo actualizado
-        with open(ruta_json, "w", encoding="utf-8") as f:
-            json.dump(canciones, f, ensure_ascii=False, indent=4)
-
-        print(f"Canción '{nueva_cancion.titulo.title()}' añadida correctamente.")
-
-        return self
 
     # ------------------------------------------------------------
 
@@ -126,13 +68,8 @@ class Cancion(Contenido):
     def eliminar_cancion(titulo, artista, ruta_json="archivos/canciones_guardadas.json"):
 
         #cargamos el archivo json.
-        try:
-            with open(ruta_json, "r", encoding="utf-8") as f:
-                canciones = json.load(f)
-        except FileNotFoundError:
-            raise FileNotFoundError(f"No se encontró el archivo: {ruta_json}")
-        except json.JSONDecodeError:
-            raise ValueError("El archivo JSON está corrupto o mal formado.")
+        with open(ruta_json, "r", encoding="utf-8") as f:
+            canciones = json.load(f)
 
         #normalizamos los datos introducidos.
         titulo = titulo.lower().strip()
@@ -162,7 +99,32 @@ class Cancion(Contenido):
         else:
             print(f"Cancion '{titulo}' de {artista} eliminada correctamente.")
 
+    #Mediante Uso de __isub__
 
+    def __isub__(self, otra):
+        titulo, artista = otra
+        titulo = titulo.lower().strip()
+        artista = artista.lower().strip()
+
+        canciones_filtradas = []
+        for cancion in self.canciones:
+            titulo_cancion = cancion["Titulo"].lower().strip()
+            artista_principal, _ = Contenido.separar_artista_feat(cancion["Artista"])
+
+            if not (titulo_cancion == titulo and artista_principal.lower().strip() == artista):
+                canciones_filtradas.append(cancion)
+
+        # Guardar cambios
+        with open(self.ruta_json, "w", encoding="utf-8") as f:
+            json.dump(canciones_filtradas, f, ensure_ascii=False, indent=4)
+
+        if len(canciones_filtradas) == len(self.canciones):
+            print(f"La canción '{titulo}' de {artista} no existe en la base de datos.")
+        else:
+            print(f"Canción '{titulo}' de {artista} eliminada correctamente.")
+
+        self.canciones = canciones_filtradas
+        return self
     #------------------------------------------------------------
 
 
@@ -171,13 +133,8 @@ class Cancion(Contenido):
     def mostrar_canciones(ruta_json="archivos/canciones_guardadas.json"):
 
         # Archivo json donde estan las canciones
-        try:
-            with open(ruta_json, "r", encoding="utf-8") as f:
-                canciones = json.load(f)
-        except FileNotFoundError:
-            raise FileNotFoundError(f"No se encontró el archivo: {ruta_json}")
-        except json.JSONDecodeError:
-            raise ValueError("El archivo JSON está corrupto o mal formado.")
+        with open(ruta_json, "r", encoding="utf-8") as f:
+            canciones = json.load(f)
 
         #recorremos el archivo json y vamos imprimiendo todas las canciones una por una.
         for cancion in canciones:
@@ -207,13 +164,8 @@ class Cancion(Contenido):
     def filtrar_canciones(ruta_json="archivos/canciones_guardadas.json"):
 
         #abrimos el archivo json de la ruta en modo lectura.
-        try:
-            with open(ruta_json, "r", encoding="utf-8") as f:
-                canciones = json.load(f)
-        except FileNotFoundError:
-            raise FileNotFoundError(f"No se encontró el archivo: {ruta_json}")
-        except json.JSONDecodeError:
-            raise ValueError("El archivo JSON está corrupto o mal formado.")
+        with open(ruta_json, "r", encoding="utf-8") as f:
+            canciones = json.load(f)
 
         #empezamos pedir informaicon para la busqueda de la cancion.
         print("\n==== FILTRAR CANCIONES ====")
@@ -281,6 +233,7 @@ class Cancion(Contenido):
         #si no encontramos ningun resultado.
         if not resultados:
             print("No se encontraron canciones que coincidan con los filtros aplicados.")
+
         #si encontontramos la cancion, la mostramos.
         else:
             for cancion_encontrada in resultados:
@@ -298,13 +251,8 @@ class Cancion(Contenido):
     def buscar_cancion(titulo, artista, ruta_json="archivos/canciones_guardadas.json"):
 
         #abrimos archivo json para recorrer canciones.
-        try:
-            with open(ruta_json, "r", encoding="utf-8") as f:
-                canciones = json.load(f)
-        except FileNotFoundError:
-            raise FileNotFoundError(f"No se encontró el archivo: {ruta_json}")
-        except json.JSONDecodeError:
-            raise ValueError("El archivo JSON está corrupto o mal formado.")
+        with open(ruta_json, "r", encoding="utf-8") as f:
+            canciones = json.load(f)
 
         #normalizamos los datos introducidos por el usuario.
         titulo = titulo.lower().strip()
@@ -325,10 +273,28 @@ class Cancion(Contenido):
         #si no, nada.
         return None
 
+    def __eq__(self, other):
+        if not isinstance(other, Cancion):
+            return False
+
+        # Normalizamos
+        titulo_self = self.titulo.lower().strip()
+        artista_self = self.artista.lower().strip()
+
+        titulo_other = other.titulo.lower().strip()
+        artista_other = other.artista.lower().strip()
+
+        return titulo_self == titulo_other and artista_self == artista_other
+
     # ------------------------------------------------------------
 
-
-
-
-
-
+    #funcion que nos asegura que la cancion que introducimos siempre sera un diccioanrio para no tener errores a la hora de anadir canciones a los archivos json.
+    def to_dict(self):
+        return {
+            "Titulo": self.titulo.title(),
+            "Artista": self.artista_completo(),
+            "Fecha de lanzamiento": self.fecha_lanzamiento,
+            "Duracion": self.formatear_duracion(),
+            "Genero": self.genero,
+            "Discografia": self.discografia.title()
+        }

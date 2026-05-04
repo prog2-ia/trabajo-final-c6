@@ -2,13 +2,8 @@
 import json
 
 # Cargamos los generos validos desde el json
-try:
-    with open("archivos/generos_disponibles.json", "r", encoding="utf-8") as f:
-        generos_validos = json.load(f)["generos"]
-except FileNotFoundError:
-    raise FileNotFoundError("No se encontró el archivo 'generos_disponibles.json'.")
-except json.JSONDecodeError:
-    raise ValueError("El archivo 'generos_disponibles.json' está corrupto o mal formado.")
+with open("archivos/generos_disponibles.json", "r", encoding="utf-8") as f:
+    generos_validos = json.load(f)["generos"]
 
 
 class Contenido:
@@ -16,7 +11,7 @@ class Contenido:
         # Atributos encapsulados
         self._titulo = titulo
         self._artista = artista
-        self._fecha_lanzamiento = fecha_lanzamiento
+        self.fecha_lanzamiento = fecha_lanzamiento
 
         # Duración se valida y se convierte a segundos
         self._duracion = duracion
@@ -44,12 +39,11 @@ class Contenido:
         elif isinstance(valor, str):
             self._feat = [valor.strip()]
         elif isinstance(valor, list):
-            #Comprueba que todos los valores de la lista sean de tipo str
-            if not all(isinstance(v, str) for v in valor):
-                raise TypeError("Todos los elementos de feat deben ser strings.")
             self._feat = [v.strip() for v in valor]
         else:
-            raise TypeError("Feat debe ser texto o lista de textos.")
+            print("Feat. debe ser texto o lista.")
+            self._feat = []
+
 
     # ------------------------------------------------------------
 
@@ -62,8 +56,9 @@ class Contenido:
     @titulo.setter
     def titulo(self, valor):
         if not isinstance(valor, str):
-            raise TypeError("El título debe ser texto.")
-        self._titulo = valor
+            print("El título debe ser texto.")
+        else:
+            self._titulo = valor
 
 
     # ------------------------------------------------------------
@@ -79,7 +74,7 @@ class Contenido:
         if valor is None:
             self._artista = None
         elif not isinstance(valor, str):
-            raise TypeError("El artista debe ser texto.")
+            print("El artista debe ser texto.")
         else:
             self._artista = valor
 
@@ -96,11 +91,10 @@ class Contenido:
     def fecha_lanzamiento(self, valor):
         if valor is None:
             self._fecha_lanzamiento = None
-        elif not isinstance(valor, str):
-            print("La fecha de lanzamiento debe ser texto.")
+        elif isinstance(valor, (int, str)):
+            self._fecha_lanzamiento = str(valor)
         else:
-            self._fecha_lanzamiento = valor
-
+            raise TypeError("La fecha de lanzamiento debe ser un año (int) o texto.")
 
     # ------------------------------------------------------------
 
@@ -135,15 +129,13 @@ class Contenido:
         if isinstance(valor, str):
             valor = [valor]
 
-        if not isinstance(valor, list):
-            raise TypeError("El género debe ser texto o lista de textos.")
-
         aceptados = []
         for g in valor:
             g_norm = g.lower()
-            if g_norm not in generos_normalizados:
-                raise ValueError(f"Género '{g}' no válido.")
-            aceptados.append(g)
+            if g_norm in generos_normalizados:
+                aceptados.append(g)
+            else:
+                print(f"Género '{g}' no válido")
 
         self._genero = aceptados
 
