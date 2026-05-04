@@ -1,5 +1,10 @@
 from clases.Artistas.artistas import Artista
 
+
+#Errores relacionados con la clase Cantante.
+class CantanteError(Exception):
+    pass
+
 #Clase Cantantes que hereda de Artistas
 class Cantantes(Artista):
     def __init__(self, nombre:str, fecha_formacion:str, pais_origen:str, tipo_voz:str,
@@ -24,10 +29,9 @@ class Cantantes(Artista):
     @tipo_voz.setter
     def tipo_voz(self, valor):
         if not isinstance(valor, str):
-            print("El tipo de voz debe ser texto.")
-            self._tipo_voz = "desconocido"
-        else:
-            self._tipo_voz = valor
+            raise CantanteError("El tipo de voz debe ser texto.")
+        self._tipo_voz = "desconocido"
+
 
     # Comprueba que colaboraciones sea una lista antes de asignarlo
     @property
@@ -37,10 +41,8 @@ class Cantantes(Artista):
     @colaboraciones.setter
     def colaboraciones(self, valor):
         if not isinstance(valor, list):
-            print("Las colaboraciones deben ser una lista.")
-            self._colaboraciones = []
-        else:
-            self._colaboraciones = valor
+            raise CantanteError("Las colaboraciones deben ser una lista.")
+        self._colaboraciones = []
 
     # Comprueba que instrumentos sea una lista antes de asignarlo
     @property
@@ -50,27 +52,29 @@ class Cantantes(Artista):
     @instrumentos.setter
     def instrumentos(self, valor):
         if not isinstance(valor, list):
-            print("Los instrumentos deben ser una lista.")
-            self._instrumentos = []
-        else:
-            self._instrumentos = valor
+            raise CantanteError("Los instrumentos deben ser una lista.")
+        self._instrumentos = []
+
 
     # -------- MÉTODOS --------
 
     # Metodo para agregar colaboraciones
     def agregar_colaboracion(self, colaboracion):
+        if not isinstance(colaboracion, str):
+            raise CantanteError("La colaboración debe ser un string.")
         self._colaboraciones.append(colaboracion)
 
-    def __iaddcolaboracion(self, colaboracion):
+    def __iadd__(self, colaboracion):
+        if not isinstance(colaboracion, str):
+            raise CantanteError("La colaboración debe ser un string.")
         self.colaboraciones.append(colaboracion)
 
 
     # Metodo para agregar instrumentos
     def agregar_instrumento(self, instrumento):
+        if not isinstance(instrumento, str):
+            raise CantanteError("El instrumento debe ser un string.")
         self._instrumentos.append(instrumento)
-
-    def __iaddinstrumento(self, instrumento):
-        self.instrumentos.append(instrumento)
 
     # Metodo para mostrar informacion
     def mostrar_info(self):
