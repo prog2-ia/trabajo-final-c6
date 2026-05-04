@@ -750,7 +750,7 @@ def main():
         # AQUI ACABA LA TERCERA OPCION (ALBUMES) ------------------------------------------------------------
 
 
-        #en el menu principal elegimos 4- el gestor de artistas.
+        #en el menu principal elegimos 4- el gestor de  artistas.
         elif opcion_general == '4':
             start4 = True
             while start4:
