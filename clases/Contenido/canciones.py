@@ -53,68 +53,12 @@ class Cancion(Contenido):
                 return None
 
         # Si no hay duplicatos, anadimos la cancion.
-        canciones.append({
-            "Titulo": nueva_cancion.titulo.title(),
-            #aqui usamos la funcion de artista completo para mostrar en formato con feats: Aerosmith feat. Slash.
-            "Artista": nueva_cancion.artista_completo(),
-            "Fecha de lanzamiento": nueva_cancion.fecha_lanzamiento,
-            "Duracion": nueva_cancion.formatear_duracion(),
-            "Genero": nueva_cancion.genero,
-            "Discografia": nueva_cancion.discografia.title()
-        })
+        canciones.append(nueva_cancion.to_dict())
 
         #abrimos el archivo json en modo escritura y lo guardamos.
         with open(ruta_json, "w", encoding="utf-8") as f:
             json.dump(canciones, f, ensure_ascii=False, indent=4)
 
-
-    def __iadd__(self, nueva_cancion):
-        """
-        Sobrecarga del operador += para añadir una canción a la base de datos JSON.
-        """
-
-        ruta_json = "archivos/canciones_guardadas.json"
-
-        # Cargamos el archivo json
-        with open(ruta_json, "r", encoding="utf-8") as f:
-            canciones = json.load(f)
-
-        # Normalizamos para buscar duplicados
-        titulo_nuevo = nueva_cancion.titulo.lower().strip()
-        artista_principal_nuevo = nueva_cancion.artista.lower().strip()
-
-        # Recorremos el archivo buscando duplicados
-        for cancion in canciones:
-            titulo_guardado = cancion["Titulo"].lower().strip()
-            artista_guardado_completo = cancion["Artista"]
-            artista_principal_guardado, _ = Contenido.separar_artista_feat(artista_guardado_completo)
-
-            if (titulo_guardado == titulo_nuevo and
-                    artista_principal_guardado.lower().strip() == artista_principal_nuevo):
-
-                print(
-                    f"La canción '{nueva_cancion.titulo.title()}' "
-                    f"de {nueva_cancion.artista_completo()} ya existe en la base de datos."
-                )
-                return self
-
-        # Si no hay duplicados, añadimos la canción
-        canciones.append({
-            "Titulo": nueva_cancion.titulo.title(),
-            "Artista": nueva_cancion.artista_completo(),
-            "Fecha de lanzamiento": nueva_cancion.fecha_lanzamiento,
-            "Duracion": nueva_cancion.formatear_duracion(),
-            "Genero": nueva_cancion.genero,
-            "Discografia": nueva_cancion.discografia.title()
-        })
-
-        # Guardamos el archivo actualizado
-        with open(ruta_json, "w", encoding="utf-8") as f:
-            json.dump(canciones, f, ensure_ascii=False, indent=4)
-
-        print(f"Canción '{nueva_cancion.titulo.title()}' añadida correctamente.")
-
-        return self
 
     # ------------------------------------------------------------
 
@@ -344,7 +288,16 @@ class Cancion(Contenido):
 
     # ------------------------------------------------------------
 
-
+    #funcion que nos asegura que la cancion que introducimos siempre sera un diccioanrio para no tener errores a la hora de anadir canciones a los archivos json.
+    def to_dict(self):
+        return {
+            "Titulo": self.titulo.title(),
+            "Artista": self.artista_completo(),
+            "Fecha de lanzamiento": self.fecha_lanzamiento,
+            "Duracion": self.formatear_duracion(),
+            "Genero": self.genero,
+            "Discografia": self.discografia.title()
+        }
 
 
 

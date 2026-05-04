@@ -7,7 +7,7 @@ from clases.Contenido.canciones import Cancion
 
 # Clase ListaReproducion que hereda de Contenido
 class ListaReproduccion(Contenido):
-    def __init__(self, titulo:str, fecha_lanzamiento:str, duracion: str, genero: str):
+    def __init__(self, titulo, fecha_lanzamiento, duracion, genero):
         super().__init__(titulo, fecha_lanzamiento, duracion, genero, artista="varios")
         self._lista = []
         self._cargada = False
@@ -66,7 +66,7 @@ class ListaReproduccion(Contenido):
 
 
     # funcion que nos sirve para cargar canciones de un archivo json.
-    def cargar_canciones(self, ruta=None) -> list[Cancion]:
+    def cargar_canciones(self, ruta=None):
         if ruta is None:
             ruta = f"archivos/playlists/{self.titulo}.json"
 
@@ -90,8 +90,30 @@ class ListaReproduccion(Contenido):
         self._cargada = True
         return self._lista
 
-    # MODIFICAR AÑADIR CANCIONES A LA PLAYLIST
+    #Agregar canción a la playlist
     def __iadd__(self, ruta=None):
+        if ruta is None:
+            ruta = f"archivos/playlists/{self.titulo}.json"
+
+        if self._cargada:
+            return self._lista
+
+        with open(ruta, "r", encoding="utf-8") as f:
+            datos = json.load(f)["canciones"]
+
+        for c in datos:
+            cancion = Cancion(
+                c["Titulo"],
+                c["Fecha de lanzamiento"],
+                c["Duracion"],
+                c["Genero"],
+                c["Artista"],
+                c["Discografia"]
+            )
+            self._lista.append(cancion)
+
+        self._cargada = True
+        return self._lista
 
     # ------------------------------------------------------------
 

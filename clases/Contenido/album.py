@@ -78,13 +78,13 @@ class Album(Contenido):
 
         # abrimos el json con la ruta calculada.
         with open(ruta_completa, "r", encoding="utf-8") as f:
-            canciones = json.load(f)
+            albumes = json.load(f)
 
         # obtenemos el titulo del archivo a partir de la ruta calculada.
         archivo = ruta_relativa.split("/")[-1]
 
         # Si el album esta vacio, dejamos los datos como desconocidos.
-        if len(canciones) == 0:
+        if len(albumes) == 0:
             artista_carpeta = ruta_relativa.split("/")[0]
             artista_detectado = artista_carpeta.replace("_", " ").title()
 
@@ -102,19 +102,19 @@ class Album(Contenido):
             return album
 
         # si el album tiene canciones, entonces podemos llenar datos del album.
-        artista_completo = canciones[0]["Artista"]
+        artista_completo = albumes[0]["Artista"]
         artista_principal, _ = Contenido.separar_artista_feat(artista_completo)
 
         album = Album(
             titulo=archivo.replace(".json", "").replace("_", " ").title(),
             artista=artista_principal,
-            fecha_lanzamiento=canciones[0]["Fecha de lanzamiento"],
+            fecha_lanzamiento=albumes[0]["Fecha de lanzamiento"],
             duracion="0:00",
-            genero=canciones[0]["Genero"],
-            numero_canciones=len(canciones)
+            genero=albumes[0]["Genero"],
+            numero_canciones=len(albumes)
         )
 
-        album.canciones_album = canciones
+        album.canciones_album = albumes
         album.ruta_archivo = ruta_completa
         return album
 
@@ -164,10 +164,6 @@ class Album(Contenido):
         print(f"Album '{self.titulo.title()}' eliminado correctamente.")
         #comprobamos si la carpeta esta vacia para eliminarla si se da el caso.
         self.eliminar_carpeta_artista()
-
-
-
-
 
 
     # ------------------------------------------------------------

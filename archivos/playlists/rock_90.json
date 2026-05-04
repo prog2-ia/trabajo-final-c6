@@ -1,0 +1,33 @@
+{
+    "titulo": "Rock 90",
+    "fecha_lanzamiento": "2026",
+    "duracion": 0,
+    "genero": [
+        "Soft rock",
+        "Rock"
+    ],
+    "canciones": [
+        {
+            "Titulo": "Silver Springs",
+            "Artista": "Fleetwood Mac",
+            "Fecha de lanzamiento": "1977",
+            "Duracion": "4:49",
+            "Genero": [
+                "Soft rock",
+                "Rock"
+            ],
+            "Discografia": "Rumors"
+        },
+        {
+            "Titulo": "You Give Love A Bad Name",
+            "Artista": "Bon Jovi",
+            "Fecha de lanzamiento": "1986",
+            "Duracion": "3:43",
+            "Genero": [
+                "rock",
+                "glam rock"
+            ],
+            "Discografia": "Slippery When Wet"
+        }
+    ]
+}

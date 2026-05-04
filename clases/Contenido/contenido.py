@@ -11,7 +11,7 @@ class Contenido:
         # Atributos encapsulados
         self._titulo = titulo
         self._artista = artista
-        self._fecha_lanzamiento = fecha_lanzamiento
+        self.fecha_lanzamiento = fecha_lanzamiento
 
         # Duración se valida y se convierte a segundos
         self._duracion = duracion
@@ -91,11 +91,10 @@ class Contenido:
     def fecha_lanzamiento(self, valor):
         if valor is None:
             self._fecha_lanzamiento = None
-        elif not isinstance(valor, str):
-            print("La fecha de lanzamiento debe ser texto.")
+        elif isinstance(valor, (int, str)):
+            self._fecha_lanzamiento = str(valor)
         else:
-            self._fecha_lanzamiento = valor
-
+            raise TypeError("La fecha de lanzamiento debe ser un año (int) o texto.")
 
     # ------------------------------------------------------------
 
@@ -146,6 +145,7 @@ class Contenido:
 
     #Metodo para buscar la informacion
     def mostrar_info(self):
+        print()
         print(f'Titulo: {self.titulo}')
         print(f'Artista: {self.artista_completo()}')
         print(f'Fecha de lanzamiento: {self.fecha_lanzamiento}')
@@ -162,7 +162,7 @@ class Contenido:
             f"Duración: {self.duracion}\n"
             f"Lanzado : {self.fecha_lanzamiento}"
         )
-    def __repl__(self):
+    def __repr__(self):
         return (
             f'{type(self)}'
             f"Título : {self.titulo}\n"
