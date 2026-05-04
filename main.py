@@ -469,7 +469,11 @@ def main():
                                         cancion_playlist["Discografia"]
                                     )
 
-                                    playlist_cargada.anadir_cancion_existente(cancion_obj)
+                                    try:
+                                        playlist_cargada.anadir_cancion_existente(cancion_obj)
+                                    except Exception as e:
+                                        print(f"Error al añadir canción a la playlist: {e}")
+
 
 
 
@@ -495,12 +499,13 @@ def main():
                                 # si decimos que si:
                                 if opcion_eliminar_cancion_playlist == "s":
                                     print(f"Eliminando la cancion {titulo_cancion.title()}...")
-                                    playlist_cargada.eliminar_cancion_playlist(titulo_cancion, artista_cancion)
-                                # si ha sido un missclick
-                                else:
-                                    print("La eliminacion se ha canceldado.")
+                                    try:
+                                        playlist_cargada.eliminar_cancion_playlist(titulo_cancion, artista_cancion)
+                                    except Exception as e:
+                                        print(f"Error al eliminar canción de la playlist: {e}")
 
-                                print(f'Eliminando la cancion de la playlist...')
+                                else:
+                                    print(f'Eliminando la cancion de la playlist...')
 
                             # ------------------------------------------------------------
 
@@ -566,7 +571,12 @@ def main():
                     artista = input("Introduce el artista: ").strip().lower()
 
                     #creamos el album mediante el metodo creado en la clase album.
-                    Album.crear_album(titulo, artista)
+                    try:
+                        Album.crear_album(titulo, artista)
+                    except FileExistsError as e:
+                        print(e)
+                    except Exception as e:
+                        print(f"Error al crear álbum: {e}")
 
                 # ------------------------------------------------------------
 
@@ -577,7 +587,11 @@ def main():
                     #del archivo con las rutas sacado de la funcion de elegir menu y elegimos el que nos muestra la eleccion del usuario.
                     ruta_relativa = albumes_disponibles[indice]
                     #usamos el metodo de seleccionar album pasandole la ruta del album que queremos cargar.
-                    album_cargado = Album.seleccionar_album(ruta_relativa)
+                    try:
+                        album_cargado = Album.seleccionar_album(ruta_relativa)
+                    except Exception as e:
+                        print(f"Error al cargar álbum: {e}")
+                        continue
 
                     #si se ha cargado el album correctamente:
                     if album_cargado:
@@ -721,11 +735,14 @@ def main():
                                 # si decimos que si:
                                 if opcion_eliminar_cancion_album == "s":
                                     print(f"Eliminando la cancion {titulo.title()}...")
-                                    album_cargado.eliminar_cancion_album(titulo,artista)
-                                # si ha sido un missclick
-                                else:
-                                    print("La eliminacion se ha canceldado.")
 
+                                    try:
+                                        album_cargado.eliminar_cancion_album(titulo, artista)
+                                    except Exception as e:
+                                        print(f"Error al eliminar canción del álbum: {e}")
+
+                                else:
+                                    print("La eliminacion se ha cancelado.")
 
 
 
