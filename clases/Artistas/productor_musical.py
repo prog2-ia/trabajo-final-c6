@@ -45,6 +45,78 @@ class ProductorMusical(Artista,Productor):
             print(f"Intento de guardar productor musical '{productor.nombre}' finalizado.")
 #-----------------------------------------------
 
+    #Metodo para eliminar el productor
+    @staticmethod
+    def eliminar_productor(productor, ruta='archivos/productores_guardados.json'):
+        if not isinstance(productor, ProductorMusical):
+            raise TypeError("Solo se pueden eliminar objetos ProductorMusical.")
+
+        try:
+            with open(ruta, "r", encoding="utf-8") as f:
+                productores = json.load(f)
+
+        except FileNotFoundError:
+            raise FileNotFoundError(f"No se encontró el archivo: {ruta}")
+
+        except json.JSONDecodeError:
+            raise ArtistaError("El archivo JSON está corrupto o mal formado.")
+
+        else:
+            encontrado = False
+            for p in productores:
+                if p["Nombre"] == productor.nombre:
+                    productores.remove(p)
+                    encontrado = True
+                    break
+
+            if not encontrado:
+                raise ValueError(f'No se encontró el productor {productor.nombre}.')
+
+            with open(ruta, "w", encoding="utf-8") as f:
+                json.dump(productores, f, ensure_ascii=False, indent=4)
+
+            print(f"Productor '{productor.nombre}' eliminado correctamente.")
+
+
+    #Metodo para buscar productor por nombre y mostrar su información
+    @staticmethod
+    def buscar_productor(productor, ruta='archivos/productores_guardados.json'):
+        if not isinstance(productor, ProductorMusical):
+            raise TypeError("Solo se pueden eliminar objetos ProductorMusical.")
+
+        try:
+            with open(ruta, "r", encoding="utf-8") as f:
+                productores = json.load(f)
+
+        except FileNotFoundError:
+            raise FileNotFoundError(f"No se encontró el archivo: {ruta}")
+
+        except json.JSONDecodeError:
+            raise ArtistaError("El archivo JSON está corrupto o mal formado.")
+
+        else:
+            encontrado = False
+            for p in productores:
+                if p["Nombre"] == productor.nombre:
+                    encontrado = True
+
+                    # Mostrar info manualmente
+                    print("=== PRODUCTOR MUSICAL ===")
+                    print(f"Nombre: {p.get('Nombre')}")
+                    print(f"Fecha de formación: {p.get('Fecha de formación')}")
+                    print(f"País de origen: {p.get('País de origen')}")
+                    print(f"Activo: {p.get('Activo')}")
+                    print(f"Género: {p.get('Genero')}")
+                    print(f"Canciones populares: {p.get('Canciones populares')}")
+                    print(f"Componentes: {p.get('Componentes')}")
+                    print(f"Producciones: {p.get('Producciones')}")
+
+
+
+            if not encontrado:
+                raise ValueError(f'No se encontró el productor {productor.nombre}.')
+
+
     #creamos un metodo para mostrar info sobre el productor musical.
     def mostrar_info(self):
         print("=== PRODUCTOR MUSICAL ===")
