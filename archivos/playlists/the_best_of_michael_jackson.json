@@ -20,5 +20,16 @@
             "pop"
         ],
         "Discografia": "History"
+    },
+    {
+        "Titulo": "Beat It",
+        "Artista": "Michael Jackson",
+        "Fecha de lanzamiento": "1982",
+        "Duracion": "4:59",
+        "Genero": [
+            "rock",
+            "pop"
+        ],
+        "Discografia": "Thriller"
     }
 ]

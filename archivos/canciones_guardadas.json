@@ -1174,16 +1174,6 @@
         "Discografia": "Gods Of Rock N Roll"
     },
     {
-        "Titulo": "56",
-        "Artista": "Firehouse",
-        "Fecha de lanzamiento": "1585",
-        "Duracion": "0:00",
-        "Genero": [
-            "pop"
-        ],
-        "Discografia": "Firehouse"
-    },
-    {
         "Titulo": "Czerwony Jak Cegla",
         "Artista": "Dzem",
         "Fecha de lanzamiento": "1985",
@@ -1215,5 +1205,26 @@
             "pop"
         ],
         "Discografia": "History"
+    },
+    {
+        "Titulo": "Beat It",
+        "Artista": "Michael Jackson",
+        "Fecha de lanzamiento": "1982",
+        "Duracion": "4:59",
+        "Genero": [
+            "rock",
+            "pop"
+        ],
+        "Discografia": "Thriller"
+    },
+    {
+        "Titulo": "Just Push Play",
+        "Artista": "Aerosmith",
+        "Fecha de lanzamiento": "2001",
+        "Duracion": "3:51",
+        "Genero": [
+            "rock"
+        ],
+        "Discografia": "Just Push Play"
     }
 ]

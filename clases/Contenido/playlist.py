@@ -294,3 +294,14 @@ class ListaReproduccion(Contenido):
             print(f"La cancion '{titulo.title()}' no existe en la playlist.")
         else:
             print(f"Cancion '{titulo.title()}' eliminada correctamente.")
+
+
+    # ------------------------------------------------------------
+
+
+
+
+
+
+
+

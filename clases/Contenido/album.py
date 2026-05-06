@@ -128,9 +128,15 @@ class Album(Contenido):
 
     #metodo para mostrar info del album.
     def mostrar_info_album(self):
+        print("\n" + "=" * 40)
+        print("         INFORMACIÓN DEL ÁLBUM")
+        print("=" * 40)
+
         super().mostrar_info()
-        print(f"Numero de canciones: {self.numero_canciones}")
-        print()
+
+        print(f"Número de canciones: {self.numero_canciones}")
+
+        print("=" * 40 + "\n")
 
 
     # ------------------------------------------------------------
@@ -268,46 +274,6 @@ class Album(Contenido):
         print(f"Cancion '{cancion['Titulo']}' anadida al album '{self.titulo.title()}'.")
 
 
-    def __iaddcancion__(self, cancion):
-
-        # normalizamos la entrada que introduce el usuario
-        titulo_nuevo = cancion["Titulo"].lower().strip()
-        artista_nuevo = cancion["Artista"].lower().strip()
-
-        # comporbamos si la cancion ya existe en el album para que no haya duplicatos.
-        for c in self.canciones_album:
-            if c["Titulo"].lower().strip() == titulo_nuevo and c["Artista"].lower().strip() == artista_nuevo:
-                print(f"La cancion '{cancion['Titulo']}' de {cancion['Artista']} ya esta en el album.")
-                #si la cancion ya existe, no devolvemos nada.
-                return None
-
-        #si la cancion no existe en el album, la anadimos.
-        #la discografia de la cancion anadida por logica va a ser el nombre del album.
-        cancion["Discografia"] = self.titulo
-
-        #anadimos la cancion a la lista de canciones del album.
-        self.canciones_album.append(cancion)
-
-        #esta parte nos permite actualizar la informacion del album si no habia ninguna cancion antes.
-        if self.numero_canciones == 0:
-            # Asignamos como artista del album el artista principal de la cancion.
-            artista_principal, _ = Contenido.separar_artista_feat(cancion["Artista"])
-            self.artista = artista_principal
-            # Lo mismo con la fecha.
-            self.fecha_lanzamiento = cancion["Fecha de lanzamiento"]
-            # Y generos.
-            self.genero = cancion["Genero"]
-
-        #como hemos anadido una cancion, tenemos que actualizar el numero de canciones del album.
-        self.numero_canciones = len(self.canciones_album)
-
-        #Guardamos los cambios en el archivo json correspondiene del album sobre el cual hemos estado trabajando.
-        with open(self.ruta_archivo, "w", encoding="utf-8") as f:
-            json.dump(self.canciones_album, f, ensure_ascii=False, indent=4)
-
-        #mostramos que la cancion se ha anadido con exito al album.
-        print(f"Cancion '{cancion['Titulo']}' anadida al album '{self.titulo.title()}'.")
-
     # ------------------------------------------------------------
 
 
@@ -371,3 +337,80 @@ class Album(Contenido):
                 f"Cancion '{titulo.title()}' de {artista.title()} eliminada correctamente del album '{self.titulo.title()}'.")
 
 
+    # ------------------------------------------------------------
+
+
+    #esta funcion nos servira para buscar el album de todas los disponibles a base de lo que introduce el usuario.
+    @staticmethod
+    def buscar_album(artista, titulo, ruta="archivos/albumes"):
+
+        #normalizamos los datos introducidos por el usuario.
+        titulo = titulo.lower().strip()
+        titulo_ruta = titulo.replace(" ", "_") + ".json"
+        # obtenemos la ruta a la carpeta del artista.
+        carpeta_artista = artista.lower().strip().replace(" ", "_")
+
+        #buscamos la carpeta calculada anteriormente.
+        try:
+            lista_artistas = os.listdir(ruta)
+        except FileNotFoundError:
+            raise FileNotFoundError(f"No existe la ruta: {ruta}")
+
+        #si no la encontramos, mandamos el mensaje correspondiente.
+        if carpeta_artista not in lista_artistas:
+            print(f"No se ha encontrado la carpeta de '{artista.title()}'.")
+            return None
+
+        #si la tenemos:
+        print(f"Se ha encontrado la carpeta de '{artista.title()}'.")
+
+        #obtenemos la ruta de la carpeta del aritsta para poder recorrerlo.
+        ruta_artista = os.path.join(ruta, carpeta_artista)
+        archivos = os.listdir(ruta_artista)
+
+        #buscamos el album json en la carpeta del artista calculado anteriormente.
+        if titulo_ruta in archivos:
+            print(f"Se ha encontrado el album '{titulo.title()}'.")
+            return os.path.join(ruta_artista, titulo_ruta)
+
+        print(f"No se ha encontrado el album '{titulo.title()}'.")
+        return None
+
+
+    # ------------------------------------------------------------
+
+
+    #la funcion nos sirve para pasar la ruta a un objeto album.
+    @staticmethod
+    def cargar_album(ruta):
+        try:
+            with open(ruta, "r", encoding="utf-8") as f:
+                datos = json.load(f)
+        except FileNotFoundError:
+            raise FileNotFoundError(f"No se ha encontrado el archivo: {ruta}")
+        except json.JSONDecodeError:
+            raise ValueError("El archivo JSON esta corrupto o mal formado.")
+
+        if not isinstance(datos, list):
+            raise ValueError("El álbum debe ser una lista de canciones.")
+
+        if len(datos) == 0:
+            raise ValueError("El álbum está vacío.")
+
+        numero_canciones = len(datos)
+        primera = datos[0]
+
+        album = Album(
+            primera["Discografia"],
+            primera["Artista"],
+            primera["Fecha de lanzamiento"],
+            None,
+            primera["Genero"],
+            numero_canciones
+        )
+
+        #deovlvemos la ruta.
+        album.canciones_album = datos
+        album.ruta_archivo = ruta
+
+        return album
