@@ -71,8 +71,13 @@ class Album(Contenido):
     @staticmethod
     def seleccionar_album(ruta_relativa, ruta="archivos/albumes"):
 
-        # calculamos la ruta completa para acceder al album.
-        ruta_completa = ruta + "/" + ruta_relativa
+        if ruta_relativa.startswith('archivos'):
+            ruta_completa = ruta_relativa
+        else:
+            # calculamos la ruta completa para acceder al album.
+            ruta_completa = ruta + "/" + ruta_relativa
+
+
         print(f"\nCargando album '{ruta_relativa}'...")
 
         # abrimos el json con la ruta calculada.

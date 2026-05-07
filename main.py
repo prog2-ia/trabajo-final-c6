@@ -565,13 +565,54 @@ def main():
 
                     #comprobamos que la ruta existe.
                     if ruta_album_encontrado:
-                        album = Album.cargar_album(ruta_album_encontrado)
+                        album_buscado = Album.cargar_album(ruta_album_encontrado)
 
                         #mostramos info si existe
-                        album.mostrar_info_album()
+                        album_buscado.mostrar_info_album()
 
                         #mostramos las canciones.
-                        album.mostrar_canciones_album()
+                        album_buscado.mostrar_canciones_album()
+
+                        opcion_activar_album = input(f"Abrir menu de '{album_buscado.titulo.title()}'? (s/n): ").strip().lower()
+                        while opcion_activar_album not in ('s', 'n'):
+                            print("Opcian no valida. Solo puedes poner (s/n).")
+                            opcion_activar_album = input(f"Abrir menu de '{album_buscado.titulo.title()}'? (s/n): ").strip().lower()
+
+                        #elegimos opcion de manejar el album desde aqui.
+                        if opcion_activar_album == 's':
+                            start_album = True
+                            while start_album:
+
+                                menu_album()
+                                opcion_album = pedir_opcion()
+
+                                while opcion_album not in ('0', '1', '2', '3', '4', '5'):
+                                    print("Opcion no valida.")
+                                    opcion_album = pedir_opcion()
+
+                                if opcion_album == '0':
+                                    print("Saliendo del menu del album...")
+                                    start_album = False
+
+                                elif opcion_album == '1':
+                                    album_buscado.mostrar_info_album()
+
+                                elif opcion_album == '2':
+                                    album_buscado.mostrar_canciones_album()
+
+                                elif opcion_album == '3':
+                                    opcion_eliminar = input(f"Eliminar album '{album_buscado.titulo}'? (s/n): ").lower()
+                                    if opcion_eliminar == 's':
+                                        album_buscado.eliminar_album()
+                                        start_album = False
+
+                                elif opcion_album == '4':
+                                    print("Funcion añadir canción.")
+
+                                elif opcion_album == '5':
+                                    print("Funcion eliminar cancion")
+                        else:
+                            pass
                     else:
                         print("No se ha podido cargar el album.")
 
