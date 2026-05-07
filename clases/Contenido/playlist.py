@@ -299,6 +299,41 @@ class ListaReproduccion(Contenido):
     # ------------------------------------------------------------
 
 
+    #METODO PARA EL TIEMPO A REVISAR
+    @staticmethod
+    def calcular_duracion_playlist(ruta_relativa, ruta="archivos/playlists"):
+        ruta_completa = os.path.join(ruta, ruta_relativa)
+        # Cargar JSON
+        with open(ruta_completa, "r", encoding="utf-8") as f:
+            contenido = f.read().strip()
+            if not contenido:
+                canciones = []
+            else:
+                canciones = json.loads(contenido)
+
+        # Función auxiliar para convertir a segundos
+        def a_segundos(t):
+            partes = list(map(int, t.split(":")))
+            if len(partes) == 2:      # mm:ss
+                m, s = partes
+                return m * 60 + s
+            elif len(partes) == 3:    # hh:mm:ss
+                h, m, s = partes
+                return h * 3600 + m * 60 + s
+            return 0
+
+        # Sumar todas las duraciones
+        total_segundos = sum(a_segundos(c["Duracion"]) for c in canciones if isinstance(c, dict))
+
+        # Convertir a HH:MM:SS
+        horas = total_segundos // 3600
+        minutos = (total_segundos % 3600) // 60
+        segundos = total_segundos % 60
+
+        return f"{horas:02d}:{minutos:02d}:{segundos:02d}"
+
+
+
 
 
 
