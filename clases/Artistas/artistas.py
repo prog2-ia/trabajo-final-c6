@@ -1,5 +1,6 @@
 # Superclase Artista: Incluye cantantes individuales
 from abc import ABC, abstractmethod
+import json
 
 #Errores relacionados con la clase Artista.
 class ArtistaError(Exception):
@@ -103,6 +104,107 @@ class Artista(ABC):
         self._componentes = valor
 
     # ---------------- MÉTODOS ----------------
+
+    #Metodo para añadir artista a la base de datos
+    @staticmethod
+    def guardar_artista(artista, ruta='archivos/artistas_guardados.json'):
+        if not isinstance(artista, Artista):
+            raise TypeError("Solo se pueden guardar objetos Artista.")
+
+        try:
+            with open(ruta, "r", encoding="utf-8") as f:
+                artista = json.load(f)
+
+        except FileNotFoundError:
+            raise FileNotFoundError(f"No se encontró el archivo: {ruta}")
+
+        except json.JSONDecodeError:
+            raise ArtistaError("El archivo JSON está corrupto o mal formado.")
+
+        else:
+            artista.append({
+                "Nombre": artista.nombre,
+                "Fecha de formación": artista.fecha_formacion,
+                "País de origen": artista.pais_origen,
+                "Activo": artista.activo,
+                "Género": artista.genero,
+                "Canciones populares": artista.canciones_populares,
+                "Componentes": artista.componentes
+            })
+            with open(ruta, "w", encoding="utf-8") as f:
+                json.dump(artista, f, ensure_ascii=False, indent=4)
+
+        finally:
+            print(f"Intento de añadir artista musical '{artista.nombre}' finalizado.")
+
+  #Metodo para eliminar artista a la base de datos
+    @staticmethod
+    def eliminar_artista(artista, ruta='archivos/artistas_guardados.json'):
+        if not isinstance(artista, Artista):
+            raise TypeError("Solo se pueden elimina objetos Artista.")
+
+        try:
+            with open(ruta, "r", encoding="utf-8") as f:
+                artista = json.load(f)
+
+        except FileNotFoundError:
+            raise FileNotFoundError(f"No se encontró el archivo: {ruta}")
+
+        except json.JSONDecodeError:
+            raise ArtistaError("El archivo JSON está corrupto o mal formado.")
+
+        else:
+            encontrado = False
+            for a in artista:
+                if a["Nombre"] == artista.nombre:
+                    artista.remove(a)
+                    encontrado = True
+                    break
+
+            if not encontrado:
+                raise ValueError(f'No se encontró el artista {artista.nombre}.')
+
+            with open(ruta, "w", encoding="utf-8") as f:
+                json.dump(artista, f, ensure_ascii=False, indent=4)
+
+            print(f"Artista '{artista.nombre}' eliminado correctamente.")
+
+
+    #Metodo para buscar artista a la base de datos
+    @staticmethod
+    def buscar_artista(artista, ruta='archivos/artistas_guardados.json'):
+        if not isinstance(artista, Artista):
+            raise TypeError("Solo se pueden elimina objetos Artista.")
+
+        try:
+            with open(ruta, "r", encoding="utf-8") as f:
+                artista = json.load(f)
+
+        except FileNotFoundError:
+            raise FileNotFoundError(f"No se encontró el archivo: {ruta}")
+
+        except json.JSONDecodeError:
+            raise ArtistaError("El archivo JSON está corrupto o mal formado.")
+
+
+        else:
+            encontrado = False
+            for a in artista:
+                if a["Nombre"] == artista.nombre:
+                    encontrado = True
+
+                    # Mostrar info
+                    print(f"Nombre: {a.get('Nombre')}")
+                    print(f"Fecha de formación: {a.get('Fecha de formación')}")
+                    print(f"País de origen: {a.get('País de origen')}")
+                    print(f"Activo: {a.get('Activo')}")
+                    print(f"Género: {a.get('Género')}")
+                    print(f"Canciones populares: {a.get('Canciones populares')}")
+                    print(f"Componentes: {a.get('Componentes')}")
+
+            if not encontrado:
+                raise ValueError(f'No se encontró el artista {artista.nombre}.')
+
 
     #Metodo abstracto para mostrar la información en las subclases
     @abstractmethod

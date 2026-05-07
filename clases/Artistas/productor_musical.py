@@ -100,7 +100,8 @@ class ProductorMusical(Artista,Productor):
                 if p["Nombre"] == productor.nombre:
                     encontrado = True
 
-                    # Mostrar info manualmente
+                    # Mostrar info
+                    # .get() evita errores si la clave NO existe.
                     print("=== PRODUCTOR MUSICAL ===")
                     print(f"Nombre: {p.get('Nombre')}")
                     print(f"Fecha de formación: {p.get('Fecha de formación')}")
