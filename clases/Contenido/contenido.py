@@ -251,18 +251,11 @@ class Contenido:
 
 
     #Metodo estatico para mostrar la duracion
+    #Calcula la duración total de una lista de objetos Contenido y la devuelve en formato HH:MM:SS o MM:SS.
     @staticmethod
-    def mostrar_duracion(lista_contenidos) -> str:
-        total_segundos = sum(con.duracion for con in lista_contenidos)
-
-        # Creamos objeto temporal solo para formatear
-        temp = Contenido("temp", "temp", "0:00", "temp", "temp")
-        resultado = temp._formatear_segundos(total_segundos)
-
-        print("Duración total de la playlist:", resultado)
-        return resultado
-
-
+    def calcular_duracion_contenidos(contenidos: list["Contenido"]) -> str:
+        total_segundos = sum(c.duracion for c in contenidos if isinstance(c, Contenido))
+        return Contenido._formatear_segundos(total_segundos)
     # ------------------------------------------------------------
 
 
