@@ -16,6 +16,16 @@ class ListaReproduccion(Contenido):
 
     # ------------------------------------------------------------
 
+    #metodo nos servira para sincronizar los generos de las playlists con las canciones.
+    def _sincronizar_generos(self):
+        generos = set()
+        for c in self._lista:
+            for g in c.genero:
+                generos.add(g)
+        self.genero = sorted(list(generos))
+
+    # ------------------------------------------------------------
+
 
     # Comprobar que lista sea del tipo lista
     @property
@@ -34,18 +44,18 @@ class ListaReproduccion(Contenido):
     # ------------------------------------------------------------
 
 
-    # Metodo para guardar playlist
+    #funcion que va a guardar la playlist despues de crearla en una ruta especifica, hecha en la misma funcion.
     def guardar_playlist(self):
 
-        # la ruta del archivo vendra a partir de su nombre
+        #creamos la ruta a partir del nombre de la playlist.
         nombre_archivo = self.titulo.lower().strip().replace(" ", "_")
         ruta = f"archivos/playlists/{nombre_archivo}.json"
 
-        # si la ruta ya existe, no la tocamos
+        #nos aseguramos de que la ruta ya no existe (evitamos duplicatos)
         if os.path.exists(ruta):
             return
 
-        # abrimos el json en modo escritura para guardar una playlist vacia
+        #guardamos el archivo corresponediente.
         with open(ruta, "w", encoding="utf-8") as f:
             json.dump([], f, ensure_ascii=False, indent=4)
 
@@ -58,32 +68,33 @@ class ListaReproduccion(Contenido):
     # ------------------------------------------------------------
 
 
-    # funcion que nos sirve para cargar canciones de un archivo json
+    #metodo para cargar canciones a una lista de una playlist.
     def cargar_canciones(self, ruta=None):
 
-        # definimos por defecto la ruta
+        #nos aseguramos que la ruta es correcta.
         if ruta is None:
             nombre_archivo = self.titulo.lower().strip().replace(" ", "_")
             ruta = f"archivos/playlists/{nombre_archivo}.json"
 
-        # si ya esta cargada, no volvemos a cargar
+        #controlamos si la lista se ha cargado de las canciones.
         if self._cargada:
             return self._lista
 
-        # limpiamos la lista antes de cargar
         self._lista.clear()
 
-        # abrimos el json para recorrer las canciones
+        #abrimos el archivo para recorrerlo en busqueda de las canciones.
         with open(ruta, "r", encoding="utf-8") as f:
             contenido = f.read().strip()
 
-            # si el archivo esta vacio, asumimos playlist vacia
+            #si la playlist esta vacia
             if not contenido:
+                #devolvemos una lista vacia.
                 canciones = []
             else:
+                #si no, devolvemos las canciones que contiene.
                 canciones = json.loads(contenido)
 
-        # creamos objetos Cancion a partir del json
+        #recorremos la lista, para cada cancion guardaremos los datos recogidos del json.
         for c in canciones:
             if not isinstance(c, dict):
                 continue
@@ -99,7 +110,11 @@ class ListaReproduccion(Contenido):
                 )
             )
 
-        # marcamos la lista como cargada
+        #sincronizamos los generos a parir de los generos de las canciones en la playlist.
+        self._sincronizar_generos()
+        self._sincronizar_artistas()
+
+        #afirmamos que la lista se ha cargado y devolvemos la lista de canciones.
         self._cargada = True
         return self._lista
 
@@ -107,11 +122,10 @@ class ListaReproduccion(Contenido):
     # ------------------------------------------------------------
 
 
-    # metodo que nos permitira anadir canciones a la playlist
-    # acepta un objeto Cancion o un diccionario
+    #funcion que pemite anadir canciones a la playlist.
     def anadir_cancion_existente(self, cancion):
 
-        # si llega un diccionario, lo convertimos a objeto Cancion
+        #pasamos la cancion de ser un diccionario a ser un objeto de la clase cancion.
         if isinstance(cancion, dict):
             cancion = Cancion(
                 cancion["Titulo"],
@@ -122,24 +136,25 @@ class ListaReproduccion(Contenido):
                 cancion["Discografia"]
             )
 
-        # comprobamos si la cancion ya esta en la playlist
+        #recorremos la lsita para asegurarnos que no habra duplicatos en la playlist.
         for c in self._lista:
             if c == cancion:
                 print(f"La cancion '{cancion.titulo}' ya esta en la playlist.")
                 return False
 
-        # añadimos la cancion a la lista interna
+        #si no se repite, anadimos a la lista.
         self._lista.append(cancion)
-        self._cargada = False
 
-        # guardamos la playlist usando to_dict
+        #sincronizamos los generos de la playlist a base de los de las canciones.
+        self._sincronizar_generos()
+        self._sincronizar_artistas()
+
+        #ya tenemos los datos guardados, cambiamos el estado de cargda.
+        self._cargada = True
+
+        #guardamos archivo json con las canciones anadidas.
         with open(self.ruta_archivo, "w", encoding="utf-8") as f:
-            json.dump(
-                [c.to_dict() for c in self._lista],
-                f,
-                ensure_ascii=False,
-                indent=4
-            )
+            json.dump([c.to_dict() for c in self._lista],f,ensure_ascii=False, indent=4)
 
         print(f"Cancion '{cancion.titulo}' añadida a la playlist '{self.titulo}'.")
         return True
@@ -148,38 +163,52 @@ class ListaReproduccion(Contenido):
     # ------------------------------------------------------------
 
 
-    # Metodo para mostrar info
+    #funcion para mostrar info de la playlist.
     def mostrar_info(self):
+        print("\n" + "=" * 40)
+        print("        INFORMACIÓN DE LA PLAYLIST")
+        print("=" * 40)
+
+        #utilizamos la herencia para mostrar info del padre.
         super().mostrar_info()
 
-        # cargamos canciones si es necesario
+        #para mostrar info neceistmaos cargar las canciones.
         if not self._cargada:
             self.cargar_canciones()
 
-        # mostramos el listado de canciones
-        print("Lista de canciones:")
+        # sincronizmos el genero.
+        self._sincronizar_generos()
+
+        print(f"Número de canciones: {len(self._lista)}")
+
+        print("\nLista de canciones:")
+
         if not self._lista:
-            print("- (vacia)")
+            print("- (vacía)")
         else:
             for c in self._lista:
                 print(f"- {c.titulo} — {c.artista} ({c.formatear_duracion()})")
-        print()
+
+        print("=" * 40 + "\n")
 
 
     # ------------------------------------------------------------
 
 
-    # metodo que nos permitira eliminar una playlist
+    #funcion para eliminar la playlist entera de la base de datos.
     @staticmethod
     def eliminar_playlist(nombre):
 
+        #a base del nombre introducido calculamos la ruta.
         nombre = nombre.lower().strip().replace(" ", "_")
         ruta = f"archivos/playlists/{nombre}.json"
 
+        #comprobamos que la ruta a eliminar exitste.
         if not os.path.exists(ruta):
             print("La playlist no existe, no se puede eliminar.")
             return
 
+        #eliminamos la ruta.
         os.remove(ruta)
         print(f"Playlist '{nombre}' eliminada correctamente.")
 
@@ -187,49 +216,140 @@ class ListaReproduccion(Contenido):
     # ------------------------------------------------------------
 
 
-    # funcion que nos permitira seleccionar una playlist existente
+    #metodo para buscar playlists en la carpeta donde las guardamos.
+    @staticmethod
+    def buscar_playlist(titulo):
+
+        #preparamos el titulo para la busqueda.
+        titulo_normalizado = titulo.strip().lower().replace(' ','_')
+
+        #indicamos la carpeta donde estan las playlists.
+        carpeta = 'archivos/playlists'
+
+        #recorremos la carpteta y buscamos si alguna coincide con el nombre preparado anteriormente.
+        for playlist in os.listdir(carpeta):
+            if playlist == titulo_normalizado + ".json":
+                ruta = os.path.join(carpeta, playlist)
+                print(f"La playlist '{titulo.title()}' encontrada correctamente. ")
+                return ruta
+
+        print(f"La playlist '{titulo.title()}' no existe en la base de datos. ")
+        return None
+
+
+    # ------------------------------------------------------------
+
+
+    #funcion que nos sirve para obtener el artista completo (junto con feat.)
+    def artista_completo(self):
+        if not self.artista:
+            return "varios"
+
+        if isinstance(self.artista, str):
+            return self.artista
+
+        return ", ".join(self.artista)
+
+
+    # ------------------------------------------------------------
+
+
+    # con esta funcion cargaremos la playlist dada la ruta.
+    @staticmethod
+    def cargar_playlist(ruta):
+        # intentamos conseguir los datos de la ruta.
+        try:
+            with open(ruta, "r", encoding="utf-8") as f:
+                datos = json.load(f)
+        # manejamos los posibles errores que podrian ocurrir.
+        except FileNotFoundError:
+            raise FileNotFoundError(f"No se ha encontrado el archivo: {ruta}")
+        except json.JSONDecodeError:
+            raise ValueError("El archivo JSON esta corrupto o mal formado.")
+
+        # la playlist es una lista de diccionarios, entonces tiene que ser una lista obligatoriamente.
+        if not isinstance(datos, list):
+            raise ValueError("La playlist debe ser una lista de canciones.")
+
+        # obtenemos el nombre del archivo a base de la ruta y lo usamos para crear el titulo de la playlist para guardar lo en los datos.
+        nombre = os.path.basename(ruta).replace(".json", "")
+        titulo = nombre.replace("_", " ").title()
+
+        # creamos una platlist vacia.
+        playlist = ListaReproduccion(
+            titulo=titulo,
+            fecha_lanzamiento=date.today().year,
+            duracion="0:00",
+            genero=[],
+            artista=[]
+        )
+
+        # en ella, reconstruimos las canciones a base de la informacion del json.
+        playlist._lista = [
+            Cancion(
+                c["Titulo"],
+                c["Fecha de lanzamiento"],
+                c["Duracion"],
+                c["Genero"],
+                c["Artista"],
+                c["Discografia"]
+            )
+            for c in datos if isinstance(c, dict)
+        ]
+
+        # sincronizamos los artistas de la playlist con las de canicones.
+        artistas = set()
+        for c in playlist._lista:
+            principal, _ = Contenido.separar_artista_feat(c.artista)
+            if principal:
+                artistas.add(principal.title())
+
+        playlist.artista = ", ".join(sorted(artistas))
+
+        # sincronizmos los datos (genero).
+        playlist._sincronizar_generos()
+
+        playlist.ruta_archivo = ruta
+        playlist._cargada = True
+
+        # devolvemos el objeto playlist.
+        return playlist
+
+
+    # ------------------------------------------------------------
+
+
+    # funcion para seleccionar la playlist del menu.
     @staticmethod
     def seleccionar_playlist(ruta_relativa, ruta="archivos/playlists"):
 
+        # obtenemos la ruta completa de la playlist.
         ruta_completa = os.path.join(ruta, ruta_relativa)
+
         print(f"\nCargando playlist '{ruta_relativa}'...")
 
+        # obtenemos el titulo a base de la ruta.
         titulo = ruta_relativa.replace(".json", "").replace("_", " ").title()
 
+        # cargamos las canciones de la playlist en una lista.
         with open(ruta_completa, "r", encoding="utf-8") as f:
             contenido = f.read().strip()
 
-            # si el archivo esta vacio, asumimos playlist vacia
             if not contenido:
                 canciones = []
             else:
                 canciones = json.loads(contenido)
 
-        # obtenemos generos y artistas desde las canciones
-        generos = set()
-        artistas = set()
-
-        for c in canciones:
-            if not isinstance(c, dict):
-                continue
-
-            for gen in c.get("Genero", []):
-                generos.add(gen)
-
-            artista = c.get("Artista")
-            if artista:
-                principal, _ = Contenido.separar_artista_feat(artista)
-                artistas.add(principal)
-
+        # creamos un objeto de playlist vacia.
         play = ListaReproduccion(
             titulo=titulo,
             fecha_lanzamiento=date.today().year,
             duracion="0:00",
-            genero=list(generos),
-            artista=list(artistas)
+            genero=[],
+            artista=[]
         )
 
-        # reconstruimos la lista interna como objetos Cancion
+        # rellenamos la playlist con los datos recogidos.
         play._lista = [
             Cancion(
                 c["Titulo"],
@@ -243,6 +363,18 @@ class ListaReproduccion(Contenido):
             if isinstance(c, dict)
         ]
 
+        # sincronizamos los artistas de la playlist con las canciones.
+        artistas = set()
+        for c in play._lista:
+            principal, _ = Contenido.separar_artista_feat(c.artista)
+            if principal:
+                artistas.add(principal.title())
+
+        play.artista = ", ".join(sorted(artistas))
+
+        # sincronizamos los generos.
+        play._sincronizar_generos()
+
         play.ruta_archivo = ruta_completa
         play._cargada = True
 
@@ -252,59 +384,58 @@ class ListaReproduccion(Contenido):
     # ------------------------------------------------------------
 
 
-    # funcion que permite mostrar el artista completo de la playlist
-    def artista_completo(self):
-        if not self.artista:
-            return "varios"
-        return ", ".join(self.artista)
-
-
-    # ------------------------------------------------------------
-
-
-    # esta funcion sirve para eliminar una cancion de la playlist
+    # funcion para eliminar una cancion de la playlist
     def eliminar_cancion_playlist(self, titulo, artista):
 
-        titulo = titulo.lower().strip()
-        artista = artista.lower().strip()
+        eliminada = False
 
-        cantidad_antes = len(self._lista)
+        # recorremos la lista y eliminamos la cancion que coincide
+        nueva_lista = []
+        for c in self._lista:
+            if c.titulo.lower().strip() == titulo.lower().strip() and c.artista.lower().strip() == artista.lower().strip():
+                eliminada = True
+                continue
+            nueva_lista.append(c)
 
-        # filtramos la lista eliminando la cancion coincidente
-        self._lista = [
-            c for c in self._lista
-            if not (
-                c.titulo.lower().strip() == titulo and
-                Contenido.separar_artista_feat(c.artista)[0].lower().strip() == artista
-            )
-        ]
+        # actualizamos la lista
+        self._lista = nueva_lista
 
-        self._cargada = False
+        if not eliminada:
+            print(f"La cancion '{titulo}' de {artista} no se encuentra en la playlist.")
+            return False
 
-        # guardamos los cambios en el json
+        # sincronizamos los generos
+        self._sincronizar_generos()
+
+        # sincronizamos los artistas
+        artistas = set()
+        for c in self._lista:
+            principal, _ = Contenido.separar_artista_feat(c.artista)
+            if principal:
+                artistas.add(principal.title())
+
+        self.artista = ", ".join(sorted(artistas))
+
+        self._cargada = True
+
+        # guardar cambios en json
         with open(self.ruta_archivo, "w", encoding="utf-8") as f:
-            json.dump(
-                [c.to_dict() for c in self._lista],
-                f,
-                ensure_ascii=False,
-                indent=4
-            )
+            json.dump([c.to_dict() for c in self._lista], f, ensure_ascii=False, indent=4)
 
-        if len(self._lista) == cantidad_antes:
-            print(f"La cancion '{titulo.title()}' no existe en la playlist.")
-        else:
-            print(f"Cancion '{titulo.title()}' eliminada correctamente.")
+        print(f"Cancion '{titulo}' eliminada de la playlist '{self.titulo}'.")
+        return True
 
 
     # ------------------------------------------------------------
 
 
+    #fuincion sirve para sincronizar artistas en con la playlist.
+    def _sincronizar_artistas(self):
+        artistas = set()
 
+        for c in self._lista:
+            principal, _ = Contenido.separar_artista_feat(c.artista)
+            if principal:
+                artistas.add(principal.title())
 
-
-
-
-
-
-
-
+        self.artista = ", ".join(sorted(artistas))

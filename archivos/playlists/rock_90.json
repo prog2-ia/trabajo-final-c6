@@ -1,5 +1,27 @@
 [
     {
+        "Titulo": "Beat It",
+        "Artista": "Michael Jackson",
+        "Fecha de lanzamiento": "1982",
+        "Duracion": "4:59",
+        "Genero": [
+            "Rock",
+            "Pop"
+        ],
+        "Discografia": "Thriller"
+    },
+    {
+        "Titulo": "Livin' On A Prayer",
+        "Artista": "Bon Jovi",
+        "Fecha de lanzamiento": "1986",
+        "Duracion": "4:11",
+        "Genero": [
+            "Glam metal",
+            "Hard rock"
+        ],
+        "Discografia": "Slippery When Wet"
+    },
+    {
         "Titulo": "Silver Springs",
         "Artista": "Fleetwood Mac",
         "Fecha de lanzamiento": "1977",
@@ -9,16 +31,5 @@
             "Rock"
         ],
         "Discografia": "Rumors"
-    },
-    {
-        "Titulo": "Beat It",
-        "Artista": "Michael Jackson",
-        "Fecha de lanzamiento": "1982",
-        "Duracion": "4:59",
-        "Genero": [
-            "rock",
-            "pop"
-        ],
-        "Discografia": "Thriller"
     }
 ]

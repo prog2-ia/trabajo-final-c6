@@ -332,8 +332,115 @@ def main():
 
                 #buscador de playlists.
                 elif opcion_elegir_playlist == contador_playlist+1:
+                    print()
                     titulo = input('Introduce el titulo de la playlist: ')
-                    #...
+
+                    ruta_playlist_encontrada = ListaReproduccion.buscar_playlist(titulo)
+
+                    if ruta_playlist_encontrada is None:
+                        print(f'El archivo no encontrado.')
+                    else:
+
+                        #obtenemos la playlist a partir de la ruta.
+                        playlist_encontrada_cargada = ListaReproduccion.cargar_playlist(ruta_playlist_encontrada)
+
+                        #mostramos info de la playlist cargada.
+                        playlist_encontrada_cargada.mostrar_info()
+
+                        #preguntamos si activar el menu directamente para trabajar con la playlist.
+                        opcion_activar_playlist = input(f"Abrir menu de '{titulo.title()}'? (s/n): ").strip().lower()
+                        while opcion_activar_playlist not in ('s', 'n'):
+                            print("Opcian no valida. Solo puedes poner (s/n).")
+                            opcion_activar_playlist = input(f"Abrir menu de '{titulo.title()}'? (s/n): ").strip().lower()
+
+                        if opcion_activar_playlist == 's':
+
+                            playlist_cargada = playlist_encontrada_cargada
+
+                            start_playlist = True
+                            while start_playlist:
+
+                                # mostramos el menu de la playlist
+                                menu_playlists()
+                                # pedumos una opcion.
+                                opcion_playlist = pedir_opcion()
+
+                                # controlamos la eleccion correcta.
+                                while opcion_playlist not in ('0', '1', '2', '3', '4'):
+                                    print("Opcion no valida.")
+                                    opcion_playlist = pedir_opcion()
+
+                                # ------------------------
+                                # salimos al menu.
+                                if opcion_playlist == '0':
+                                    print("Saliendo del menu...")
+                                    start_playlist = False
+
+                                # ------------------------
+                                # mostramos info de la playlist.
+                                elif opcion_playlist == '1':
+                                    playlist_cargada.mostrar_info()
+
+                                # ------------------------
+                                # anadimos cancion a la playlist.
+                                elif opcion_playlist == '2':
+                                    print("\n=== ANADIR CANCION A LA PLAYLIST ===")
+
+                                    titulo_cancion_playlist_encontrada = input(
+                                        "Introduce el titulo de la cancion: ").strip()
+                                    artista_cancion_playlist_encontrada = input(
+                                        'Introduce el artista de la cancion: ').strip()
+
+                                    # buscamos la cancion en la base de datos.
+                                    cancion_playlist_anadir = Cancion.buscar_cancion(
+                                        titulo_cancion_playlist_encontrada,
+                                        artista_cancion_playlist_encontrada
+                                    )
+
+                                    # si encontramos la cancion, la anadimos.
+                                    if cancion_playlist_anadir:
+                                        playlist_cargada.anadir_cancion_existente(cancion_playlist_anadir)
+                                    else:
+                                        print("La cancion no existe en la base de datos.")
+
+
+                                # -----------------------
+                                # eliminamos cancion de la playlist.
+                                elif opcion_playlist == '3':
+                                    print("\n=== ELIMINAR CANCION DE LA PLAYLIST ===")
+
+                                    titulo = input("Introduce el titulo de la cancion a borrar: ").strip()
+                                    artista = input("Introduce el artista de la cancion: ").strip()
+
+                                    opcion_eliminar_cancion_playlist = input(
+                                        f"Eliminar la cancion '{titulo.title()}' de {artista.title()}? (s/n): "
+                                    ).strip().lower()
+
+                                    while opcion_eliminar_cancion_playlist not in ("s", "n"):
+                                        print("Opcion no valida. Solo puedes poner (s/n).")
+                                        opcion_eliminar_cancion_playlist = input(
+                                            f"Eliminar la cancion '{titulo.title()}' de {artista.title()}? (s/n): "
+                                        ).strip().lower()
+
+                                    if opcion_eliminar_cancion_playlist == "s":
+                                        print(f"Eliminando la cancion {titulo.title()}...")
+                                        playlist_cargada.eliminar_cancion_playlist(titulo, artista)
+                                    else:
+                                        print("La eliminacion se ha canceldado.")
+
+                                # -----------------------
+                                # eliminamos playlist.
+                                elif opcion_playlist == '4':
+                                    opcion_eliminar_playlist = input(
+                                        f"Eliminar album '{playlist_cargada.titulo}'? (s/n): "
+                                    ).lower()
+
+                                    if opcion_eliminar_playlist == 's':
+                                        playlist_cargada.eliminar_playlist(titulo)
+                                        start_playlist = False
+                        else:
+                            continue
+
 
 
                 # ------------------------------------------------------------
@@ -640,7 +747,7 @@ def main():
                                 # -----------------------
                                 #eliminamos cancion del album.
                                 elif opcion_album == '5':
-                                    print("\n=== ELIMINAR CANCION AL ALBUM ===")
+                                    print("\n=== ELIMINAR CANCION DEL ALBUM ===")
 
                                     # pedimos al usuario los datos para eliminar la cancion del album.
                                     titulo = input("Introduce el titulo de la cancion a borrar: ").strip()

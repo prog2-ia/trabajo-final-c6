@@ -1244,5 +1244,16 @@
         "Duracion": "0:00",
         "Genero": [],
         "Discografia": "5"
+    },
+    {
+        "Titulo": "You'Re Crazy",
+        "Artista": "Guns N' Roses",
+        "Fecha de lanzamiento": "1987",
+        "Duracion": "3:16",
+        "Genero": [
+            "Rock",
+            "Hard rock"
+        ],
+        "Discografia": "Appetite For Destruction"
     }
 ]

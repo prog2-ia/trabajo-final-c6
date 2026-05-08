@@ -133,7 +133,8 @@ class Contenido:
         for g in valor:
             g_norm = g.lower()
             if g_norm in generos_normalizados:
-                aceptados.append(g)
+                aceptados.append(g.capitalize())
+
             else:
                 print(f"Género '{g}' no válido")
 
@@ -262,15 +263,16 @@ class Contenido:
     #esta funcion sirve para calcular el artista completo de la cancion (para mostrarlos)
     def artista_completo(self):
 
-        #si no hay feat, enotnces devolvemos el artista simplemetne.
-        if not self.feat:
-            return self.artista.title()
+        #si no tenemos artista asignado, devolvemos valor por defecto.
+        if not self.artista:
+            return "varios"
 
-        #si hay feat, calculamos los invitados.
-        invitados = ", ".join(a.title() for a in self.feat)
-        #devolvemos el artista completo ej: Aerosmith feat. Slash, Duff McKagan.
-        return f"{self.artista.title()} feat. {invitados}"
+        #si es una lista, las juntasmo.
+        if isinstance(self.artista, list):
+            return ", ".join(a.title() for a in self.artista)
 
+        #devolvemos.
+        return self.artista.title()
 
     # ------------------------------------------------------------
 
