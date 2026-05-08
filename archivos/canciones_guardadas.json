@@ -1234,5 +1234,814 @@
         "Duracion": "0:00",
         "Genero": [],
         "Discografia": "B"
+    },
+
+    {
+        "Titulo": "Rock and Roll All Nite",
+        "Artista": "KISS",
+        "Fecha de lanzamiento": "1975",
+        "Duracion": "2:49",
+        "Genero": ["Hard Rock"],
+        "Discografia": "Dressed to Kill"
+    },
+    {
+        "Titulo": "Detroit Rock City",
+        "Artista": "KISS",
+        "Fecha de lanzamiento": "1976",
+        "Duracion": "5:17",
+        "Genero": ["Hard Rock"],
+        "Discografia": "Destroyer"
+    },
+    {
+        "Titulo": "Crazy Train",
+        "Artista": "Ozzy Osbourne",
+        "Fecha de lanzamiento": "1980",
+        "Duracion": "4:56",
+        "Genero": ["Heavy Metal"],
+        "Discografia": "Blizzard of Ozz"
+    },
+    {
+        "Titulo": "No More Tears",
+        "Artista": "Ozzy Osbourne",
+        "Fecha de lanzamiento": "1991",
+        "Duracion": "7:23",
+        "Genero": ["Heavy Metal"],
+        "Discografia": "No More Tears"
+    },
+    {
+        "Titulo": "Breaking the Law",
+        "Artista": "Judas Priest",
+        "Fecha de lanzamiento": "1980",
+        "Duracion": "2:35",
+        "Genero": ["Heavy Metal"],
+        "Discografia": "British Steel"
+    },
+    {
+        "Titulo": "Painkiller",
+        "Artista": "Judas Priest",
+        "Fecha de lanzamiento": "1990",
+        "Duracion": "6:06",
+        "Genero": ["Heavy Metal"],
+        "Discografia": "Painkiller"
+    },
+    {
+        "Titulo": "Sweet Emotion",
+        "Artista": "Aerosmith",
+        "Fecha de lanzamiento": "1975",
+        "Duracion": "4:34",
+        "Genero": ["Hard Rock"],
+        "Discografia": "Toys in the Attic"
+    },
+    {
+        "Titulo": "Walk This Way",
+        "Artista": "Aerosmith",
+        "Fecha de lanzamiento": "1975",
+        "Duracion": "3:40",
+        "Genero": ["Hard Rock"],
+        "Discografia": "Toys in the Attic"
+    },
+    {
+        "Titulo": "Paradise City",
+        "Artista": "Guns N' Roses",
+        "Fecha de lanzamiento": "1987",
+        "Duracion": "6:46",
+        "Genero": ["Hard Rock"],
+        "Discografia": "Appetite for Destruction"
+    },
+    {
+        "Titulo": "November Rain",
+        "Artista": "Guns N' Roses",
+        "Fecha de lanzamiento": "1991",
+        "Duracion": "8:57",
+        "Genero": ["Rock"],
+        "Discografia": "Use Your Illusion I"
+    },
+    {
+        "Titulo": "Black Dog",
+        "Artista": "Led Zeppelin",
+        "Fecha de lanzamiento": "1971",
+        "Duracion": "4:55",
+        "Genero": ["Rock"],
+        "Discografia": "Led Zeppelin IV"
+    },
+    {
+        "Titulo": "Rock You Like a Hurricane",
+        "Artista": "Scorpions",
+        "Fecha de lanzamiento": "1984",
+        "Duracion": "4:12",
+        "Genero": ["Hard Rock"],
+        "Discografia": "Love at First Sting"
+    },
+    {
+        "Titulo": "Wind of Change",
+        "Artista": "Scorpions",
+        "Fecha de lanzamiento": "1990",
+        "Duracion": "5:10",
+        "Genero": ["Rock"],
+        "Discografia": "Crazy World"
+    },
+    {
+        "Titulo": "Sweet Home Alabama",
+        "Artista": "Lynyrd Skynyrd",
+        "Fecha de lanzamiento": "1974",
+        "Duracion": "4:45",
+        "Genero": ["Southern Rock"],
+        "Discografia": "Second Helping"
+    },
+    {
+        "Titulo": "Simple Man",
+        "Artista": "Lynyrd Skynyrd",
+        "Fecha de lanzamiento": "1973",
+        "Duracion": "5:57",
+        "Genero": ["Southern Rock"],
+        "Discografia": "Pronounced Leh-Nerd Skin-Nerd"
+    },
+    {
+        "Titulo": "Crazy Little Thing Called Love",
+        "Artista": "Queen",
+        "Fecha de lanzamiento": "1980",
+        "Duracion": "2:44",
+        "Genero": ["Rock"],
+        "Discografia": "The Game"
+    },
+    {
+        "Titulo": "Don't Stop Me Now",
+        "Artista": "Queen",
+        "Fecha de lanzamiento": "1979",
+        "Duracion": "3:29",
+        "Genero": ["Rock"],
+        "Discografia": "Jazz"
+    },
+    {
+        "Titulo": "Under Pressure",
+        "Artista": "Queen & David Bowie",
+        "Fecha de lanzamiento": "1981",
+        "Duracion": "4:08",
+        "Genero": ["Rock"],
+        "Discografia": "Hot Space"
+    },
+    {
+        "Titulo": "Heroes",
+        "Artista": "David Bowie",
+        "Fecha de lanzamiento": "1977",
+        "Duracion": "6:07",
+        "Genero": ["Rock"],
+        "Discografia": "Heroes"
+    },
+    {
+        "Titulo": "Rebel Yell",
+        "Artista": "Billy Idol",
+        "Fecha de lanzamiento": "1983",
+        "Duracion": "4:48",
+        "Genero": ["Rock"],
+        "Discografia": "Rebel Yell"
+    },
+    {
+        "Titulo": "White Wedding",
+        "Artista": "Billy Idol",
+        "Fecha de lanzamiento": "1982",
+        "Duracion": "4:12",
+        "Genero": ["Rock"],
+        "Discografia": "Billy Idol"
+    },
+    {
+        "Titulo": "The Final Countdown",
+        "Artista": "Europe",
+        "Fecha de lanzamiento": "1986",
+        "Duracion": "5:09",
+        "Genero": ["Hard Rock"],
+        "Discografia": "The Final Countdown"
+    },
+    {
+        "Titulo": "Carrie",
+        "Artista": "Europe",
+        "Fecha de lanzamiento": "1987",
+        "Duracion": "4:30",
+        "Genero": ["Hard Rock"],
+        "Discografia": "The Final Countdown"
+    },
+    {
+        "Titulo": "Back in the Saddle",
+        "Artista": "Aerosmith",
+        "Fecha de lanzamiento": "1976",
+        "Duracion": "4:40",
+        "Genero": ["Hard Rock"],
+        "Discografia": "Rocks"
+    },
+    {
+        "Titulo": "Rag Doll",
+        "Artista": "Aerosmith",
+        "Fecha de lanzamiento": "1987",
+        "Duracion": "4:21",
+        "Genero": ["Hard Rock"],
+        "Discografia": "Permanent Vacation"
+    },
+    {
+        "Titulo": "Welcome Home (Sanitarium)",
+        "Artista": "Metallica",
+        "Fecha de lanzamiento": "1986",
+        "Duracion": "6:27",
+        "Genero": ["Thrash Metal"],
+        "Discografia": "Master of Puppets"
+    },
+    {
+        "Titulo": "One",
+        "Artista": "Metallica",
+        "Fecha de lanzamiento": "1988",
+        "Duracion": "7:27",
+        "Genero": ["Thrash Metal"],
+        "Discografia": "...And Justice for All"
+    },
+    {
+        "Titulo": "Fade to Black",
+        "Artista": "Metallica",
+        "Fecha de lanzamiento": "1984",
+        "Duracion": "6:57",
+        "Genero": ["Heavy Metal"],
+        "Discografia": "Ride the Lightning"
+    },
+    {
+        "Titulo": "Battery",
+        "Artista": "Metallica",
+        "Fecha de lanzamiento": "1986",
+        "Duracion": "5:12",
+        "Genero": ["Thrash Metal"],
+        "Discografia": "Master of Puppets"
+    },
+    {
+        "Titulo": "Fear of the Dark",
+        "Artista": "Iron Maiden",
+        "Fecha de lanzamiento": "1992",
+        "Duracion": "7:18",
+        "Genero": ["Heavy Metal"],
+        "Discografia": "Fear of the Dark"
+    },
+    {
+        "Titulo": "Hallowed Be Thy Name",
+        "Artista": "Iron Maiden",
+        "Fecha de lanzamiento": "1982",
+        "Duracion": "7:11",
+        "Genero": ["Heavy Metal"],
+        "Discografia": "The Number of the Beast"
+    },
+    {
+        "Titulo": "Runaway",
+        "Artista": "Bon Jovi",
+        "Fecha de lanzamiento": "1984",
+        "Duracion": "3:52",
+        "Genero": ["Hard Rock"],
+        "Discografia": "Bon Jovi"
+    },
+    {
+        "Titulo": "Wanted Dead or Alive",
+        "Artista": "Bon Jovi",
+        "Fecha de lanzamiento": "1986",
+        "Duracion": "5:08",
+        "Genero": ["Hard Rock"],
+        "Discografia": "Slippery When Wet"
+    },
+    {
+        "Titulo": "Kickstart My Heart",
+        "Artista": "Mötley Crüe",
+        "Fecha de lanzamiento": "1989",
+        "Duracion": "4:43",
+        "Genero": ["Glam Metal"],
+        "Discografia": "Dr. Feelgood"
+    },
+    {
+        "Titulo": "Dr. Feelgood",
+        "Artista": "Mötley Crüe",
+        "Fecha de lanzamiento": "1989",
+        "Duracion": "4:50",
+        "Genero": ["Glam Metal"],
+        "Discografia": "Dr. Feelgood"
+    },
+    {
+        "Titulo": "Jump",
+        "Artista": "Van Halen",
+        "Fecha de lanzamiento": "1984",
+        "Duracion": "4:04",
+        "Genero": ["Hard Rock"],
+        "Discografia": "1984"
+    },
+    {
+        "Titulo": "Panama",
+        "Artista": "Van Halen",
+        "Fecha de lanzamiento": "1984",
+        "Duracion": "3:31",
+        "Genero": ["Hard Rock"],
+        "Discografia": "1984"
+    },
+    {
+        "Titulo": "Run Like Hell",
+        "Artista": "Pink Floyd",
+        "Fecha de lanzamiento": "1979",
+        "Duracion": "4:20",
+        "Genero": ["Progressive Rock"],
+        "Discografia": "The Wall"
+    },
+    {
+        "Titulo": "Money",
+        "Artista": "Pink Floyd",
+        "Fecha de lanzamiento": "1973",
+        "Duracion": "6:22",
+        "Genero": ["Progressive Rock"],
+        "Discografia": "The Dark Side of the Moon"
+    },
+    {
+        "Titulo": "Another One Bites the Dust",
+        "Artista": "Queen",
+        "Fecha de lanzamiento": "1980",
+        "Duracion": "3:35",
+        "Genero": ["Rock"],
+        "Discografia": "The Game"
+    },
+    {
+        "Titulo": "Baba O'Riley",
+        "Artista": "The Who",
+        "Fecha de lanzamiento": "1971",
+        "Duracion": "5:01",
+        "Genero": ["Rock"],
+        "Discografia": "Who's Next"
+    },
+    {
+        "Titulo": "Behind Blue Eyes",
+        "Artista": "The Who",
+        "Fecha de lanzamiento": "1971",
+        "Duracion": "3:42",
+        "Genero": ["Rock"],
+        "Discografia": "Who's Next"
+    },
+    {
+        "Titulo": "Teenage Dirtbag",
+        "Artista": "Wheatus",
+        "Fecha de lanzamiento": "2000",
+        "Duracion": "4:01",
+        "Genero": ["Alternative Rock"],
+        "Discografia": "Wheatus"
+    },
+    {
+        "Titulo": "All the Small Things",
+        "Artista": "Blink-182",
+        "Fecha de lanzamiento": "1999",
+        "Duracion": "2:48",
+        "Genero": ["Punk Rock"],
+        "Discografia": "Enema of the State"
+    },
+    {
+        "Titulo": "What's My Age Again?",
+        "Artista": "Blink-182",
+        "Fecha de lanzamiento": "1999",
+        "Duracion": "2:28",
+        "Genero": ["Punk Rock"],
+        "Discografia": "Enema of the State"
+    },
+    {
+        "Titulo": "In the End",
+        "Artista": "Linkin Park",
+        "Fecha de lanzamiento": "2000",
+        "Duracion": "3:36",
+        "Genero": ["Alternative Rock"],
+        "Discografia": "Hybrid Theory"
+    },
+    {
+        "Titulo": "Numb",
+        "Artista": "Linkin Park",
+        "Fecha de lanzamiento": "2003",
+        "Duracion": "3:07",
+        "Genero": ["Alternative Rock"],
+        "Discografia": "Meteora"
+    },
+    {
+        "Titulo": "Shadow of the Day",
+        "Artista": "Linkin Park",
+        "Fecha de lanzamiento": "2007",
+        "Duracion": "4:50",
+        "Genero": ["Alternative Rock"],
+        "Discografia": "Minutes to Midnight"
+    },
+    {
+        "Titulo": "Boulevard of Broken Dreams (Live)",
+        "Artista": "Green Day",
+        "Fecha de lanzamiento": "2005",
+        "Duracion": "5:00",
+        "Genero": ["Punk Rock"],
+        "Discografia": "Live in NYC"
+    },
+    {
+        "Titulo": "Everlong (Acoustic)",
+        "Artista": "Foo Fighters",
+        "Fecha de lanzamiento": "1999",
+        "Duracion": "4:10",
+        "Genero": ["Alternative Rock"],
+        "Discografia": "Skin and Bones"
+    },
+    {
+        "Titulo": "You Shook Me All Night Long",
+        "Artista": "AC/DC",
+        "Fecha de lanzamiento": "1980",
+        "Duracion": "3:30",
+        "Genero": ["Hard Rock"],
+        "Discografia": "Back in Black"
+    },
+    {
+        "Titulo": "TNT",
+        "Artista": "AC/DC",
+        "Fecha de lanzamiento": "1975",
+        "Duracion": "3:35",
+        "Genero": ["Hard Rock"],
+        "Discografia": "T.N.T."
+    },
+    {
+        "Titulo": "For Those About to Rock",
+        "Artista": "AC/DC",
+        "Fecha de lanzamiento": "1981",
+        "Duracion": "5:44",
+        "Genero": ["Hard Rock"],
+        "Discografia": "For Those About to Rock We Salute You"
+    },
+    {
+        "Titulo": "Sympathy for the Devil",
+        "Artista": "The Rolling Stones",
+        "Fecha de lanzamiento": "1968",
+        "Duracion": "6:18",
+        "Genero": ["Rock"],
+        "Discografia": "Beggars Banquet"
+    },
+    {
+        "Titulo": "Gimme Shelter",
+        "Artista": "The Rolling Stones",
+        "Fecha de lanzamiento": "1969",
+        "Duracion": "4:30",
+        "Genero": ["Rock"],
+        "Discografia": "Let It Bleed"
+    },
+    {
+        "Titulo": "Jumpin' Jack Flash",
+        "Artista": "The Rolling Stones",
+        "Fecha de lanzamiento": "1968",
+        "Duracion": "3:43",
+        "Genero": ["Rock"],
+        "Discografia": "Single"
+    },
+    {
+        "Titulo": "Sweet Child O' Mine (Live)",
+        "Artista": "Guns N' Roses",
+        "Fecha de lanzamiento": "1992",
+        "Duracion": "6:00",
+        "Genero": ["Hard Rock"],
+        "Discografia": "Use Your Illusion Tour"
+    },
+    {
+        "Titulo": "Patience",
+        "Artista": "Guns N' Roses",
+        "Fecha de lanzamiento": "1988",
+        "Duracion": "5:56",
+        "Genero": ["Rock"],
+        "Discografia": "G N' R Lies"
+    },
+    {
+        "Titulo": "Civil War",
+        "Artista": "Guns N' Roses",
+        "Fecha de lanzamiento": "1991",
+        "Duracion": "7:42",
+        "Genero": ["Hard Rock"],
+        "Discografia": "Use Your Illusion II"
+    },
+    {
+        "Titulo": "Black Sabbath",
+        "Artista": "Black Sabbath",
+        "Fecha de lanzamiento": "1970",
+        "Duracion": "6:17",
+        "Genero": ["Heavy Metal"],
+        "Discografia": "Black Sabbath"
+    },
+    {
+        "Titulo": "Children of the Grave",
+        "Artista": "Black Sabbath",
+        "Fecha de lanzamiento": "1971",
+        "Duracion": "5:16",
+        "Genero": ["Heavy Metal"],
+        "Discografia": "Master of Reality"
+    },
+    {
+        "Titulo": "War Pigs",
+        "Artista": "Black Sabbath",
+        "Fecha de lanzamiento": "1970",
+        "Duracion": "7:57",
+        "Genero": ["Heavy Metal"],
+        "Discografia": "Paranoid"
+    },
+    {
+        "Titulo": "The Number of the Beast",
+        "Artista": "Iron Maiden",
+        "Fecha de lanzamiento": "1982",
+        "Duracion": "4:50",
+        "Genero": ["Heavy Metal"],
+        "Discografia": "The Number of the Beast"
+    },
+    {
+        "Titulo": "Aces High",
+        "Artista": "Iron Maiden",
+        "Fecha de lanzamiento": "1984",
+        "Duracion": "4:31",
+        "Genero": ["Heavy Metal"],
+        "Discografia": "Powerslave"
+    },
+    {
+        "Titulo": "2 Minutes to Midnight",
+        "Artista": "Iron Maiden",
+        "Fecha de lanzamiento": "1984",
+        "Duracion": "6:00",
+        "Genero": ["Heavy Metal"],
+        "Discografia": "Powerslave"
+    },
+    {
+        "Titulo": "Seek & Destroy",
+        "Artista": "Metallica",
+        "Fecha de lanzamiento": "1983",
+        "Duracion": "6:55",
+        "Genero": ["Thrash Metal"],
+        "Discografia": "Kill 'Em All"
+    },
+    {
+        "Titulo": "For Whom the Bell Tolls",
+        "Artista": "Metallica",
+        "Fecha de lanzamiento": "1984",
+        "Duracion": "5:10",
+        "Genero": ["Heavy Metal"],
+        "Discografia": "Ride the Lightning"
+    },
+    {
+        "Titulo": "Sad But True",
+        "Artista": "Metallica",
+        "Fecha de lanzamiento": "1991",
+        "Duracion": "5:24",
+        "Genero": ["Heavy Metal"],
+        "Discografia": "Metallica"
+    },
+    {
+        "Titulo": "Raining Blood",
+        "Artista": "Slayer",
+        "Fecha de lanzamiento": "1986",
+        "Duracion": "4:17",
+        "Genero": ["Thrash Metal"],
+        "Discografia": "Reign in Blood"
+    },
+    {
+        "Titulo": "Angel of Death",
+        "Artista": "Slayer",
+        "Fecha de lanzamiento": "1986",
+        "Duracion": "4:51",
+        "Genero": ["Thrash Metal"],
+        "Discografia": "Reign in Blood"
+    },
+    {
+        "Titulo": "Ace of Spades (Live)",
+        "Artista": "Motörhead",
+        "Fecha de lanzamiento": "1981",
+        "Duracion": "3:00",
+        "Genero": ["Heavy Metal"],
+        "Discografia": "No Sleep 'til Hammersmith"
+    },
+    {
+        "Titulo": "Overkill",
+        "Artista": "Motörhead",
+        "Fecha de lanzamiento": "1979",
+        "Duracion": "5:12",
+        "Genero": ["Heavy Metal"],
+        "Discografia": "Overkill"
+    },
+    {
+        "Titulo": "Ace of Spades (Remastered)",
+        "Artista": "Motörhead",
+        "Fecha de lanzamiento": "2008",
+        "Duracion": "2:50",
+        "Genero": ["Heavy Metal"],
+        "Discografia": "Ace of Spades"
+    },
+    {
+        "Titulo": "The Boys Are Back in Town",
+        "Artista": "Thin Lizzy",
+        "Fecha de lanzamiento": "1976",
+        "Duracion": "4:26",
+        "Genero": ["Hard Rock"],
+        "Discografia": "Jailbreak"
+    },
+    {
+        "Titulo": "Jailbreak",
+        "Artista": "Thin Lizzy",
+        "Fecha de lanzamiento": "1976",
+        "Duracion": "4:00",
+        "Genero": ["Hard Rock"],
+        "Discografia": "Jailbreak"
+    },
+    {
+        "Titulo": "Born in the U.S.A.",
+        "Artista": "Bruce Springsteen",
+        "Fecha de lanzamiento": "1984",
+        "Duracion": "4:39",
+        "Genero": ["Rock"],
+        "Discografia": "Born in the U.S.A."
+    },
+    {
+        "Titulo": "Dancing in the Dark",
+        "Artista": "Bruce Springsteen",
+        "Fecha de lanzamiento": "1984",
+        "Duracion": "4:01",
+        "Genero": ["Rock"],
+        "Discografia": "Born in the U.S.A."
+    },
+    {
+        "Titulo": "Thunderstruck (Live)",
+        "Artista": "AC/DC",
+        "Fecha de lanzamiento": "1992",
+        "Duracion": "5:10",
+        "Genero": ["Hard Rock"],
+        "Discografia": "Live"
+    },
+    {
+        "Titulo": "Rock and Roll",
+        "Artista": "Led Zeppelin",
+        "Fecha de lanzamiento": "1971",
+        "Duracion": "3:40",
+        "Genero": ["Rock"],
+        "Discografia": "Led Zeppelin IV"
+    },
+    {
+        "Titulo": "Immigrant Song",
+        "Artista": "Led Zeppelin",
+        "Fecha de lanzamiento": "1970",
+        "Duracion": "2:26",
+        "Genero": ["Rock"],
+        "Discografia": "Led Zeppelin III"
+    },
+    {
+        "Titulo": "Ramble On",
+        "Artista": "Led Zeppelin",
+        "Fecha de lanzamiento": "1969",
+        "Duracion": "4:34",
+        "Genero": ["Rock"],
+        "Discografia": "Led Zeppelin II"
+    },
+    {
+        "Titulo": "Black Hole Sun",
+        "Artista": "Soundgarden",
+        "Fecha de lanzamiento": "1994",
+        "Duracion": "5:18",
+        "Genero": ["Grunge"],
+        "Discografia": "Superunknown"
+    },
+    {
+        "Titulo": "Alive",
+        "Artista": "Pearl Jam",
+        "Fecha de lanzamiento": "1991",
+        "Duracion": "5:41",
+        "Genero": ["Grunge"],
+        "Discografia": "Ten"
+    },
+    {
+        "Titulo": "Jeremy",
+        "Artista": "Pearl Jam",
+        "Fecha de lanzamiento": "1992",
+        "Duracion": "5:18",
+        "Genero": ["Grunge"],
+        "Discografia": "Ten"
+    },
+    {
+        "Titulo": "Even Flow",
+        "Artista": "Pearl Jam",
+        "Fecha de lanzamiento": "1991",
+        "Duracion": "4:53",
+        "Genero": ["Grunge"],
+        "Discografia": "Ten"
+    },
+    {
+        "Titulo": "Man in the Box",
+        "Artista": "Alice in Chains",
+        "Fecha de lanzamiento": "1990",
+        "Duracion": "4:46",
+        "Genero": ["Grunge"],
+        "Discografia": "Facelift"
+    },
+    {
+        "Titulo": "Would?",
+        "Artista": "Alice in Chains",
+        "Fecha de lanzamiento": "1992",
+        "Duracion": "3:28",
+        "Genero": ["Grunge"],
+        "Discografia": "Dirt"
+    },
+    {
+        "Titulo": "Everlong (Live)",
+        "Artista": "Foo Fighters",
+        "Fecha de lanzamiento": "2006",
+        "Duracion": "4:15",
+        "Genero": ["Alternative Rock"],
+        "Discografia": "Skin and Bones"
+    },
+    {
+        "Titulo": "My Hero",
+        "Artista": "Foo Fighters",
+        "Fecha de lanzamiento": "1997",
+        "Duracion": "4:00",
+        "Genero": ["Alternative Rock"],
+        "Discografia": "The Colour and the Shape"
+    },
+    {
+        "Titulo": "Times Like These",
+        "Artista": "Foo Fighters",
+        "Fecha de lanzamiento": "2002",
+        "Duracion": "4:28",
+        "Genero": ["Alternative Rock"],
+        "Discografia": "One by One"
+    },
+    {
+        "Titulo": "Holiday",
+        "Artista": "Green Day",
+        "Fecha de lanzamiento": "2005",
+        "Duracion": "3:52",
+        "Genero": ["Punk Rock"],
+        "Discografia": "American Idiot"
+    },
+    {
+        "Titulo": "Wake Me Up When September Ends",
+        "Artista": "Green Day",
+        "Fecha de lanzamiento": "2005",
+        "Duracion": "4:45",
+        "Genero": ["Alternative Rock"],
+        "Discografia": "American Idiot"
+    },
+    {
+        "Titulo": "Basket Case",
+        "Artista": "Green Day",
+        "Fecha de lanzamiento": "1994",
+        "Duracion": "3:01",
+        "Genero": ["Punk Rock"],
+        "Discografia": "Dookie"
+    },
+    {
+        "Titulo": "When I Come Around",
+        "Artista": "Green Day",
+        "Fecha de lanzamiento": "1994",
+        "Duracion": "3:00",
+        "Genero": ["Punk Rock"],
+        "Discografia": "Dookie"
+    },
+    {
+        "Titulo": "Song 2",
+        "Artista": "Blur",
+        "Fecha de lanzamiento": "1997",
+        "Duracion": "2:02",
+        "Genero": ["Alternative Rock"],
+        "Discografia": "Blur"
+    },
+    {
+        "Titulo": "Wonderwall",
+        "Artista": "Oasis",
+        "Fecha de lanzamiento": "1995",
+        "Duracion": "4:18",
+        "Genero": ["Britpop"],
+        "Discografia": "(What's the Story) Morning Glory?"
+    },
+    {
+        "Titulo": "Don't Look Back in Anger",
+        "Artista": "Oasis",
+        "Fecha de lanzamiento": "1996",
+        "Duracion": "4:48",
+        "Genero": ["Britpop"],
+        "Discografia": "(What's the Story) Morning Glory?"
+    },
+    {
+        "Titulo": "Champagne Supernova",
+        "Artista": "Oasis",
+        "Fecha de lanzamiento": "1996",
+        "Duracion": "7:27",
+        "Genero": ["Britpop"],
+        "Discografia": "(What's the Story) Morning Glory?"
+    },
+    {
+        "Titulo": "Somebody Told Me",
+        "Artista": "The Killers",
+        "Fecha de lanzamiento": "2004",
+        "Duracion": "3:17",
+        "Genero": ["Alternative Rock"],
+        "Discografia": "Hot Fuss"
+    },
+    {
+        "Titulo": "Somebody That I Used to Know",
+        "Artista": "Gotye",
+        "Fecha de lanzamiento": "2011",
+        "Duracion": "4:04",
+        "Genero": ["Alternative"],
+        "Discografia": "Making Mirrors"
+    },
+    {
+        "Titulo": "Take On Me",
+        "Artista": "a-ha",
+        "Fecha de lanzamiento": "1985",
+        "Duracion": "3:46",
+        "Genero": ["Synthpop"],
+        "Discografia": "Hunting High and Low"
     }
 ]
