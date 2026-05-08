@@ -583,34 +583,88 @@ def main():
                             start_album = True
                             while start_album:
 
+                                #Mostramos el menu del album elegido.
                                 menu_album()
+                                #pedimos una opcion.
                                 opcion_album = pedir_opcion()
 
+                                #controlamos que la opcion intrducida es correcta.
                                 while opcion_album not in ('0', '1', '2', '3', '4', '5'):
                                     print("Opcion no valida.")
                                     opcion_album = pedir_opcion()
 
+                                #-----------------------
+                                #salimos del menu.
                                 if opcion_album == '0':
                                     print("Saliendo del menu del album...")
                                     start_album = False
 
+                                # -----------------------
+                                #mostramos info del album.
                                 elif opcion_album == '1':
                                     album_buscado.mostrar_info_album()
 
+                                # -----------------------
+                                #mostramos las canciones del album.
                                 elif opcion_album == '2':
                                     album_buscado.mostrar_canciones_album()
 
+                                # -----------------------
+                                #elimiamos album.
                                 elif opcion_album == '3':
                                     opcion_eliminar = input(f"Eliminar album '{album_buscado.titulo}'? (s/n): ").lower()
                                     if opcion_eliminar == 's':
                                         album_buscado.eliminar_album()
                                         start_album = False
 
+                                # -----------------------
+                                #anadimos cancion al album.
                                 elif opcion_album == '4':
-                                    print("Funcion añadir canción.")
+                                    print("\n=== ANADIR CANCION AL ALBUM ===")
 
+                                    #obtenemos el artista.
+                                    artista = album_buscado.artista
+
+                                    print(f'Artista: {artista}')
+                                    titulo_cancion_album_encontrado = input("Introduce el titulo de la cancion: ").strip()
+
+                                    #buscamos la cancion en la base de datos.
+                                    cancion_album = Cancion.buscar_cancion(titulo_cancion_album_encontrado, artista)
+
+                                    #si encontramos la cancion, la anadimos al album encontrado.
+                                    if cancion_album:
+                                        album_buscado.anadir_cancion_existente(cancion_album)
+                                    else:
+                                        print("La cancion no existe en la base de datos.")
+
+                                # -----------------------
+                                #eliminamos cancion del album.
                                 elif opcion_album == '5':
-                                    print("Funcion eliminar cancion")
+                                    print("\n=== ELIMINAR CANCION AL ALBUM ===")
+
+                                    # pedimos al usuario los datos para eliminar la cancion del album.
+                                    titulo = input("Introduce el titulo de la cancion a borrar: ").strip()
+                                    artista = album_buscado.artista
+
+                                    # nos aseguramos de que no ha sido missclisk
+                                    opcion_eliminar_cancion_album = input(
+                                        f"Eliminar la cancion '{titulo.title()}' de {artista.title()}? (s/n): ").strip().lower()
+
+                                    # validamos la peticion
+                                    while opcion_eliminar_cancion_album not in ("s", "n"):
+                                        print("Opcion no valida. Solo puedes poner (s/n).")
+                                        opcion_eliminar_cancion_album = input(
+                                            f"Eliminar la cancion '{titulo.title()}' de {artista.title()}? (s/n): ").strip().lower()
+
+                                    # si decimos que si:
+                                    if opcion_eliminar_cancion_album == "s":
+                                        print(f"Eliminando la cancion {titulo.title()}...")
+                                        album_buscado.eliminar_cancion_album(titulo, artista)
+                                    # si ha sido un missclick
+                                    else:
+                                        print("La eliminacion se ha canceldado.")
+                                else:
+                                    print("La cancion no existe en la base de datos.")
                         else:
                             pass
                     else:

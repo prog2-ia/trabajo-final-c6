@@ -273,6 +273,10 @@ class Cancion(Contenido):
         #si no, nada.
         return None
 
+
+    # ------------------------------------------------------------
+
+
     def __eq__(self, other):
         if not isinstance(other, Cancion):
             return False

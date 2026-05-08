@@ -1226,5 +1226,15 @@
             "rock"
         ],
         "Discografia": "Just Push Play"
+    },
+    {
+        "Titulo": "Sweet Leaf",
+        "Artista": "Black Sabbath",
+        "Fecha de lanzamiento": "1970",
+        "Duracion": "4:50",
+        "Genero": [
+            "metal"
+        ],
+        "Discografia": "Paranoid"
     }
 ]
