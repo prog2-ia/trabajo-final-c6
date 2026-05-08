@@ -147,6 +147,10 @@ class Cancion(Contenido):
     #metodo para mostrar UNA SOLA cancion.
     @staticmethod
     def mostrar_cancion(cancion):
+        if cancion is None:
+            print("Canción no encontrada.")
+            return
+
         print(f"Titulo: {cancion['Titulo']}")
         print(f"Artista: {cancion['Artista']}")
         print(f"Fecha de lanzamiento: {cancion['Fecha de lanzamiento']}")
@@ -154,7 +158,6 @@ class Cancion(Contenido):
         print(f"Genero(s): {', '.join(cancion['Genero'])}")
         print(f"Discografia: {cancion['Discografia']}")
         print("========================\n")
-
 
     # ------------------------------------------------------------
 
