@@ -1,0 +1,92 @@
+[{
+        "Titulo": "Viva la Vida",
+        "Artista": "Coldplay",
+        "Fecha de lanzamiento": "2008",
+        "Duracion": "4:02",
+        "Genero": [
+            "Alternative Rock"
+        ],
+        "Discografia": "Viva la Vida"
+    },
+    {
+        "Titulo": "Silver Springs",
+        "Artista": "Fleetwood Mac",
+        "Fecha de lanzamiento": "1977",
+        "Duracion": "4:49",
+        "Genero": [
+            "Soft rock",
+            "Rock"
+        ],
+        "Discografia": "Rumors"
+    },
+    {
+        "Titulo": "Billie Jean",
+        "Artista": "Michael Jackson",
+        "Fecha de lanzamiento": "1983",
+        "Duracion": "4:54",
+        "Genero": [
+            "Pop"
+        ],
+        "Discografia": "Thriller"
+    },
+    {
+        "Titulo": "Like a Prayer",
+        "Artista": "Madonna",
+        "Fecha de lanzamiento": "1989",
+        "Duracion": "5:42",
+        "Genero": [
+            "Pop"
+        ],
+        "Discografia": "Like a Prayer"
+    },
+    {
+        "Titulo": "Poker Face",
+        "Artista": "Lady Gaga",
+        "Fecha de lanzamiento": "2008",
+        "Duracion": "3:57",
+        "Genero": [
+            "Pop"
+        ],
+        "Discografia": "The Fame"
+    },
+    {
+        "Titulo": "Superstition",
+        "Artista": "Stevie Wonder",
+        "Fecha de lanzamiento": "1972",
+        "Duracion": "4:26",
+        "Genero": [
+            "Funk"
+        ],
+        "Discografia": "Talking Book"
+    },
+    {
+        "Titulo": "Get Up (I Feel Like Being a) Sex Machine",
+        "Artista": "James Brown",
+        "Fecha de lanzamiento": "1970",
+        "Duracion": "5:16",
+        "Genero": [
+            "Funk"
+        ],
+        "Discografia": "Sex Machine"
+    },
+    {
+        "Titulo": "Uptown Funk",
+        "Artista": "Mark Ronson ft. Bruno Mars",
+        "Fecha de lanzamiento": "2014",
+        "Duracion": "4:30",
+        "Genero": [
+            "Funk"
+        ],
+        "Discografia": "Uptown Special"
+    },
+    {
+        "Titulo": "Enjoy the Silence",
+        "Artista": "Depeche Mode",
+        "Fecha de lanzamiento": "1990",
+        "Duracion": "4:15",
+        "Genero": [
+            "Synthpop"
+        ],
+        "Discografia": "Violator"
+    }
+]

@@ -1,0 +1,101 @@
+[{
+        "Titulo": "Born to Run",
+        "Artista": "Bruce Springsteen",
+        "Fecha de lanzamiento": "1975",
+        "Duracion": "4:30",
+        "Genero": [
+            "Rock"
+        ],
+        "Discografia": "Born to Run"
+    },
+    {
+        "Titulo": "Stairway to Heaven",
+        "Artista": "Led Zeppelin",
+        "Fecha de lanzamiento": "1971",
+        "Duracion": "8:02",
+        "Genero": [
+            "Rock"
+        ],
+        "Discografia": "Led Zeppelin IV"
+    },
+    {
+        "Titulo": "Hotel California",
+        "Artista": "Eagles",
+        "Fecha de lanzamiento": "1976",
+        "Duracion": "6:30",
+        "Genero": [
+            "Rock"
+        ],
+        "Discografia": "Hotel California"
+    },
+    {
+        "Titulo": "Another Brick in the Wall",
+        "Artista": "Pink Floyd",
+        "Fecha de lanzamiento": "1979",
+        "Duracion": "5:35",
+        "Genero": [
+            "Progressive Rock"
+        ],
+        "Discografia": "The Wall"
+    },
+    {
+        "Titulo": "Imagine",
+        "Artista": "John Lennon",
+        "Fecha de lanzamiento": "1971",
+        "Duracion": "3:03",
+        "Genero": [
+            "Rock"
+        ],
+        "Discografia": "Imagine"
+    },
+    {
+        "Titulo": "Purple Haze",
+        "Artista": "Jimi Hendrix",
+        "Fecha de lanzamiento": "1967",
+        "Duracion": "2:50",
+        "Genero": [
+            "Psychedelic Rock"
+        ],
+        "Discografia": "Are You Experienced"
+    },
+    {
+        "Titulo": "Whole Lotta Love",
+        "Artista": "Led Zeppelin",
+        "Fecha de lanzamiento": "1969",
+        "Duracion": "5:33",
+        "Genero": [
+            "Hard Rock"
+        ],
+        "Discografia": "Led Zeppelin II"
+    },
+    {
+        "Titulo": "Comfortably Numb",
+        "Artista": "Pink Floyd",
+        "Fecha de lanzamiento": "1979",
+        "Duracion": "6:22",
+        "Genero": [
+            "Progressive Rock"
+        ],
+        "Discografia": "The Wall"
+    },
+    {
+        "Titulo": "Wish You Were Here",
+        "Artista": "Pink Floyd",
+        "Fecha de lanzamiento": "1975",
+        "Duracion": "5:40",
+        "Genero": [
+            "Progressive Rock"
+        ],
+        "Discografia": "Wish You Were Here"
+    },
+    {
+        "Titulo": "Dream On",
+        "Artista": "Aerosmith",
+        "Fecha de lanzamiento": "1973",
+        "Duracion": "4:29",
+        "Genero": [
+            "Hard Rock"
+        ],
+        "Discografia": "Aerosmith"
+    },
+]

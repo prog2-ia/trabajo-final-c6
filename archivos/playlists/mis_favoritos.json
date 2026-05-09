@@ -1,0 +1,32 @@
+[
+    {
+        "Titulo": "Back in Black",
+        "Artista": "AC/DC",
+        "Fecha de lanzamiento": "1980",
+        "Duracion": "4:15",
+        "Genero": [
+            "Hard Rock"
+        ],
+        "Discografia": "Back in Black"
+    },
+    {
+        "Titulo": "Sweet Child O' Mine",
+        "Artista": "Guns N' Roses",
+        "Fecha de lanzamiento": "1987",
+        "Duracion": "5:56",
+        "Genero": [
+            "Hard Rock"
+        ],
+        "Discografia": "Appetite for Destruction"
+    },
+    {
+        "Titulo": "We Will Rock You",
+        "Artista": "Queen",
+        "Fecha de lanzamiento": "1977",
+        "Duracion": "2:02",
+        "Genero": [
+            "Rock"
+        ],
+        "Discografia": "News of the World"
+    }
+  ]

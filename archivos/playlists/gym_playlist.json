@@ -1,0 +1,138 @@
+[{
+        "Titulo": "Dude (Looks Like A Lady)",
+        "Artista": "Aerosmith",
+        "Fecha de lanzamiento": "1987",
+        "Duracion": "4:23",
+        "Genero": [
+            "rock",
+            "hard rock"
+        ],
+        "Discografia": "Permament Vacation"
+    },
+    {
+        "Titulo": "Too Late For Love",
+        "Artista": "Def Leppard",
+        "Fecha de lanzamiento": "1983",
+        "Duracion": "3:30",
+        "Genero": [
+            "rock",
+            "glam rock"
+        ],
+        "Discografia": "Pyromania"
+    },
+    {
+        "Titulo": "Flashdance... What A Feeling",
+        "Artista": "Irene Cara",
+        "Fecha de lanzamiento": "1983",
+        "Duracion": "3:20",
+        "Genero": [
+            "pop"
+        ],
+        "Discografia": "What A Feelin'"
+    },
+    {
+        "Titulo": "All She Wrote",
+        "Artista": "Firehouse",
+        "Fecha de lanzamiento": "1990",
+        "Duracion": "4:28",
+        "Genero": [
+            "glam rock",
+            "glam metal"
+        ],
+        "Discografia": "Firehouse"
+    },
+    {
+        "Titulo": "Gods Of Rock N Roll",
+        "Artista": "Ozzy Osbourne feat. Billy Morrison",
+        "Fecha de lanzamiento": "2025",
+        "Duracion": "5:16",
+        "Genero": [
+            "rock",
+            "hard rock"
+        ],
+        "Discografia": "Gods Of Rock N Roll"
+    },
+    {
+        "Titulo": "Czerwony Jak Cegla",
+        "Artista": "Dzem",
+        "Fecha de lanzamiento": "1985",
+        "Duracion": "5:13",
+        "Genero": [
+            "Rock",
+            "blues"
+        ],
+        "Discografia": "Cegla"
+    },
+    {
+        "Titulo": "Heal The World",
+        "Artista": "Michael Jackson feat. N",
+        "Fecha de lanzamiento": "1991",
+        "Duracion": "6:25",
+        "Genero": [
+            "rock",
+            "pop"
+        ],
+        "Discografia": "The Best Of Michael Jackson"
+    },
+    {
+        "Titulo": "Earth Song",
+        "Artista": "Michael Jackson",
+        "Fecha de lanzamiento": "1995",
+        "Duracion": "6:45",
+        "Genero": [
+            "rock",
+            "pop"
+        ],
+        "Discografia": "History"
+    },
+    {
+        "Titulo": "Beat It",
+        "Artista": "Michael Jackson",
+        "Fecha de lanzamiento": "1982",
+        "Duracion": "4:59",
+        "Genero": [
+            "rock",
+            "pop"
+        ],
+        "Discografia": "Thriller"
+    },
+    {
+        "Titulo": "Just Push Play",
+        "Artista": "Aerosmith",
+        "Fecha de lanzamiento": "2001",
+        "Duracion": "3:51",
+        "Genero": [
+            "rock"
+        ],
+        "Discografia": "Just Push Play"
+    },
+    {
+        "Titulo": "Sweet Leaf",
+        "Artista": "Black Sabbath",
+        "Fecha de lanzamiento": "1970",
+        "Duracion": "4:50",
+        "Genero": [
+            "metal"
+        ],
+        "Discografia": "Paranoid"
+    },
+    {
+        "Titulo": "4",
+        "Artista": "5",
+        "Fecha de lanzamiento": "5",
+        "Duracion": "0:00",
+        "Genero": [],
+        "Discografia": "5"
+    },
+    {
+        "Titulo": "You'Re Crazy",
+        "Artista": "Guns N' Roses",
+        "Fecha de lanzamiento": "1987",
+        "Duracion": "3:16",
+        "Genero": [
+            "Rock",
+            "Hard rock"
+        ],
+        "Discografia": "Appetite For Destruction"
+    }
+]
