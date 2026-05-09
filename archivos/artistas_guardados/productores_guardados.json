@@ -16,5 +16,42 @@
             "Back to Black",
             "Locked Out of Heaven"
         ]
+    },
+    {
+        "Nombre": "r",
+        "Fecha de formación": "r",
+        "País de origen": "r",
+        "Activo": true,
+        "Genero": [
+            "j"
+        ],
+        "Canciones populares": [
+            "j"
+        ],
+        "Componentes": [
+            "j"
+        ],
+        "Producciones": [
+            "j"
+        ]
+    },
+    {
+        "Nombre": "Tegra",
+        "Fecha de formación": "202",
+        "País de origen": "España",
+        "Activo": true,
+        "Genero": [
+            "Hip",
+            " hop"
+        ],
+        "Canciones populares": [
+            "love"
+        ],
+        "Componentes": [
+            ""
+        ],
+        "Producciones": [
+            "nada"
+        ]
     }
 ]

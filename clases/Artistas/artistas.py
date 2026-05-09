@@ -34,7 +34,7 @@ class Artista(ABC):
     def nombre(self, valor):
         if not isinstance(valor, str):
             raise ArtistaError("El nombre debe ser texto.")
-        self._nombre = "desconocido"
+        self._nombre = valor
 
 
     # Comprueba que la fecha_formacion sea un string antes de asignarlo
@@ -46,7 +46,7 @@ class Artista(ABC):
     def fecha_formacion(self, valor):
         if not isinstance(valor, str):
             raise ArtistaError("La fecha de formación debe ser texto (str).")
-        self._fecha_formacion = "desconocida"
+        self._fecha_formacion = valor
 
     # Comprueba que el pais_origen sea un string antes de asignarlo
     @property
@@ -57,7 +57,7 @@ class Artista(ABC):
     def pais_origen(self, valor):
         if not isinstance(valor, str):
             raise ArtistaError("El país de origen debe ser texto.")
-        self._pais_origen = "desconocido"
+        self._pais_origen = valor
 
     # Comprueba que activo sea un valor booleano antes de asignarlo
     @property
@@ -78,7 +78,7 @@ class Artista(ABC):
     @genero.setter
     def genero(self, valor):
         if not isinstance(valor, list):
-            raise ArtistaError("El género debe ser una lista de strings.")
+            raise ArtistaError("El género debe ser una lista.")
         self._genero = valor
 
     # Comprueba que canciones_populares sea una lista antes de asignarlo

@@ -967,6 +967,7 @@ def main():
 
                 elif opcion_artista == '1':
                     #codigo: anadir artista a la base de datos
+
                     print(f'Añadiendo artista a la base de datos...')
 
                 # ------------------------------------------------------------
@@ -993,7 +994,7 @@ def main():
         # AQUI ACABA LA CUARTA OPCION (ARTISTAS) ------------------------------------------------------------
         #test (borrar)
 
-        #si elegimos 4, entramos en el menu de productor musical.
+        #si elegimos 5, entramos en el menu de productor musical.
         elif opcion_general == '5':
             start5 = True
             while start5:
@@ -1021,6 +1022,39 @@ def main():
                 #anadimos nuevo productor a la base de datos.
                 elif opcion_productor == '1':
                     #codigo: anadir nuevo productor.
+
+                    print("\n=== ANADIR PRODUCTOR ===")
+
+                    nombre = input('Introduce el nombre del productor: ').strip()
+                    fecha_de_formacion = input('Introduce la fecha de la formacion: ').strip()
+                    pais_origen = input('Introduce la pais de la origen: ').strip()
+
+                    activo_input = input('Introduce la actividad (True/False): ').strip().lower()
+                    activo = activo_input == "true"
+
+                    genero = input('Introduce los generos separados por coma: ').split(',')
+                    canciones_populares = input('Introduce canciones separadas por coma: ').split(',')
+                    componentes = input('Introduce componentes separados por coma: ').split(',')
+                    producciones = input('Introduce producciones separadas por coma: ').split(',')
+                    print(f'Anadiendo productor...')
+
+                    #Creamos un objeto ProductorMusical
+                    productor = ProductorMusical(
+                        nombre = nombre,
+                        fecha_formacion = fecha_de_formacion,
+                        pais_origen = pais_origen,
+                        activo = activo,
+                        genero = genero,
+                        canciones_populares = canciones_populares,
+                        componentes = componentes,
+                        producciones = producciones,
+                    )
+
+                    productor.guardar_productor(productor, ruta='archivos/artistas_guardados/productores_guardados.json')
+
+
+
+
                     print('Añadiendo productor musical a la base de datos...')
 
 
@@ -1038,12 +1072,14 @@ def main():
                     print('Buscando el productor en la base de datos...')
                     #codigo: buscar productor
 
+
                 # ------------------------------------------------------------
 
                 #mostramos productor.
                 elif opcion_productor == '4':
                     print('Mostrando todos los productores...')
-                    #codigo: mostrar productor
+                    #codigo: Mostrar todos los productores
+
 
                 # ------------------------------------------------------------
 
