@@ -1,10 +1,12 @@
-# Superclase Artista: Incluye cantantes individuales
+# Superclase Artista
 from abc import ABC, abstractmethod
 import json
 
-#Errores relacionados con la clase Artista.
+
+# Errores relacionados con la clase Artista.
 class ArtistaError(Exception):
     pass
+
 
 class Artista(ABC):
 
@@ -25,7 +27,6 @@ class Artista(ABC):
 
     # ---------------- PROPIEDADES ----------------
 
-    # Comprueba que el nombre sea un string antes de asignarlo
     @property
     def nombre(self):
         return self._nombre
@@ -36,8 +37,6 @@ class Artista(ABC):
             raise ArtistaError("El nombre debe ser texto.")
         self._nombre = valor
 
-
-    # Comprueba que la fecha_formacion sea un string antes de asignarlo
     @property
     def fecha_formacion(self):
         return self._fecha_formacion
@@ -48,7 +47,6 @@ class Artista(ABC):
             raise ArtistaError("La fecha de formación debe ser texto (str).")
         self._fecha_formacion = valor
 
-    # Comprueba que el pais_origen sea un string antes de asignarlo
     @property
     def pais_origen(self):
         return self._pais_origen
@@ -59,7 +57,6 @@ class Artista(ABC):
             raise ArtistaError("El país de origen debe ser texto.")
         self._pais_origen = valor
 
-    # Comprueba que activo sea un valor booleano antes de asignarlo
     @property
     def activo(self):
         return self._activo
@@ -70,7 +67,6 @@ class Artista(ABC):
             raise ArtistaError("El atributo 'activo' debe ser booleano (True/False).")
         self._activo = valor
 
-    # Comprueba que el genero sea una lista antes de asignarlo
     @property
     def genero(self):
         return self._genero
@@ -81,7 +77,6 @@ class Artista(ABC):
             raise ArtistaError("El género debe ser una lista.")
         self._genero = valor
 
-    # Comprueba que canciones_populares sea una lista antes de asignarlo
     @property
     def canciones_populares(self):
         return self._canciones_populares
@@ -92,7 +87,6 @@ class Artista(ABC):
             raise ArtistaError("Las canciones populares deben ser una lista.")
         self._canciones_populares = valor
 
-    # Comprueba que componentes sea una lista antes de asignarlo
     @property
     def componentes(self):
         return self._componentes
@@ -105,47 +99,63 @@ class Artista(ABC):
 
     # ---------------- MÉTODOS ----------------
 
-    #Metodo para añadir artista a la base de datos
+    #Metodo para guardar artista
     @staticmethod
     def guardar_artista(artista, ruta='archivos/artistas_guardados.json'):
         if not isinstance(artista, Artista):
             raise TypeError("Solo se pueden guardar objetos Artista.")
 
+        # Guardamos el nombre antes de cualquier operación para usarlo en finally.
+        nombre_artista = artista.nombre
+
         try:
             with open(ruta, "r", encoding="utf-8") as f:
-                artista = json.load(f)
+                datos = json.load(f)
 
         except FileNotFoundError:
-            raise FileNotFoundError(f"No se encontró el archivo: {ruta}")
+            # Si el archivo no existe aún, empezamos con lista vacía.
+            datos = []
 
+        #Error encaso de error al formar el archivo json
         except json.JSONDecodeError:
             raise ArtistaError("El archivo JSON está corrupto o mal formado.")
 
-        else:
-            artista.append({
-                "Nombre": artista.nombre,
-                "Fecha de formación": artista.fecha_formacion,
-                "País de origen": artista.pais_origen,
-                "Activo": artista.activo,
-                "Género": artista.genero,
-                "Canciones populares": artista.canciones_populares,
-                "Componentes": artista.componentes
-            })
-            with open(ruta, "w", encoding="utf-8") as f:
-                json.dump(artista, f, ensure_ascii=False, indent=4)
+        # Comprobamos que el artista no esté ya registrado.
+        for a in datos:
+            if a.get("Nombre", "").lower() == artista.nombre.lower():
+                print(f"El artista '{artista.nombre}' ya existe en la base de datos.")
+                return
 
-        finally:
-            print(f"Intento de añadir artista musical '{artista.nombre}' finalizado.")
+        # Añadimos el nuevo artista.
+        datos.append({
+            "Nombre": artista.nombre,
+            "Fecha de formación": artista.fecha_formacion,
+            "País de origen": artista.pais_origen,
+            "Activo": artista.activo,
+            "Género": artista.genero,
+            "Canciones populares": artista.canciones_populares,
+            "Componentes": artista.componentes
+        })
 
-  #Metodo para eliminar artista a la base de datos
+        with open(ruta, "w", encoding="utf-8") as f:
+            json.dump(datos, f, ensure_ascii=False, indent=4)
+
+        # BUG CORREGIDO: usamos 'nombre_artista' (str guardado antes),
+        # no 'artista.nombre' que ya no es el objeto sino la lista.
+        print(f"Artista '{nombre_artista}' guardado correctamente.")
+
+
+    # Metodo para eliminar artista de la base de datos.
     @staticmethod
     def eliminar_artista(artista, ruta='archivos/artistas_guardados.json'):
         if not isinstance(artista, Artista):
-            raise TypeError("Solo se pueden elimina objetos Artista.")
+            raise TypeError("Solo se pueden eliminar objetos Artista.")
+
+        nombre_artista = artista.nombre
 
         try:
             with open(ruta, "r", encoding="utf-8") as f:
-                artista = json.load(f)
+                datos = json.load(f)
 
         except FileNotFoundError:
             raise FileNotFoundError(f"No se encontró el archivo: {ruta}")
@@ -153,32 +163,35 @@ class Artista(ABC):
         except json.JSONDecodeError:
             raise ArtistaError("El archivo JSON está corrupto o mal formado.")
 
-        else:
-            encontrado = False
-            for a in artista:
-                if a["Nombre"] == artista.nombre:
-                    artista.remove(a)
-                    encontrado = True
-                    break
+        encontrado = False
+        for a in datos:
+            if a.get("Nombre", "").lower() == nombre_artista.lower():
+                datos.remove(a)
+                encontrado = True
+                break
 
-            if not encontrado:
-                raise ValueError(f'No se encontró el artista {artista.nombre}.')
+        if not encontrado:
+            raise ValueError(f"No se encontró el artista '{nombre_artista}'.")
 
-            with open(ruta, "w", encoding="utf-8") as f:
-                json.dump(artista, f, ensure_ascii=False, indent=4)
+        with open(ruta, "w", encoding="utf-8") as f:
+            json.dump(datos, f, ensure_ascii=False, indent=4)
 
-            print(f"Artista '{artista.nombre}' eliminado correctamente.")
+        # BUG CORREGIDO: usamos 'nombre_artista', no 'artista.nombre'.
+        print(f"Artista '{nombre_artista}' eliminado correctamente.")
 
 
-    #Metodo para buscar artista a la base de datos
+    # Metodo para buscar artista en la base de datos.
     @staticmethod
     def buscar_artista(artista, ruta='archivos/artistas_guardados.json'):
         if not isinstance(artista, Artista):
-            raise TypeError("Solo se pueden elimina objetos Artista.")
+            raise TypeError("Solo se pueden buscar objetos Artista.")
+
+        nombre_artista = artista.nombre
 
         try:
             with open(ruta, "r", encoding="utf-8") as f:
-                artista = json.load(f)
+                # BUG CORREGIDO: renombramos a 'datos'.
+                datos = json.load(f)
 
         except FileNotFoundError:
             raise FileNotFoundError(f"No se encontró el archivo: {ruta}")
@@ -186,35 +199,32 @@ class Artista(ABC):
         except json.JSONDecodeError:
             raise ArtistaError("El archivo JSON está corrupto o mal formado.")
 
+        encontrado = False
+        for a in datos:
+            if a.get("Nombre", "").lower() == nombre_artista.lower():
+                encontrado = True
+                print(f"Nombre:              {a.get('Nombre')}")
+                print(f"Fecha de formación:  {a.get('Fecha de formación')}")
+                print(f"País de origen:      {a.get('País de origen')}")
+                print(f"Activo:              {'Sí' if a.get('Activo') else 'No'}")
+                print(f"Género:              {a.get('Género', [])}")
+                print(f"Canciones populares: {a.get('Canciones populares', [])}")
+                print(f"Componentes:         {a.get('Componentes', [])}")
+                break
 
-        else:
-            encontrado = False
-            for a in artista:
-                if a["Nombre"] == artista.nombre:
-                    encontrado = True
-
-                    # Mostrar info
-                    print(f"Nombre: {a.get('Nombre')}")
-                    print(f"Fecha de formación: {a.get('Fecha de formación')}")
-                    print(f"País de origen: {a.get('País de origen')}")
-                    print(f"Activo: {a.get('Activo')}")
-                    print(f"Género: {a.get('Género')}")
-                    print(f"Canciones populares: {a.get('Canciones populares')}")
-                    print(f"Componentes: {a.get('Componentes')}")
-
-            if not encontrado:
-                raise ValueError(f'No se encontró el artista {artista.nombre}.')
+        if not encontrado:
+            raise ValueError(f"No se encontró el artista '{nombre_artista}'.")
 
 
-    #Metodo abstracto para mostrar la información en las subclases
+    # Metodo abstracto para mostrar la información en las subclases.
     @abstractmethod
     def mostrar_info(self):
-        print(f'Nombre: {self.nombre}')
+        print(f"Nombre:              {self.nombre}")
         if self.componentes:
-            print(f'Componentes: {self.componentes}')
-        print(f'Género(s): {self.genero}')
-        print(f'Fecha de formación: {self.fecha_formacion}')
-        print(f'País de origen: {self.pais_origen}')
+            print(f"Componentes:         {self.componentes}")
+        print(f"Género(s):           {self.genero}")
+        print(f"Fecha de formación:  {self.fecha_formacion}")
+        print(f"País de origen:      {self.pais_origen}")
         if self.canciones_populares:
-            print(f'Canciones populares: {self.canciones_populares}')
-        print(f'Activo: {"Sí" if self.activo else "No"}')
+            print(f"Canciones populares: {self.canciones_populares}")
+        print(f"Activo:              {'Sí' if self.activo else 'No'}")
