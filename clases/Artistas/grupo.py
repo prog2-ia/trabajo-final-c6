@@ -1,4 +1,5 @@
 from clases.Artistas.artistas import Artista, ArtistaError
+import json
 
 #Importamos ArtistaError
 
@@ -75,4 +76,42 @@ class Grupos(Artista):
             f"Lider: {self.lider}"
 
         )
+
+    #Metodo para guardar grupo
+    @staticmethod
+    def guardar_grupo(grupo, ruta='archivos/artistas_guardados.json'):
+        if not isinstance(grupo, Grupos):
+            raise TypeError("Solo se pueden guardar objetos Grupos.")
+
+        try:
+            with open(ruta, "r", encoding="utf-8") as f:
+                datos = json.load(f)
+
+        except FileNotFoundError:
+            raise FileNotFoundError(f"No se encontró el archivo: {ruta}")
+
+        except json.JSONDecodeError:
+            raise ArtistaError("El archivo JSON está corrupto o mal formado.")
+
+        else:
+
+            # Añadimos el nuevo artista.
+            datos.append({
+                "Nombre": grupo.nombre,
+                "Fecha de formación": grupo.fecha_formacion,
+                "País de origen": grupo.pais_origen,
+                "Activo": grupo.activo,
+                "Género": grupo.genero,
+                "Canciones populares": grupo.canciones_populares,
+                "Componentes": grupo.componentes,
+                'Lider': grupo.lider
+
+            })
+
+            with open(ruta, "w", encoding="utf-8") as f:
+                json.dump(datos, f, ensure_ascii=False, indent=4)
+
+        finally:
+            print(f"Artista '{grupo.nombre}' guardado correctamente.")
+
 

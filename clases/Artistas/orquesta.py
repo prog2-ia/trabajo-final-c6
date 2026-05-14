@@ -1,4 +1,5 @@
 from clases.Artistas.artistas import Artista, ArtistaError
+import json
 
 #Importamos ArtistaError
 
@@ -95,3 +96,39 @@ class Orquestas(Artista):
             f"Director: {self.director}\n"
             f"Instrumentos: {self.instrumentos}"
         )
+
+    #Metodo para guardar orquestas
+    @staticmethod
+    def guardar_orquesta(orquesta, ruta='archivos/artistas_guardados.json'):
+        if not isinstance(orquesta, Orquestas):
+            raise TypeError("Solo se pueden guardar objetos Orquestas.")
+
+        try:
+            with open(ruta, "r", encoding="utf-8") as f:
+                datos = json.load(f)
+
+        except FileNotFoundError:
+            raise FileNotFoundError(f"No se encontró el archivo: {ruta}")
+
+        except json.JSONDecodeError:
+            raise ArtistaError("El archivo JSON está corrupto o mal formado.")
+
+        else:
+
+            # Añadimos el nuevo artista.
+            datos.append({
+                "Nombre": orquesta.nombre,
+                "Fecha de formación": orquesta.fecha_formacion,
+                "País de origen": orquesta.pais_origen,
+                "Activo": orquesta.activo,
+                "Género": orquesta.genero,
+                'Director': orquesta.director,
+                'Instrumentos': orquesta.instrumentos
+
+            })
+
+            with open(ruta, "w", encoding="utf-8") as f:
+                json.dump(datos, f, ensure_ascii=False, indent=4)
+
+        finally:
+            print(f"Artista '{orquesta.nombre}' guardado correctamente.")
