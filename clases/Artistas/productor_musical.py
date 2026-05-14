@@ -48,12 +48,9 @@ class ProductorMusical(Artista,Productor):
     #Metodo para eliminar el productor
     @staticmethod
     def eliminar_productor(productor, ruta='archivos/artistas_guardados/productores_guardados.json'):
-        if not isinstance(productor, ProductorMusical):
-            raise TypeError("Solo se pueden eliminar objetos ProductorMusical.")
-
         try:
             with open(ruta, "r", encoding="utf-8") as f:
-                productores = json.load(f)
+                datos = json.load(f)
 
         except FileNotFoundError:
             raise FileNotFoundError(f"No se encontró el archivo: {ruta}")
@@ -61,29 +58,28 @@ class ProductorMusical(Artista,Productor):
         except json.JSONDecodeError:
             raise ArtistaError("El archivo JSON está corrupto o mal formado.")
 
-        else:
-            encontrado = False
-            for p in productores:
-                if p["Nombre"] == productor.nombre:
-                    productores.remove(p)
-                    encontrado = True
-                    break
+        encontrado = False
 
-            if not encontrado:
-                raise ValueError(f'No se encontró el productor {productor.nombre}.')
+        for p in datos:
+            if p.get("Nombre", "").lower() == productor.lower():
 
-            with open(ruta, "w", encoding="utf-8") as f:
-                json.dump(productores, f, ensure_ascii=False, indent=4)
+                datos.remove(p)
+                encontrado = True
+                break
 
-            print(f"Productor '{productor.nombre}' eliminado correctamente.")
+        if not encontrado:
+            raise ValueError(f"No se encontró el productor '{productor}'.")
+
+        with open(ruta, "w", encoding="utf-8") as f:
+            json.dump(datos, f, ensure_ascii=False, indent=4)
+
+        print(f"Productor '{productor}' eliminado correctamente.")
+
 
 
     #Metodo para buscar productor por nombre y mostrar su información
     @staticmethod
     def buscar_productor(productor, ruta='archivos/artistas_guardados/productores_guardados.json'):
-        if not isinstance(productor, ProductorMusical):
-            raise TypeError("Solo se pueden eliminar objetos ProductorMusical.")
-
         try:
             with open(ruta, "r", encoding="utf-8") as f:
                 productores = json.load(f)
@@ -97,7 +93,7 @@ class ProductorMusical(Artista,Productor):
         else:
             encontrado = False
             for p in productores:
-                if p["Nombre"] == productor.nombre:
+                if p.get("Nombre", "").lower() == productor.lower():
                     encontrado = True
 
                     # Mostrar info
@@ -112,10 +108,13 @@ class ProductorMusical(Artista,Productor):
                     print(f"Componentes: {p.get('Componentes')}")
                     print(f"Producciones: {p.get('Producciones')}")
 
+                    return p
+
 
 
             if not encontrado:
                 raise ValueError(f'No se encontró el productor {productor.nombre}.')
+            return None
 
     @staticmethod
     def mostrar_productores( ruta='archivos/artistas_guardados/productores_guardados.json'):
@@ -130,8 +129,22 @@ class ProductorMusical(Artista,Productor):
             raise ArtistaError("El archivo JSON está corrupto o mal formado.")
 
         else:
+            if not productores:
+                print("No hay productores registrados.")
+                return
+
             for p in productores:
-               print(p.get(f'\n -Nombre '))
+                # Mostrar info
+                # .get() evita errores si la clave NO existe.
+                print("\n=== PRODUCTOR MUSICAL ===")
+                print(f"Nombre: {p.get('Nombre')}")
+                print(f"Fecha de formación: {p.get('Fecha de formación')}")
+                print(f"País de origen: {p.get('País de origen')}")
+                print(f"Activo: {p.get('Activo')}")
+                print(f"Género: {p.get('Genero')}")
+                print(f"Canciones populares: {p.get('Canciones populares')}")
+                print(f"Componentes: {p.get('Componentes')}")
+                print(f"Producciones: {p.get('Producciones')}")
 
     #creamos un metodo para mostrar info sobre el productor musical.
     def mostrar_info(self):

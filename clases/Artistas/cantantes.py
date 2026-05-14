@@ -1,4 +1,9 @@
+import json
+
+
 from clases.Artistas.artistas import Artista
+from clases.Artistas.artistas import ArtistaError
+
 
 
 #Errores relacionados con la clase Cantante.
@@ -102,5 +107,56 @@ class Cantantes(Artista):
             f"Colaboraciones: {self.colaboraciones}\n"
             f"Instrumentos: {self.instrumentos}"
         )
+
+
+    #Metodo para guardar artista
+    @staticmethod
+    def guardar_cantante(cantante, ruta='archivos/artistas_guardados.json'):
+        if not isinstance(cantante, Cantantes):
+            raise TypeError("Solo se pueden guardar objetos Artista.")
+
+        # Guardamos el nombre antes de cualquier operación para usarlo en finally.
+        nombre_cantante= cantante.nombre
+
+        try:
+            with open(ruta, "r", encoding="utf-8") as f:
+                datos = json.load(f)
+
+        except FileNotFoundError:
+            # Si el archivo no existe aún, empezamos con lista vacía.
+            datos = []
+
+        #Error encaso de error al formar el archivo json
+        except json.JSONDecodeError:
+            raise ArtistaError("El archivo JSON está corrupto o mal formado.")
+
+        # Comprobamos que el artista no esté ya registrado.
+        for a in datos:
+            if a.get("Nombre", "").lower() ==cantante.nombre.lower():
+                print(f"El artista '{cantante.nombre}' ya existe en la base de datos.")
+                return
+
+        # Añadimos el nuevo artista.
+        datos.append({
+            "Nombre": cantante.nombre,
+            "Fecha de formación": cantante.fecha_formacion,
+            "País de origen": cantante.pais_origen,
+            "Activo": cantante.activo,
+            "Género": cantante.genero,
+            "Canciones populares": cantante.canciones_populares,
+            "Componentes": cantante.componentes,
+            'Tipo de voz': cantante.tipo_voz,
+            'Colaboraciones': cantante.colaboraciones,
+            'Instrumentos': cantante.instrumentos
+
+        })
+
+        with open(ruta, "w", encoding="utf-8") as f:
+            json.dump(datos, f, ensure_ascii=False, indent=4)
+
+        # BUG CORREGIDO: usamos 'nombre_artista' (str guardado antes),
+        # no 'artista.nombre' que ya no es el objeto sino la lista.
+        print(f"Artista '{nombre_cantante}' guardado correctamente.")
+
 
 

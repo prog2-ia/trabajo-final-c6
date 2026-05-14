@@ -148,11 +148,6 @@ class Artista(ABC):
     # Metodo para eliminar artista de la base de datos.
     @staticmethod
     def eliminar_artista(artista, ruta='archivos/artistas_guardados.json'):
-        if not isinstance(artista, Artista):
-            raise TypeError("Solo se pueden eliminar objetos Artista.")
-
-        nombre_artista = artista.nombre
-
         try:
             with open(ruta, "r", encoding="utf-8") as f:
                 datos = json.load(f)
@@ -165,29 +160,23 @@ class Artista(ABC):
 
         encontrado = False
         for a in datos:
-            if a.get("Nombre", "").lower() == nombre_artista.lower():
+            if a.get("Nombre", "").lower() == artista.lower():
                 datos.remove(a)
                 encontrado = True
                 break
 
         if not encontrado:
-            raise ValueError(f"No se encontró el artista '{nombre_artista}'.")
+            raise ValueError(f"No se encontró el artista '{artista}'.")
 
         with open(ruta, "w", encoding="utf-8") as f:
             json.dump(datos, f, ensure_ascii=False, indent=4)
 
-        # BUG CORREGIDO: usamos 'nombre_artista', no 'artista.nombre'.
-        print(f"Artista '{nombre_artista}' eliminado correctamente.")
+        print(f"Artista '{artista}' eliminado correctamente.")
 
 
     # Metodo para buscar artista en la base de datos.
     @staticmethod
-    def buscar_artista(artista, ruta='archivos/artistas_guardados.json'):
-        if not isinstance(artista, Artista):
-            raise TypeError("Solo se pueden buscar objetos Artista.")
-
-        nombre_artista = artista.nombre
-
+    def buscar_artista(nombre, ruta='archivos/artistas_guardados.json'):
         try:
             with open(ruta, "r", encoding="utf-8") as f:
                 # BUG CORREGIDO: renombramos a 'datos'.
@@ -201,8 +190,9 @@ class Artista(ABC):
 
         encontrado = False
         for a in datos:
-            if a.get("Nombre", "").lower() == nombre_artista.lower():
+            if a.get("Nombre", "").lower() == nombre.lower():
                 encontrado = True
+
                 print(f"Nombre:              {a.get('Nombre')}")
                 print(f"Fecha de formación:  {a.get('Fecha de formación')}")
                 print(f"País de origen:      {a.get('País de origen')}")
@@ -210,10 +200,12 @@ class Artista(ABC):
                 print(f"Género:              {a.get('Género', [])}")
                 print(f"Canciones populares: {a.get('Canciones populares', [])}")
                 print(f"Componentes:         {a.get('Componentes', [])}")
-                break
+
+                return a
 
         if not encontrado:
-            raise ValueError(f"No se encontró el artista '{nombre_artista}'.")
+            raise ValueError(f"No se encontró el artista '{nombre}'.")
+        return None
 
 
     # Metodo abstracto para mostrar la información en las subclases.
@@ -228,3 +220,33 @@ class Artista(ABC):
         if self.canciones_populares:
             print(f"Canciones populares: {self.canciones_populares}")
         print(f"Activo:              {'Sí' if self.activo else 'No'}")
+
+
+    @staticmethod
+    def mostrar_artistas(ruta='archivos/artistas_guardados.json'):
+        try:
+            with open(ruta, "r", encoding="utf-8") as f:
+                artistas = json.load(f)
+
+        except FileNotFoundError:
+            raise FileNotFoundError(f"No se encontró el archivo: {ruta}")
+
+        except json.JSONDecodeError:
+            raise ArtistaError("El archivo JSON está corrupto o mal formado.")
+
+        else:
+
+            if not artistas:
+                print("No hay artistas registrados.")
+                return
+
+            for a in artistas:
+
+                print("\n========================")
+                print(f"Nombre: {a.get('Nombre')}")
+                print(f"Fecha de formación: {a.get('Fecha de formación')}")
+                print(f"País de origen: {a.get('País de origen')}")
+                print(f"Activo: {'Sí' if a.get('Activo') else 'No'}")
+                print(f"Género: {a.get('Género')}")
+                print(f"Canciones populares: {a.get('Canciones populares')}")
+                print(f"Componentes: {a.get('Componentes')}")

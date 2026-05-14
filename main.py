@@ -8,12 +8,15 @@ from clases.Contenido.playlist import ListaReproduccion
 from datetime import date
 
 #importamos clases que heredan del Artista:
+from clases.Artistas.artistas import Artista
+from clases.Artistas.artistas import ArtistaError
+
 from clases.Artistas.cantantes import Cantantes
 from clases.Artistas.grupo import Grupos
 from clases.Artistas.orquesta import Orquestas
 from clases.Artistas.productor_musical import ProductorMusical
 
-# ------------------------------------------------------------
+
 # funciones auxiliares del main.
 
 def menu_canciones():
@@ -137,7 +140,6 @@ def menu():
 
 def pedir_opcion():
     return input("Elige una opcion: ").strip()
-
 
 
 # ------------------------------------------------------------
@@ -964,30 +966,115 @@ def main():
                     start4 = False
 
                 # ------------------------------------------------------------
+                #codigo: anadir artista a la base de datos
+
 
                 elif opcion_artista == '1':
-                    #codigo: anadir artista a la base de datos
+                    print("\n=== ANADIR ARTISTA ===")
+                    print("(1) Cantante")
+                    print("(2) Grupo")
+                    print("(3) Orquesta")
 
-                    print(f'Añadiendo artista a la base de datos...')
+                    tipo = (input("Introduce la tipo de artista que desee añadir: "))
 
-                # ------------------------------------------------------------
+                    while tipo not in ('1', '2', '3'):
+                        print("Opcion no valida.")
+                        tipo = (input("Introduce la tipo de artista que desee añadir: "))
+
+                    if tipo == '1':
+                        print("\n=== ANADIR CANTANTE ===")
+                        nombre = input("Nombre: ").strip()
+                        fecha_formacion = input("Fecha de formacion: ").strip()
+                        pais_origen = input("Pais de origen: ").strip()
+
+                        activo_input = input("Activo (s/n): ").strip().lower()
+                        while activo_input not in ('s', 'n'):
+                            print("Solo puedes poner (s/n).")
+                            activo_input = input("Activo (s/n): ").strip().lower()
+
+                        activo = activo_input == 's'
+
+                        genero = [g.strip() for g in input("Genero(s) separados por coma: ").split(',') if g.strip()]
+                        canciones_populares = [c.strip() for c in input("Canciones populares: ").split(',') if c.strip()]
+                        componentes = [c.strip() for c in input("Componentes: ").split(',') if c.strip()]
+                        tipo_voz = input("Tipo de voz: ").strip()
+                        colaboraciones = [col.strip() for col in input("Colaboraciones: ").split(',') if col.strip()]
+                        instrumentos = [i.strip() for i in input("Instrumentos: ").split(',') if i.strip()]
+
+                        cantante = Cantantes(
+                        nombre=nombre,
+                        fecha_formacion=fecha_formacion,
+                        pais_origen=pais_origen,
+                        activo=activo,
+                        genero=genero,
+                        canciones_populares=canciones_populares,
+                        componentes=componentes,
+                        tipo_voz=tipo_voz,
+                        colaboraciones=colaboraciones,
+                        instrumentos=instrumentos
+                    )
+
+                        cantante.guardar_cantante(cantante, ruta='archivos/artistas_guardados.json')
+
+
+                        print(f'Cantente {cantante.nombre} ha sido guardado')
+                                        # ------------------------------------------------------------
 
                 elif opcion_artista == '2':
                     #codigo: eliminar artista de la base de datos
-                    print(f'Eliminando artista de la base de datos...')
+                    nombre = input('Introduce el nombre del artista: ').strip()
+                    print()
+                    print("Buscando el artista...")
 
-                # ------------------------------------------------------------
+                    try:
+                        #Buscamos el productor en nuestra base
+                        artista_encontrado = Artista.buscar_artista(nombre, ruta='archivos/artistas_guardados.json')
+
+                        opcion_eliminar_artista = input(f'¿Eliminar el artista {artista_encontrado['Nombre']}? (s/n)').strip()
+                        #Validamos la peticion
+                        while opcion_eliminar_artista not in ('s', 'n'):
+                            print('Opcion no valida. Solo puedes poner (s/n)')
+                            opcion_eliminar_artista = input(f'¿Eliminar el artista {artista_encontrado['Nombre']}? (s/n)').strip().lower()
+
+                         #si decimos que si:
+                        if opcion_eliminar_artista == "s":
+                            print(f"Eliminando el artista {artista_encontrado['Nombre']}...")
+                            Artista.eliminar_artista(nombre, ruta='archivos/artistas_guardados.json')
+                        #si ha sido un missclick
+                        else:
+                            print("La eliminacion se ha cancelado.")
+                    except ValueError:
+                        print(f"El artista {nombre} no existe")
+
+
+                                    # ------------------------------------------------------------
 
                 elif opcion_artista == '3':
-                    print('Buscando artista...')
                     #codigo: buscar artista en la base de datos
+                    nombre = input('Introduce el nombre del artista: ').strip()
+                    print()
+                    print("Buscando el artista...")
+                    #Buscamos el artista en nuestra base
+                    artista_encontrado = Artista.buscar_artista(nombre)
+
+                    #Si no la encontramos
+                    if artista_encontrado is None:
+                        print('El artista {nombre} no existe}')
+
+                    #Si la encontramos
+                    else:
+                        print(f'== ARTISTA ENCONTRADO ==')
+                        print(artista_encontrado)
 
                 # ------------------------------------------------------------
 
                 elif opcion_artista == '4':
+                    #codigo: mostrar todos los artistas de la base de datos.
+
                     print('Mostrando los artistas registrados...')
                     print(f'== ARTISTAS REGISTRADOS ==')
-                    #codigo: mostrar todos los artistas de la base de datos.
+                    Artista.mostrar_artistas(ruta='archivos/artistas_guardados.json')
+
 
                 # ------------------------------------------------------------
 
@@ -1055,7 +1142,6 @@ def main():
 
 
 
-                    print('Añadiendo productor musical a la base de datos...')
 
 
                 # ------------------------------------------------------------
@@ -1063,14 +1149,50 @@ def main():
                 #eliminamos productor de la base de datos.
                 elif opcion_productor == '2':
                     #codigo: eliminar productor
-                    print('Eliminando productor de la base de datos...')
+                    nombre = input('Introduce el nombre del productor: ').strip()
+                    print()
+                    print("Buscando el productor...")
+
+                    try:
+                        #Buscamos el productor en nuestra base
+                        productor_encontrado = ProductorMusical.buscar_productor(nombre, ruta='archivos/artistas_guardados/productores_guardados.json')
+
+                        opcion_eliminar_productor = input(f'¿Eliminar el productor {productor_encontrado['Nombre']}? (s/n)').strip()
+                        #Validamos la peticion
+                        while opcion_eliminar_productor not in ('s', 'n'):
+                            print('Opcion no valida. Solo puedes poner (s/n)')
+                            opcion_eliminar_productor = input(f'¿Eliminar el productor {productor_encontrado['Nombre']}? (s/n)').strip().lower()
+
+                         #si decimos que si:
+                        if opcion_eliminar_productor == "s":
+                            print(f"Eliminando el productor {productor_encontrado['Nombre']}...")
+                            ProductorMusical.eliminar_productor(nombre, ruta='archivos/artistas_guardados/productores_guardados.json')
+                        #si ha sido un missclick
+                        else:
+                            print("La eliminacion se ha cancelado.")
+                    except ValueError:
+                        print(f"El productor {nombre} no existe")
 
                 # ------------------------------------------------------------
 
                 #opcion de buscar productor.
                 elif opcion_productor == '3':
-                    print('Buscando el productor en la base de datos...')
                     #codigo: buscar productor
+                    print('Buscando el productor en la base de datos...')
+                    nombre = input('Introduce el nombre del productor: ').strip()
+                    print()
+                    print("Buscando el productor...")
+                    #Buscamos el productor en nuestra base
+                    productor_encontrado = ProductorMusical.buscar_productor(nombre)
+
+                    #Si no la encontramos
+                    if productor_encontrado is None:
+                        print('El productor {nombre} no existe}')
+
+                    #Si la encontramos
+                    else:
+                        print(f'== PRODUCTOR ENCONTRADO ==')
+                        print(productor_encontrado)
 
 
                 # ------------------------------------------------------------
@@ -1079,6 +1201,7 @@ def main():
                 elif opcion_productor == '4':
                     print('Mostrando todos los productores...')
                     #codigo: Mostrar todos los productores
+                    ProductorMusical.mostrar_productores()
 
 
                 # ------------------------------------------------------------
