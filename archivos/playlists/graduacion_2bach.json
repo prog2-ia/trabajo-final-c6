@@ -1,0 +1,242 @@
+[
+    {
+        "Titulo": "Like a Prayer",
+        "Artista": "Madonna",
+        "Fecha de lanzamiento": "1989",
+        "Duracion": "5:42",
+        "Genero": [
+            "Pop"
+        ],
+        "Discografia": "Like a Prayer"
+    },
+    {
+        "Titulo": "Poker Face",
+        "Artista": "Lady Gaga",
+        "Fecha de lanzamiento": "2008",
+        "Duracion": "3:57",
+        "Genero": [
+            "Pop"
+        ],
+        "Discografia": "The Fame"
+    },
+    {
+        "Titulo": "Superstition",
+        "Artista": "Stevie Wonder",
+        "Fecha de lanzamiento": "1972",
+        "Duracion": "4:26",
+        "Genero": [
+            "Funk"
+        ],
+        "Discografia": "Talking Book"
+    },
+    {
+        "Titulo": "Get Up (I Feel Like Being a) Sex Machine",
+        "Artista": "James Brown",
+        "Fecha de lanzamiento": "1970",
+        "Duracion": "5:16",
+        "Genero": [
+            "Funk"
+        ],
+        "Discografia": "Sex Machine"
+    },
+    {
+        "Titulo": "Uptown Funk",
+        "Artista": "Mark Ronson ft. Bruno Mars",
+        "Fecha de lanzamiento": "2014",
+        "Duracion": "4:30",
+        "Genero": [
+            "Funk"
+        ],
+        "Discografia": "Uptown Special"
+    },
+    {
+        "Titulo": "Enjoy the Silence",
+        "Artista": "Depeche Mode",
+        "Fecha de lanzamiento": "1990",
+        "Duracion": "4:15",
+        "Genero": [
+            "Synthpop"
+        ],
+        "Discografia": "Violator"
+    },
+    {
+        "Titulo": "Blue Monday",
+        "Artista": "New Order",
+        "Fecha de lanzamiento": "1983",
+        "Duracion": "7:29",
+        "Genero": [
+            "Synthpop"
+        ],
+        "Discografia": "Power, Corruption & Lies"
+    },
+    {
+        "Titulo": "Strobe",
+        "Artista": "Deadmau5",
+        "Fecha de lanzamiento": "2009",
+        "Duracion": "10:33",
+        "Genero": [
+            "Electronic"
+        ],
+        "Discografia": "For Lack of a Better Name"
+    },
+    {
+        "Titulo": "Blitzkrieg Bop",
+        "Artista": "Ramones",
+        "Fecha de lanzamiento": "1976",
+        "Duracion": "2:12",
+        "Genero": [
+            "Punk Rock"
+        ],
+        "Discografia": "Ramones"
+    },
+    {
+        "Titulo": "London Calling",
+        "Artista": "The Clash",
+        "Fecha de lanzamiento": "1979",
+        "Duracion": "3:19",
+        "Genero": [
+            "Punk Rock"
+        ],
+        "Discografia": "London Calling"
+    },
+    {
+        "Titulo": "I Wanna Be Sedated",
+        "Artista": "Ramones",
+        "Fecha de lanzamiento": "1978",
+        "Duracion": "2:29",
+        "Genero": [
+            "Punk Rock"
+        ],
+        "Discografia": "Road to Ruin"
+    },
+    {
+        "Titulo": "You Give Love A Bad Name",
+        "Artista": "Bon Jovi",
+        "Fecha de lanzamiento": "1986",
+        "Duracion": "3:43",
+        "Genero": [
+            "rock",
+            "glam rock"
+        ],
+        "Discografia": "Slippery When Wet"
+    },
+    {
+        "Titulo": "Welcome To The Jungle",
+        "Artista": "Guns N' Roses",
+        "Fecha de lanzamiento": "1987",
+        "Duracion": "4:40",
+        "Genero": [
+            "rock",
+            "glam rock"
+        ],
+        "Discografia": "Appetite For Destruction"
+    },
+    {
+        "Titulo": "Without Love",
+        "Artista": "Bon Jovi",
+        "Fecha de lanzamiento": "1986",
+        "Duracion": "3:31",
+        "Genero": [
+            "rock",
+            "glam rock"
+        ],
+        "Discografia": "Slippery When Wet"
+    },
+    {
+        "Titulo": "Love In An Elevator",
+        "Artista": "Aerosmith",
+        "Fecha de lanzamiento": "1989",
+        "Duracion": "5:41",
+        "Genero": [
+            "rock",
+            "hard rock"
+        ],
+        "Discografia": "Pump"
+    },
+    {
+        "Titulo": "What It Takes",
+        "Artista": "Aerosmith",
+        "Fecha de lanzamiento": "1990",
+        "Duracion": "5:13",
+        "Genero": [
+            "Rock",
+            "hard rock"
+        ],
+        "Discografia": "Pump"
+    },
+    {
+        "Titulo": "Crazy",
+        "Artista": "Aerosmith",
+        "Fecha de lanzamiento": "1993",
+        "Duracion": "4:22",
+        "Genero": [
+            "Rock"
+        ],
+        "Discografia": "Get A Grip"
+    },
+    {
+        "Titulo": "Looks That Kill",
+        "Artista": "Motley Crue",
+        "Fecha de lanzamiento": "1985",
+        "Duracion": "3:51",
+        "Genero": [
+            "glam metal",
+            "glam rock"
+        ],
+        "Discografia": "Shout At The Devil"
+    },
+    {
+        "Titulo": "Captain Crash And The Beauty Queen From Mars",
+        "Artista": "Bon Jovi feat. Richie Sambora",
+        "Fecha de lanzamiento": "2001",
+        "Duracion": "4:31",
+        "Genero": [
+            "rock",
+            "hard rock"
+        ],
+        "Discografia": "Crush"
+    },
+    {
+        "Titulo": "Streets Of Minneapolis",
+        "Artista": "Bruce Springsteen feat. E Street Band",
+        "Fecha de lanzamiento": "2026",
+        "Duracion": "4:31",
+        "Genero": [
+            "soft rock",
+            "rock"
+        ],
+        "Discografia": "Streets Of Minneapolis"
+    },
+    {
+        "Titulo": "Dude (Looks Like A Lady)",
+        "Artista": "Aerosmith",
+        "Fecha de lanzamiento": "1987",
+        "Duracion": "4:23",
+        "Genero": [
+            "rock",
+            "hard rock"
+        ],
+        "Discografia": "Permament Vacation"
+    },
+    {
+        "Titulo": "Too Late For Love",
+        "Artista": "Def Leppard",
+        "Fecha de lanzamiento": "1983",
+        "Duracion": "3:30",
+        "Genero": [
+            "rock",
+            "glam rock"
+        ],
+        "Discografia": "Pyromania"
+    },
+    {
+        "Titulo": "Flashdance... What A Feeling",
+        "Artista": "Irene Cara",
+        "Fecha de lanzamiento": "1983",
+        "Duracion": "3:20",
+        "Genero": [
+            "pop"
+        ],
+        "Discografia": "What A Feelin'"
+    }
+  ]

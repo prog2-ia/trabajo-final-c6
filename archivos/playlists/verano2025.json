@@ -1,0 +1,240 @@
+[{
+        "Titulo": "Imagine",
+        "Artista": "John Lennon",
+        "Fecha de lanzamiento": "1971",
+        "Duracion": "3:03",
+        "Genero": [
+            "Rock"
+        ],
+        "Discografia": "Imagine"
+    },
+    {
+        "Titulo": "Purple Haze",
+        "Artista": "Jimi Hendrix",
+        "Fecha de lanzamiento": "1967",
+        "Duracion": "2:50",
+        "Genero": [
+            "Psychedelic Rock"
+        ],
+        "Discografia": "Are You Experienced"
+    },
+    {
+        "Titulo": "Whole Lotta Love",
+        "Artista": "Led Zeppelin",
+        "Fecha de lanzamiento": "1969",
+        "Duracion": "5:33",
+        "Genero": [
+            "Hard Rock"
+        ],
+        "Discografia": "Led Zeppelin II"
+    },
+    {
+        "Titulo": "Comfortably Numb",
+        "Artista": "Pink Floyd",
+        "Fecha de lanzamiento": "1979",
+        "Duracion": "6:22",
+        "Genero": [
+            "Progressive Rock"
+        ],
+        "Discografia": "The Wall"
+    },
+    {
+        "Titulo": "Wish You Were Here",
+        "Artista": "Pink Floyd",
+        "Fecha de lanzamiento": "1975",
+        "Duracion": "5:40",
+        "Genero": [
+            "Progressive Rock"
+        ],
+        "Discografia": "Wish You Were Here"
+    },
+    {
+        "Titulo": "Dream On",
+        "Artista": "Aerosmith",
+        "Fecha de lanzamiento": "1973",
+        "Duracion": "4:29",
+        "Genero": [
+            "Hard Rock"
+        ],
+        "Discografia": "Aerosmith"
+    },
+    {
+        "Titulo": "Mama Kin",
+        "Artista": "Aerosmith",
+        "Fecha de lanzamiento": "1973",
+        "Duracion": "4:28",
+        "Genero": [
+            "Hard Rock"
+        ],
+        "Discografia": "Aerosmith"
+    },
+    {
+        "Titulo": "Free Bird",
+        "Artista": "Lynyrd Skynyrd",
+        "Fecha de lanzamiento": "1973",
+        "Duracion": "9:08",
+        "Genero": [
+            "Southern Rock"
+        ],
+        "Discografia": "Pronounced Leh-Nerd Skin-Nerd"
+    },
+    {
+        "Titulo": "Iron Man",
+        "Artista": "Black Sabbath",
+        "Fecha de lanzamiento": "1970",
+        "Duracion": "5:55",
+        "Genero": [
+            "Heavy Metal"
+        ],
+        "Discografia": "Paranoid"
+    },
+    {
+        "Titulo": "Run to the Hills",
+        "Artista": "Iron Maiden",
+        "Fecha de lanzamiento": "1982",
+        "Duracion": "3:53",
+        "Genero": [
+            "Heavy Metal"
+        ],
+        "Discografia": "The Number of the Beast"
+    },
+    {
+        "Titulo": "The Trooper",
+        "Artista": "Iron Maiden",
+        "Fecha de lanzamiento": "1983",
+        "Duracion": "4:12",
+        "Genero": [
+            "Heavy Metal"
+        ],
+        "Discografia": "Piece of Mind"
+    },
+    {
+        "Titulo": "Nothing Else Matters",
+        "Artista": "Metallica",
+        "Fecha de lanzamiento": "1991",
+        "Duracion": "6:28",
+        "Genero": [
+            "Heavy Metal"
+        ],
+        "Discografia": "Metallica"
+    },
+    {
+        "Titulo": "Master of Puppets",
+        "Artista": "Metallica",
+        "Fecha de lanzamiento": "1986",
+        "Duracion": "8:36",
+        "Genero": [
+            "Thrash Metal"
+        ],
+        "Discografia": "Master of Puppets"
+    },
+    {
+        "Titulo": "Ace of Spades",
+        "Artista": "Motorhead",
+        "Fecha de lanzamiento": "1980",
+        "Duracion": "2:48",
+        "Genero": [
+            "Heavy Metal"
+        ],
+        "Discografia": "Ace of Spades"
+    },
+    {
+        "Titulo": "Kashmir",
+        "Artista": "Led Zeppelin",
+        "Fecha de lanzamiento": "1975",
+        "Duracion": "8:37",
+        "Genero": [
+            "Rock"
+        ],
+        "Discografia": "Physical Graffiti"
+    },
+    {
+        "Titulo": "Paint It Black",
+        "Artista": "The Rolling Stones",
+        "Fecha de lanzamiento": "1966",
+        "Duracion": "3:22",
+        "Genero": [
+            "Rock"
+        ],
+        "Discografia": "Aftermath"
+    },
+    {
+        "Titulo": "Satisfaction",
+        "Artista": "The Rolling Stones",
+        "Fecha de lanzamiento": "1965",
+        "Duracion": "3:43",
+        "Genero": [
+            "Rock"
+        ],
+        "Discografia": "Out of Our Heads"
+    },
+    {
+        "Titulo": "Light My Fire",
+        "Artista": "The Doors",
+        "Fecha de lanzamiento": "1967",
+        "Duracion": "7:06",
+        "Genero": [
+            "Rock"
+        ],
+        "Discografia": "The Doors"
+    },
+    {
+        "Titulo": "Riders on the Storm",
+        "Artista": "The Doors",
+        "Fecha de lanzamiento": "1971",
+        "Duracion": "7:14",
+        "Genero": [
+            "Rock"
+        ],
+        "Discografia": "L.A. Woman"
+    },
+    {
+        "Titulo": "Losing My Religion",
+        "Artista": "R.E.M.",
+        "Fecha de lanzamiento": "1991",
+        "Duracion": "4:28",
+        "Genero": [
+            "Alternative Rock"
+        ],
+        "Discografia": "Out of Time"
+    },
+    {
+        "Titulo": "Creep",
+        "Artista": "Radiohead",
+        "Fecha de lanzamiento": "1992",
+        "Duracion": "3:58",
+        "Genero": [
+            "Alternative Rock"
+        ],
+        "Discografia": "Pablo Honey"
+    },
+    {
+        "Titulo": "Zombie",
+        "Artista": "The Cranberries",
+        "Fecha de lanzamiento": "1994",
+        "Duracion": "5:06",
+        "Genero": [
+            "Alternative Rock"
+        ],
+        "Discografia": "No Need to Argue"
+    },
+    {
+        "Titulo": "Everlong",
+        "Artista": "Foo Fighters",
+        "Fecha de lanzamiento": "1997",
+        "Duracion": "4:10",
+        "Genero": [
+            "Alternative Rock"
+        ],
+        "Discografia": "The Colour and the Shape"
+    },
+    {
+        "Titulo": "American Idiot",
+        "Artista": "Green Day",
+        "Fecha de lanzamiento": "2004",
+        "Duracion": "2:54",
+        "Genero": [
+            "Punk Rock"
+        ],
+        "Discografia": "American Idiot"
+    }]
