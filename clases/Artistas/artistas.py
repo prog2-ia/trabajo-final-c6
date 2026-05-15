@@ -179,7 +179,7 @@ class Artista(ABC):
     def buscar_artista(nombre, ruta='archivos/artistas_guardados.json'):
         try:
             with open(ruta, "r", encoding="utf-8") as f:
-                # BUG CORREGIDO: renombramos a 'datos'.
+
                 datos = json.load(f)
 
         except FileNotFoundError:

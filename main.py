@@ -593,7 +593,7 @@ def main():
                                 else:
                                     print("La eliminacion se ha canceldado.")
 
-                                print(f'Eliminando la cancion de la playlist...')
+
 
                             # ------------------------------------------------------------
 
@@ -997,7 +997,7 @@ def main():
 
                         genero = [g.strip() for g in input("Genero(s) separados por coma: ").split(',') if g.strip()]
                         canciones_populares = [c.strip() for c in input("Canciones populares: ").split(',') if c.strip()]
-                        componentes = [c.strip() for c in input("Componentes: ").split(',') if c.strip()]
+                        componentes = [c.strip() for c in input("Componentes(En caso de varios): ").split(',') if c.strip()]
                         tipo_voz = input("Tipo de voz: ").strip()
                         colaboraciones = [col.strip() for col in input("Colaboraciones: ").split(',') if col.strip()]
                         instrumentos = [i.strip() for i in input("Instrumentos: ").split(',') if i.strip()]
@@ -1101,8 +1101,7 @@ def main():
                         artista_encontrado = Artista.buscar_artista(nombre, ruta='archivos/artistas_guardados.json')
 
                         opcion_eliminar_artista = input(
-                            f"¿Eliminar el artista {artista_encontrado['Nombre']}? (s/n): "
-                        ).strip().lower()
+                            f"¿Eliminar el artista {artista_encontrado['Nombre']}? (s/n): ").strip().lower()
 
                         # Validamos la petición
                         while opcion_eliminar_artista not in ('s', 'n'):
