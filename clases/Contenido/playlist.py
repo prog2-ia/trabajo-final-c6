@@ -180,6 +180,7 @@ class ListaReproduccion(Contenido):
         self._sincronizar_generos()
 
         print(f"Número de canciones: {len(self._lista)}")
+        print(f"Duración total: {self.calcular_duracion_total()}")
 
         print("\nLista de canciones:")
 
@@ -187,7 +188,7 @@ class ListaReproduccion(Contenido):
             print("- (vacía)")
         else:
             for c in self._lista:
-                print(f"- {c.titulo} — {c.artista} ({c.formatear_duracion()})")
+                print(f"- {c.titulo} — {c.artista} ({c.duracion})")
 
         print("=" * 40 + "\n")
 
@@ -439,3 +440,58 @@ class ListaReproduccion(Contenido):
                 artistas.add(principal.title())
 
         self.artista = ", ".join(sorted(artistas))
+
+
+    # ------------------------------------------------------------
+
+
+    # convertir string a segundos
+    def _duracion_a_segundos(self, duracion):
+        partes = duracion.split(":")
+        try:
+            partes = [int(p) for p in partes]
+        except:
+            return 0
+
+        if len(partes) == 2:
+            mm, ss = partes
+            return mm * 60 + ss
+
+        elif len(partes) == 3:
+            hh, mm, ss = partes
+            return hh * 3600 + mm * 60 + ss
+
+        return 0
+
+
+    # ------------------------------------------------------------
+
+
+    # formatear segundos a mm:ss o hh:mm:ss
+    @staticmethod
+    def _formatear_segundos(total):
+
+        if total < 3600:
+            m = total // 60
+            s = total % 60
+            return f"{m}:{s:02}"
+
+        h = total // 3600
+        resto = total % 3600
+        m = resto // 60
+        s = resto % 60
+
+        return f"{h:02}:{m:02}:{s:02}"
+
+
+    # ------------------------------------------------------------
+
+
+    # calcular duracion total
+    def calcular_duracion_total(self):
+
+        total = 0
+        for c in self._lista:
+            total += self._duracion_a_segundos(c.duracion)
+
+        return self._formatear_segundos(total)

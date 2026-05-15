@@ -95,9 +95,7 @@ class Cancion(Contenido):
             json.dump(canciones_filtradas, f, ensure_ascii=False, indent=4)
 
         if len(canciones_filtradas) == canciones_antes:
-            print(f"La cancion '{titulo}' de {artista} no existe en la base de datos.")
-        else:
-            print(f"Cancion '{titulo}' de {artista} eliminada correctamente.")
+            print(f"La cancion '{titulo.title()}' de {artista.title()} no existe en la base de datos.")
 
     #Mediante Uso de __isub__
 
@@ -301,7 +299,7 @@ class Cancion(Contenido):
             "Titulo": self.titulo.title(),
             "Artista": self.artista_completo(),
             "Fecha de lanzamiento": self.fecha_lanzamiento,
-            "Duracion": self.formatear_duracion(),
+            "Duracion": self.duracion,
             "Genero": self.genero,
             "Discografia": self.discografia.title()
         }

@@ -31,5 +31,15 @@
             "Rock"
         ],
         "Discografia": "Rumors"
+    },
+    {
+        "Titulo": "Enjoy The Silence",
+        "Artista": "Depeche Mode",
+        "Fecha de lanzamiento": "1990",
+        "Duracion": "4:15",
+        "Genero": [
+            "Synthpop"
+        ],
+        "Discografia": "Violator"
     }
 ]
