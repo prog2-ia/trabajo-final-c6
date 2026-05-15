@@ -1091,7 +1091,7 @@ def main():
 
 
                 elif opcion_artista == '2':
-                    # codigo: artista productor
+                    # codigo: Eliminar artista
                     nombre = input('Introduce el nombre del artista: ').strip()
                     print()
                     print("Buscando el artista...")
@@ -1123,6 +1123,7 @@ def main():
                 # ------------------------------------------------------------
 
                 elif opcion_artista == '3':
+                    #Buscar artista
                     nombre = input('Introduce el nombre del artista: ').strip()
                     print()
                     print("Buscando el artista...")
@@ -1138,6 +1139,7 @@ def main():
                 # ------------------------------------------------------------
 
                 elif opcion_artista == '4':
+                    #Mostrar todos los artistas registrados
                     print('Mostrando los artistas registrados...')
                     print('== ARTISTAS REGISTRADOS ==')
                     Artista.mostrar_artistas(ruta='archivos/artistas_guardados.json')
@@ -1204,7 +1206,7 @@ def main():
                         producciones = producciones,
                     )
 
-                    productor.guardar_productor(productor, ruta='archivos/artistas_guardados/productores_guardados.json')
+                    productor.guardar_productor(productor, ruta='archivos/productores_guardados.json')
 
 
 
@@ -1222,7 +1224,7 @@ def main():
 
                     try:
                         #Buscamos el productor en nuestra base
-                        productor_encontrado = ProductorMusical.buscar_productor(nombre, ruta='archivos/artistas_guardados/productores_guardados.json')
+                        productor_encontrado = ProductorMusical.buscar_productor(nombre, ruta='archivos/productores_guardados.json')
 
                         opcion_eliminar_productor = input(f'¿Eliminar el productor {productor_encontrado['Nombre']}? (s/n)').strip()
                         #Validamos la peticion
@@ -1233,7 +1235,7 @@ def main():
                          #si decimos que si:
                         if opcion_eliminar_productor == "s":
                             print(f"Eliminando el productor {productor_encontrado['Nombre']}...")
-                            ProductorMusical.eliminar_productor(nombre, ruta='archivos/artistas_guardados/productores_guardados.json')
+                            ProductorMusical.eliminar_productor(nombre, ruta='archivos/productores_guardados.json')
                         #si ha sido un missclick
                         else:
                             print("La eliminacion se ha cancelado.")

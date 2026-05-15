@@ -18,24 +18,6 @@
         ]
     },
     {
-        "Nombre": "r",
-        "Fecha de formación": "r",
-        "País de origen": "r",
-        "Activo": true,
-        "Genero": [
-            "j"
-        ],
-        "Canciones populares": [
-            "j"
-        ],
-        "Componentes": [
-            "j"
-        ],
-        "Producciones": [
-            "j"
-        ]
-    },
-    {
         "Nombre": "Tegra",
         "Fecha de formación": "202",
         "País de origen": "España",
@@ -52,6 +34,24 @@
         ],
         "Producciones": [
             "nada"
+        ]
+    },
+    {
+        "Nombre": "Kacper",
+        "Fecha de formación": "2000",
+        "País de origen": "US",
+        "Activo": true,
+        "Genero": [
+            "Rock"
+        ],
+        "Canciones populares": [
+            "Love"
+        ],
+        "Componentes": [
+            ""
+        ],
+        "Producciones": [
+            ""
         ]
     }
 ]
