@@ -430,6 +430,7 @@ def main():
                                     else:
                                         print("La eliminacion se ha canceldado.")
 
+
                                 # -----------------------
                                 # eliminamos playlist.
                                 elif opcion_playlist == '4':
@@ -1209,10 +1210,6 @@ def main():
                     productor.guardar_productor(productor, ruta='archivos/productores_guardados.json')
 
 
-
-
-
-
                 # ------------------------------------------------------------
 
                 #eliminamos productor de la base de datos.
@@ -1226,11 +1223,11 @@ def main():
                         #Buscamos el productor en nuestra base
                         productor_encontrado = ProductorMusical.buscar_productor(nombre, ruta='archivos/productores_guardados.json')
 
-                        opcion_eliminar_productor = input(f'¿Eliminar el productor {productor_encontrado['Nombre']}? (s/n)').strip()
+                        opcion_eliminar_productor = input(f'¿Eliminar el productor {productor_encontrado['Nombre']}? (s/n): ').strip()
                         #Validamos la peticion
                         while opcion_eliminar_productor not in ('s', 'n'):
                             print('Opcion no valida. Solo puedes poner (s/n)')
-                            opcion_eliminar_productor = input(f'¿Eliminar el productor {productor_encontrado['Nombre']}? (s/n)').strip().lower()
+                            opcion_eliminar_productor = input(f'¿Eliminar el productor {productor_encontrado['Nombre']}? (s/n): ').strip().lower()
 
                          #si decimos que si:
                         if opcion_eliminar_productor == "s":
@@ -1257,11 +1254,6 @@ def main():
                     #Si no la encontramos
                     if productor_encontrado is None:
                         print('El productor {nombre} no existe}')
-
-                    #Si la encontramos
-                    else:
-                        print(f'== PRODUCTOR ENCONTRADO ==')
-                        print(productor_encontrado)
 
 
                 # ------------------------------------------------------------
