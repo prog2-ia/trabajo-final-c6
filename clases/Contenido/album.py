@@ -404,7 +404,24 @@ class Album(Contenido):
             raise ValueError("El álbum debe ser una lista de canciones.")
 
         if len(datos) == 0:
-            raise ValueError("El álbum está vacío.")
+            archivo = os.path.basename(ruta)
+
+            artista_carpeta = ruta.split("/")[-2]
+            artista_detectado = artista_carpeta.replace("_", " ").title()
+
+            album = Album(
+                titulo=archivo.replace(".json", "").replace("_", " ").title(),
+                artista=artista_detectado,
+                fecha_lanzamiento=None,
+                duracion="0:00",
+                genero=[],
+                numero_canciones=0
+            )
+
+            album.canciones_album = []
+            album.ruta_archivo = ruta
+
+            return album
 
         numero_canciones = len(datos)
         primera = datos[0]
@@ -413,7 +430,7 @@ class Album(Contenido):
             primera["Discografia"],
             primera["Artista"],
             primera["Fecha de lanzamiento"],
-            None,
+            '0:00',
             primera["Genero"],
             numero_canciones
         )

@@ -1238,14 +1238,6 @@
         "Discografia": "Paranoid"
     },
     {
-        "Titulo": "4",
-        "Artista": "5",
-        "Fecha de lanzamiento": "5",
-        "Duracion": "0:00",
-        "Genero": [],
-        "Discografia": "5"
-    },
-    {
         "Titulo": "You'Re Crazy",
         "Artista": "Guns N' Roses",
         "Fecha de lanzamiento": "1987",
@@ -1257,13 +1249,23 @@
         "Discografia": "Appetite For Destruction"
     },
     {
-        "Titulo": "Sfsf",
-        "Artista": "Fsfs",
-        "Fecha de lanzamiento": "2026",
-        "Duracion": "4:40",
+        "Titulo": "The Waiting",
+        "Artista": "Tom Petty",
+        "Fecha de lanzamiento": "1976",
+        "Duracion": "3:58",
         "Genero": [
-            "Pop"
+            "Arena Rock"
         ],
-        "Discografia": "Nnn"
+        "Discografia": "Hard Promises"
+    },
+    {
+        "Titulo": "It'S My Life",
+        "Artista": "Bon Jovi",
+        "Fecha de lanzamiento": "2000",
+        "Duracion": "4:27",
+        "Genero": [
+            "Rock"
+        ],
+        "Discografia": "Crush"
     }
 ]

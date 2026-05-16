@@ -251,6 +251,7 @@ def main():
                         if opcion_eliminar_cancion == "s":
                             print(f"Eliminando la cancion {titulo.title()}...")
                             Cancion.eliminar_cancion(titulo, artista)
+
                             print(f"Cancion '{titulo.title()}' eliminada correctamente.")
                         #si ha sido un missclick
                         else:
