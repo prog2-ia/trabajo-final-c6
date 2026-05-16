@@ -27,7 +27,7 @@ La idea principal de este programa es ofrecer una gestion sencilla del contenido
 **Guia del proyecto**
 A continuacion se muestra un esquema conceptual de la logica de los archivos y las carpetas.
 
-![img_1.png](img_1.png)
+![img_1.png](imagenes_readme/img_1.png)
 
 ---
 **Guia de funcionamiento:**
@@ -35,7 +35,7 @@ A continuacion se muestra un esquema conceptual de la logica de los archivos y l
 2) Al ejecutar este archivo, aparecera un menu general con todas las posibles opciones de manejo de la biblioteca musical que ofrece nuestro programa. Entre se puede encontrar:
 
 \
-![img_4.png](img_4.png)
+![img_4.png](imagenes_readme/img_4.png)
 
    - _**Menu de canciones**_ (pemite todo el menejo basico de las canciones):
      - Se podra **guardar la cancion** en la base de datos (archivo `.json`), introduciendo todos los datos que se pide.
@@ -44,7 +44,7 @@ A continuacion se muestra un esquema conceptual de la logica de los archivos y l
      - **Filtrar las canciones** en toda la base de datos. Consiste en ir introduciendo (o no) algunos datos que se piden y el programa devolvera todas las canciones relacionadas con los datos intorducidos. Por ejemplo:
 
    \
-          ![img_2.png](img_2.png)
+          ![img_2.png](imagenes_readme/img_2.png)
             
                 
 
@@ -62,7 +62,7 @@ En las playlists trabajamos de manera que cada playlist es un archivo `.json` di
     - Permite operaciones como mostrar informacion, anadir/eliminar canciones y eliminar playlist.
 
 \
-![img_6.png](img_6.png)
+![img_6.png](imagenes_readme/img_6.png)
 
   - _**Menu Artista**_ (pemite control de los artistas guardados.)
        - Nuestro programa ofrece anadir/eliminar artista, buscar artista, mostrar un listado de todos los artistas guardados. 
@@ -74,7 +74,7 @@ En las playlists trabajamos de manera que cada playlist es un archivo `.json` di
     - El menu de albumes es muy intuitivo y seguro que no habra problema con entender su funcionamiento.
      
 \
-![img_3.png](img_3.png)
+![img_3.png](imagenes_readme/img_3.png)
      
 
    - _**Menu Album (dentro)**_ (permite manejar el album una vez elegido uno.)
